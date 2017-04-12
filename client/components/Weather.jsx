@@ -1,12 +1,27 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
+import {connect} from 'react-redux'
+import {fetchWeather} from '../actions/weatherApi'
 
-const Weather = () => {
+let Weather = (props) => {
   return (
     <div>
-      <p>Weather Test</p>
-      <input placeholder="Enter your city .."></input>
+        <p>The weather today is:</p>
+        <input
+          placeholder="Enter your city .."
+          onKeyUp={ e => { showWeather(e, props.dispatch) }}
+        />
+      <p>{props.weatherData}</p>
     </div>
   )
 }
+
+function showWeather (e, dispatch) {
+  if (e.keyCode === 13) {
+    dispatch(fetchWeather(e.currentTarget.value.toLowerCase()))
+    e.currentTarget.value = ''
+  }
+}
+
+Weather = connect()(Weather)
 
 export default Weather

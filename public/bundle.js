@@ -64,7 +64,7 @@
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _App = __webpack_require__(217);
+	var _App = __webpack_require__(218);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
@@ -3892,6 +3892,7 @@
 	  function createChainableTypeChecker(validate) {
 	    if (process.env.NODE_ENV !== 'production') {
 	      var manualPropTypeCallCache = {};
+	      var manualPropTypeWarningCount = 0;
 	    }
 	    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
 	      componentName = componentName || ANONYMOUS;
@@ -3904,9 +3905,12 @@
 	        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
 	          // Old behavior for people using React.PropTypes
 	          var cacheKey = componentName + ':' + propName;
-	          if (!manualPropTypeCallCache[cacheKey]) {
+	          if (!manualPropTypeCallCache[cacheKey] &&
+	          // Avoid spamming the console because they are often not actionable except for lib authors
+	          manualPropTypeWarningCount < 3) {
 	            warning(false, 'You are manually calling a React.PropTypes validation ' + 'function for the `%s` prop on `%s`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.', propFullName, componentName);
 	            manualPropTypeCallCache[cacheKey] = true;
+	            manualPropTypeWarningCount++;
 	          }
 	        }
 	      }
@@ -23788,10 +23792,15 @@
 	
 	var _subreddits2 = _interopRequireDefault(_subreddits);
 	
+	var _weather = __webpack_require__(217);
+	
+	var _weather2 = _interopRequireDefault(_weather);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = (0, _redux.combineReducers)({
-	  subreddits: _subreddits2.default
+	  subreddits: _subreddits2.default,
+	  weatherData: _weather2.default
 	});
 
 /***/ },
@@ -23823,6 +23832,30 @@
 
 /***/ },
 /* 217 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	function weatherData() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'RECEIVE_WEATHER':
+	      return action.main;
+	
+	    default:
+	      return state;
+	  }
+	}
+	
+	exports.default = weatherData;
+
+/***/ },
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23835,15 +23868,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _LoadSubreddit = __webpack_require__(218);
+	var _LoadSubreddit = __webpack_require__(219);
 	
 	var _LoadSubreddit2 = _interopRequireDefault(_LoadSubreddit);
 	
-	var _SubredditContainer = __webpack_require__(225);
+	var _SubredditContainer = __webpack_require__(226);
 	
 	var _SubredditContainer2 = _interopRequireDefault(_SubredditContainer);
 	
-	var _Home = __webpack_require__(228);
+	var _Home = __webpack_require__(229);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
@@ -23863,7 +23896,7 @@
 	exports.default = App;
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23878,7 +23911,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _actions = __webpack_require__(219);
+	var _actions = __webpack_require__(220);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23900,7 +23933,7 @@
 	exports.default = LoadSubreddit;
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23911,7 +23944,7 @@
 	exports.receivePosts = undefined;
 	exports.fetchPosts = fetchPosts;
 	
-	var _superagent = __webpack_require__(220);
+	var _superagent = __webpack_require__(221);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -23939,7 +23972,7 @@
 	}
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23961,9 +23994,9 @@
 	  root = undefined;
 	}
 	
-	var Emitter = __webpack_require__(221);
-	var requestBase = __webpack_require__(222);
-	var isObject = __webpack_require__(223);
+	var Emitter = __webpack_require__(222);
+	var requestBase = __webpack_require__(223);
+	var isObject = __webpack_require__(224);
 	
 	/**
 	 * Noop.
@@ -23975,7 +24008,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(224).bind(null, Request);
+	var request = module.exports = __webpack_require__(225).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -24927,7 +24960,7 @@
 	};
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25091,7 +25124,7 @@
 	};
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25099,7 +25132,7 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(223);
+	var isObject = __webpack_require__(224);
 	
 	/**
 	 * Clear previous timeout.
@@ -25467,7 +25500,7 @@
 	};
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25489,7 +25522,7 @@
 	module.exports = isObject;
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25528,7 +25561,7 @@
 	module.exports = request;
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25539,7 +25572,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _Subreddit = __webpack_require__(226);
+	var _Subreddit = __webpack_require__(227);
 	
 	var _Subreddit2 = _interopRequireDefault(_Subreddit);
 	
@@ -25554,7 +25587,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Subreddit2.default);
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25567,7 +25600,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Post = __webpack_require__(227);
+	var _Post = __webpack_require__(228);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
@@ -25594,7 +25627,7 @@
 	exports.default = Subreddit;
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25625,7 +25658,7 @@
 	exports.default = Post;
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25638,15 +25671,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _PhotoList = __webpack_require__(229);
+	var _PhotoList = __webpack_require__(230);
 	
 	var _PhotoList2 = _interopRequireDefault(_PhotoList);
 	
-	var _Weather = __webpack_require__(231);
+	var _Weather = __webpack_require__(232);
 	
 	var _Weather2 = _interopRequireDefault(_Weather);
 	
-	var _Nav = __webpack_require__(232);
+	var _Nav = __webpack_require__(234);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -25670,7 +25703,7 @@
 	exports.default = Home;
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25683,7 +25716,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _PhotoListItem = __webpack_require__(230);
+	var _PhotoListItem = __webpack_require__(231);
 	
 	var _PhotoListItem2 = _interopRequireDefault(_PhotoListItem);
 	
@@ -25705,7 +25738,7 @@
 	exports.default = PhotoList;
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25735,10 +25768,10 @@
 	exports.default = PhotoListItem;
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -25748,25 +25781,86 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _weatherApi = __webpack_require__(233);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Weather = function Weather() {
+	var Weather = function Weather(props) {
 	  return _react2.default.createElement(
-	    "div",
+	    'div',
 	    null,
 	    _react2.default.createElement(
-	      "p",
+	      'p',
 	      null,
-	      "Weather Test"
+	      'The weather today is:'
 	    ),
-	    _react2.default.createElement("input", { placeholder: "Enter your city .." })
+	    _react2.default.createElement('input', {
+	      placeholder: 'Enter your city ..',
+	      onKeyUp: function onKeyUp(e) {
+	        showWeather(e, props.dispatch);
+	      }
+	    }),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      props.weatherData
+	    )
 	  );
 	};
+	
+	function showWeather(e, dispatch) {
+	  if (e.keyCode === 13) {
+	    dispatch((0, _weatherApi.fetchWeather)(e.currentTarget.value.toLowerCase()));
+	    e.currentTarget.value = '';
+	  }
+	}
+	
+	Weather = (0, _reactRedux.connect)()(Weather);
 	
 	exports.default = Weather;
 
 /***/ },
-/* 232 */
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.receiveWeather = undefined;
+	exports.fetchWeather = fetchWeather;
+	
+	var _superagent = __webpack_require__(221);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var receiveWeather = exports.receiveWeather = function receiveWeather(weather) {
+	  return {
+	    type: 'RECEIVE_WEATHER',
+	    weather: weather
+	  };
+	};
+	
+	function fetchWeather(weatherData) {
+	  return function (dispatch) {
+	    _superagent2.default.get('http://api.openweathermap.org/data/2.5/weather?id=2179537&APPID=d7379debce2e70976673a060a36c7535\n').end(function (err, res) {
+	      if (err) {
+	        console.error(err.message);
+	        return;
+	      }
+	      console.log(res.body.weather[0].main);
+	      dispatch(receiveWeather(res.body.weather[0].main));
+	    });
+	  };
+	}
+
+/***/ },
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
