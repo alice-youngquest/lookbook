@@ -23843,12 +23843,18 @@
 	
 	var _SubredditContainer2 = _interopRequireDefault(_SubredditContainer);
 	
+	var _Home = __webpack_require__(228);
+	
+	var _Home2 = _interopRequireDefault(_Home);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var App = function App() {
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'app-container' },
+	    _react2.default.createElement(_Home2.default, null),
+	    _react2.default.createElement('p', null),
 	    _react2.default.createElement(_LoadSubreddit2.default, null),
 	    _react2.default.createElement(_SubredditContainer2.default, null)
 	  );
@@ -25617,6 +25623,177 @@
 	};
 	
 	exports.default = Post;
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _PhotoList = __webpack_require__(229);
+	
+	var _PhotoList2 = _interopRequireDefault(_PhotoList);
+	
+	var _Weather = __webpack_require__(231);
+	
+	var _Weather2 = _interopRequireDefault(_Weather);
+	
+	var _Nav = __webpack_require__(232);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Home = function Home() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(_Nav2.default, null),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Home Test'
+	    ),
+	    _react2.default.createElement(_PhotoList2.default, null),
+	    _react2.default.createElement(_Weather2.default, null)
+	  );
+	};
+	
+	exports.default = Home;
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _PhotoListItem = __webpack_require__(230);
+	
+	var _PhotoListItem2 = _interopRequireDefault(_PhotoListItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var PhotoList = function PhotoList() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'PhotoList Test'
+	    ),
+	    _react2.default.createElement(_PhotoListItem2.default, null)
+	  );
+	};
+	
+	exports.default = PhotoList;
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var PhotoListItem = function PhotoListItem() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'PhotoListItem Test'
+	    )
+	  );
+	};
+	
+	exports.default = PhotoListItem;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Weather = function Weather() {
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "Weather Test"
+	    ),
+	    _react2.default.createElement("input", { placeholder: "Enter your city .." })
+	  );
+	};
+	
+	exports.default = Weather;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Nav = function Nav() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Nav Test'
+	    )
+	  );
+	};
+	
+	exports.default = Nav;
 
 /***/ }
 /******/ ]);
