@@ -4,7 +4,8 @@
   "description": "fancy slogan",
   "main": "server/index.js",
   "scripts": {
-    "start": "nodemon --watch server server/index & webpack --watch"
+    "start": "node server/index",
+    "dev": "nodemon --watch server server/index & webpack --watch"
   },
   "keywords": [
     "react",
