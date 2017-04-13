@@ -23870,11 +23870,11 @@
 	
 	var _PhotoList2 = _interopRequireDefault(_PhotoList);
 	
-	var _WeatherContainer = __webpack_require__(221);
+	var _WeatherContainer = __webpack_require__(227);
 	
 	var _WeatherContainer2 = _interopRequireDefault(_WeatherContainer);
 	
-	var _Nav = __webpack_require__(229);
+	var _Nav = __webpack_require__(230);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -23903,10 +23903,6 @@
 
 	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -23914,6 +23910,8 @@
 	var _PhotoListItem = __webpack_require__(220);
 	
 	var _PhotoListItem2 = _interopRequireDefault(_PhotoListItem);
+	
+	var _api = __webpack_require__(221);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23930,7 +23928,40 @@
 	  );
 	};
 	
-	exports.default = PhotoList;
+	// export default React.createClass({
+	//   getInitialState () {
+	//     return {
+	//       allOutfits: {
+	//         imageUrl: "https://avatars1.githubusercontent.com/u/23620176?v=3&s=200",
+	//         name: "Kakapo",
+	//         outfits: []
+	//       }
+	//     }
+	//   },
+	//
+	//   componentDidMount () {
+	//     getTeam((err, allOutfits) => {
+	//       if (err) return console.log(err)
+	//       this.setState({ allOutfits })
+	//     })
+	//   },
+	//
+	//   render () {
+	//     return (
+	//       <div className="Home">
+	//         {this.state.allOutfits.outfits.map((outfit) => {
+	//           return (
+	//           <Status outfit={outfit} key={outfit.id}/>
+	//           )
+	//         })}
+	//         <p>PhotoList Test</p>
+	//         <PhotoListItem />
+	//       </div>
+	//     )
+	//   }
+	// })
+	
+	module.exports = PhotoList;
 
 /***/ },
 /* 220 */
@@ -23971,135 +24002,28 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.listAllOutfits = undefined;
 	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _Weather = __webpack_require__(222);
-	
-	var _Weather2 = _interopRequireDefault(_Weather);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    weatherData: state.weatherData
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Weather2.default);
-
-/***/ },
-/* 222 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _weatherApi = __webpack_require__(223);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Weather = function Weather(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'The weather today is:'
-	    ),
-	    _react2.default.createElement('input', {
-	      placeholder: 'Enter your city ..',
-	      onKeyUp: function onKeyUp(e) {
-	        showWeather(e, props.dispatch);
-	      }
-	    }),
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'City Name: ',
-	      props.weatherData.name
-	    ),
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'Forecast: ',
-	      props.weatherData.weather ? props.weatherData.weather[0].main : ""
-	    ),
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'Description: ',
-	      props.weatherData.weather ? props.weatherData.weather[0].description : ""
-	    ),
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'Temperature: ',
-	      props.weatherData.main ? props.weatherData.main.temp : ""
-	    )
-	  );
-	};
-	
-	function showWeather(e, dispatch) {
-	  if (e.keyCode === 13) {
-	    dispatch((0, _weatherApi.fetchWeather)(e.currentTarget.value.toLowerCase()));
-	    e.currentTarget.value = '';
-	  }
-	}
-	
-	Weather = (0, _reactRedux.connect)()(Weather);
-	
-	exports.default = Weather;
-
-/***/ },
-/* 223 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.receiveWeather = undefined;
-	exports.fetchWeather = fetchWeather;
-	
-	var _superagent = __webpack_require__(224);
+	var _superagent = __webpack_require__(222);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var receiveWeather = exports.receiveWeather = function receiveWeather(weather) {
-	  return {
-	    type: 'RECEIVE_WEATHER',
-	    weather: weather
-	  };
-	};
+	var apiUrl = 'http://localhost:3000/v1';
 	
-	function fetchWeather(weatherData) {
-	  return function (dispatch) {
-	    _superagent2.default.get('http://api.openweathermap.org/data/2.5/weather?id=2179537&APPID=d7379debce2e70976673a060a36c7535\n').end(function (err, res) {
-	      if (err) {
-	        console.error(err.message);
-	        return;
-	      }
-	      dispatch(receiveWeather(res.body));
-	    });
-	  };
-	}
+	var listAllOutfits = exports.listAllOutfits = function listAllOutfits(callback) {
+	  _superagent2.default.get(apiUrl + '/outfits').end(function (err, res) {
+	    if (err) {
+	      callback(err);
+	    } else {
+	      callback(null, res.body);
+	    }
+	  });
+	};
 
 /***/ },
-/* 224 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24121,9 +24045,9 @@
 	  root = undefined;
 	}
 	
-	var Emitter = __webpack_require__(225);
-	var requestBase = __webpack_require__(226);
-	var isObject = __webpack_require__(227);
+	var Emitter = __webpack_require__(223);
+	var requestBase = __webpack_require__(224);
+	var isObject = __webpack_require__(225);
 	
 	/**
 	 * Noop.
@@ -24135,7 +24059,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(228).bind(null, Request);
+	var request = module.exports = __webpack_require__(226).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -25087,7 +25011,7 @@
 	};
 
 /***/ },
-/* 225 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25251,7 +25175,7 @@
 	};
 
 /***/ },
-/* 226 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25259,7 +25183,7 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(227);
+	var isObject = __webpack_require__(225);
 	
 	/**
 	 * Clear previous timeout.
@@ -25627,7 +25551,7 @@
 	};
 
 /***/ },
-/* 227 */
+/* 225 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25649,7 +25573,7 @@
 	module.exports = isObject;
 
 /***/ },
-/* 228 */
+/* 226 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25688,7 +25612,143 @@
 	module.exports = request;
 
 /***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _Weather = __webpack_require__(228);
+	
+	var _Weather2 = _interopRequireDefault(_Weather);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    weatherData: state.weatherData
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Weather2.default);
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _weatherApi = __webpack_require__(229);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Weather = function Weather(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'The weather today is:'
+	    ),
+	    _react2.default.createElement('input', {
+	      placeholder: 'Enter your city ..',
+	      onKeyUp: function onKeyUp(e) {
+	        showWeather(e, props.dispatch);
+	      }
+	    }),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'City Name: ',
+	      props.weatherData.name
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Forecast: ',
+	      props.weatherData.weather ? props.weatherData.weather[0].main : ""
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Description: ',
+	      props.weatherData.weather ? props.weatherData.weather[0].description : ""
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Temperature: ',
+	      props.weatherData.main ? props.weatherData.main.temp : ""
+	    )
+	  );
+	};
+	
+	function showWeather(e, dispatch) {
+	  if (e.keyCode === 13) {
+	    dispatch((0, _weatherApi.fetchWeather)(e.currentTarget.value.toLowerCase()));
+	    e.currentTarget.value = '';
+	  }
+	}
+	
+	Weather = (0, _reactRedux.connect)()(Weather);
+	
+	exports.default = Weather;
+
+/***/ },
 /* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.receiveWeather = undefined;
+	exports.fetchWeather = fetchWeather;
+	
+	var _superagent = __webpack_require__(222);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var receiveWeather = exports.receiveWeather = function receiveWeather(weather) {
+	  return {
+	    type: 'RECEIVE_WEATHER',
+	    weather: weather
+	  };
+	};
+	
+	function fetchWeather(weatherData) {
+	  return function (dispatch) {
+	    _superagent2.default.get('http://api.openweathermap.org/data/2.5/weather?id=2179537&APPID=d7379debce2e70976673a060a36c7535\n').end(function (err, res) {
+	      if (err) {
+	        console.error(err.message);
+	        return;
+	      }
+	      dispatch(receiveWeather(res.body));
+	    });
+	  };
+	}
+
+/***/ },
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
