@@ -7,7 +7,6 @@ import Home from './Home'
 const App = () => (
   <div className='app-container'>
     <Home />
-    <p></p>
     <LoadSubreddit />
     <SubredditContainer />
   </div>
