@@ -1,23 +1,23 @@
 import request from 'superagent'
 
-export const receivePosts = (posts) => {
+export const receiveWeather = (weather) => {
   return {
-    type: 'RECEIVE_POSTS',
-    posts: posts.map(post => post.data)
+    type: 'RECEIVE_WEATHER',
+    weather
   }
 }
 
-export function fetchPosts (subreddit) {
+export function fetchWeather (weatherData) {
   return (dispatch) => {
     request
-      .get(`api.openweathermap.org/data/2.5/weather?id=2179537&APPID=d7379debce2e70976673a060a36c7535
+      .get(`http://api.openweathermap.org/data/2.5/weather?id=2179537&APPID=d7379debce2e70976673a060a36c7535
 `)
       .end((err, res) => {
         if (err) {
           console.error(err.message)
           return
         }
-        dispatch(receivePosts(res.body.data.children))
+        dispatch(receiveWeather(res.body))
       })
   }
 }
