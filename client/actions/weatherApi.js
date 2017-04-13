@@ -17,7 +17,6 @@ export function fetchWeather (weatherData) {
           console.error(err.message)
           return
         }
-        console.log(res.body.name, res.body.weather[0].main, res.body.main.temp);
         dispatch(receiveWeather(res.body))
       })
   }
