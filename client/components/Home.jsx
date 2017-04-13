@@ -1,6 +1,6 @@
 import React from 'react'
 import PhotoList from './PhotoList'
-import Weather from './Weather'
+import WeatherContainer from '../containers/WeatherContainer'
 import Nav from './Nav'
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
       <Nav />
       <p>Home Test</p>
       <PhotoList />
-      <Weather />
+      <WeatherContainer />
     </div>
   )
 }

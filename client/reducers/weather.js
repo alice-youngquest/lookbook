@@ -1,8 +1,9 @@
 function weatherData (state = "", action) {
   switch (action.type) {
     case 'RECEIVE_WEATHER':
+
       return (
-        action.main
+        action.weather
       )
 
     default:

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Weather from '../components/Weather'
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     weatherData: state.weatherData
   }

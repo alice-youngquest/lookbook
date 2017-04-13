@@ -10,7 +10,7 @@ let Weather = (props) => {
           placeholder="Enter your city .."
           onKeyUp={ e => { showWeather(e, props.dispatch) }}
         />
-      <p>{props.weatherData}</p>
+      <p>{props.weatherData.name}</p>
     </div>
   )
 }

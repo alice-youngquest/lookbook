@@ -23845,7 +23845,8 @@
 	
 	  switch (action.type) {
 	    case 'RECEIVE_WEATHER':
-	      return action.main;
+	
+	      return action.weather;
 	
 	    default:
 	      return state;
@@ -23887,7 +23888,6 @@
 	    'div',
 	    { className: 'app-container' },
 	    _react2.default.createElement(_Home2.default, null),
-	    _react2.default.createElement('p', null),
 	    _react2.default.createElement(_LoadSubreddit2.default, null),
 	    _react2.default.createElement(_SubredditContainer2.default, null)
 	  );
@@ -25675,9 +25675,9 @@
 	
 	var _PhotoList2 = _interopRequireDefault(_PhotoList);
 	
-	var _Weather = __webpack_require__(232);
+	var _WeatherContainer = __webpack_require__(235);
 	
-	var _Weather2 = _interopRequireDefault(_Weather);
+	var _WeatherContainer2 = _interopRequireDefault(_WeatherContainer);
 	
 	var _Nav = __webpack_require__(234);
 	
@@ -25696,7 +25696,7 @@
 	      'Home Test'
 	    ),
 	    _react2.default.createElement(_PhotoList2.default, null),
-	    _react2.default.createElement(_Weather2.default, null)
+	    _react2.default.createElement(_WeatherContainer2.default, null)
 	  );
 	};
 	
@@ -25805,7 +25805,7 @@
 	    _react2.default.createElement(
 	      'p',
 	      null,
-	      props.weatherData
+	      props.weatherData.name
 	    )
 	  );
 	};
@@ -25853,8 +25853,8 @@
 	        console.error(err.message);
 	        return;
 	      }
-	      console.log(res.body.weather[0].main);
-	      dispatch(receiveWeather(res.body.weather[0].main));
+	      console.log(res.body.name, res.body.weather[0].main, res.body.main.temp);
+	      dispatch(receiveWeather(res.body));
 	    });
 	  };
 	}
@@ -25888,6 +25888,33 @@
 	};
 	
 	exports.default = Nav;
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _Weather = __webpack_require__(232);
+	
+	var _Weather2 = _interopRequireDefault(_Weather);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  console.log(state);
+	  return {
+	    weatherData: state.weatherData
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Weather2.default);
 
 /***/ }
 /******/ ]);
