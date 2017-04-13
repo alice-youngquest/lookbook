@@ -2,7 +2,7 @@ var path = require('path')
 var express = require('express')
 var bodyParser = require('body-parser')
 
-import apiRoutes from './api-routes'
+var apiRoutes = require('./api-routes')
 
 var server = express()
 

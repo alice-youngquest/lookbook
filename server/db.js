@@ -1,11 +1,5 @@
-var development = require('./knexfile').development
+var development = require('../knexfile').development
 var db = require('knex')(development)
-
-module.exports = {
-  listAllOutfits,
-  listOutfitsByTemp,
-  listOutfitsByTag
-}
 
 function listAllOutfits () {
   return db('outfits').select('id', 'photo_url')
@@ -23,4 +17,10 @@ function listOutfitsByTag (tag) {
   return db('join')
     .where('join.tags_id', tag)
     .select('id', 'photo_url')
+}
+
+module.exports = {
+  listAllOutfits,
+  listOutfitsByTemp,
+  listOutfitsByTag
 }

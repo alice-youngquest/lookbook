@@ -2,7 +2,7 @@ import request from 'superagent'
 
 const apiUrl = 'http://localhost:3000/v1'
 
-export const getTeam = (callback) => {
+export const listAllOutfits = (callback) => {
   request
     .get(`${apiUrl}/outfits`)
     .end(function (err, res) {

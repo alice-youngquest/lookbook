@@ -1,12 +1,13 @@
-var development = require('./knexfile').development
-var db = require('knex')(development)
-
+var db = require('./db')
+var express = require('express')
+var listAllOutfits = require('./db')
 var router = express.Router()
 
 router.get('/', function (req, res) {
-  db.listAllOutfits((err, outfits) => {
-    res.json(outfits)
+  console.log(db);
+  db.listAllOutfits().then((data) => {
+    res.json(data)
   })
 })
 
-export default router
+module.exports = router
