@@ -25694,7 +25694,8 @@
 	      'p',
 	      null,
 	      'Temperature: ',
-	      props.weatherData.main ? props.weatherData.main.temp : ""
+	      props.weatherData.main ? props.weatherData.main.temp : "",
+	      '\xB0C'
 	    )
 	  );
 	};
