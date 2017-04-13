@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchWeather} from '../actions/weatherApi'
 
 let Weather = (props) => {
+  console.log(props.weatherData);
   return (
     <div>
         <p>The weather today is:</p>
@@ -10,7 +11,10 @@ let Weather = (props) => {
           placeholder="Enter your city .."
           onKeyUp={ e => { showWeather(e, props.dispatch) }}
         />
-      <p>{props.weatherData.name}</p>
+      <p>City Name: {props.weatherData.name}</p>
+      <p>Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}</p>
+      <p>Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}</p>
+      <p>Description: {props.weatherData.main ? props.weatherData.main.temp : ""}</p>
     </div>
   )
 }

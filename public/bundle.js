@@ -23845,7 +23845,6 @@
 	
 	  switch (action.type) {
 	    case 'RECEIVE_WEATHER':
-	
 	      return action.weather;
 	
 	    default:
@@ -25675,11 +25674,11 @@
 	
 	var _PhotoList2 = _interopRequireDefault(_PhotoList);
 	
-	var _WeatherContainer = __webpack_require__(235);
+	var _WeatherContainer = __webpack_require__(232);
 	
 	var _WeatherContainer2 = _interopRequireDefault(_WeatherContainer);
 	
-	var _Nav = __webpack_require__(234);
+	var _Nav = __webpack_require__(235);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -25777,17 +25776,45 @@
 	  value: true
 	});
 	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _Weather = __webpack_require__(233);
+	
+	var _Weather2 = _interopRequireDefault(_Weather);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  console.log(state);
+	  return {
+	    weatherData: state.weatherData
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Weather2.default);
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _weatherApi = __webpack_require__(233);
+	var _weatherApi = __webpack_require__(234);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Weather = function Weather(props) {
+	  console.log(props.weatherData);
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -25805,7 +25832,26 @@
 	    _react2.default.createElement(
 	      'p',
 	      null,
+	      'City Name: ',
 	      props.weatherData.name
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Forecast: ',
+	      props.weatherData.weather ? props.weatherData.weather[0].main : ""
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Description: ',
+	      props.weatherData.weather ? props.weatherData.weather[0].description : ""
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Description: ',
+	      props.weatherData.main ? props.weatherData.main.temp : ""
 	    )
 	  );
 	};
@@ -25822,7 +25868,7 @@
 	exports.default = Weather;
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25860,7 +25906,7 @@
 	}
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25888,33 +25934,6 @@
 	};
 	
 	exports.default = Nav;
-
-/***/ },
-/* 235 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _Weather = __webpack_require__(232);
-	
-	var _Weather2 = _interopRequireDefault(_Weather);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  console.log(state);
-	  return {
-	    weatherData: state.weatherData
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Weather2.default);
 
 /***/ }
 /******/ ]);
