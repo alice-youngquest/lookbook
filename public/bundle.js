@@ -3892,6 +3892,7 @@
 	  function createChainableTypeChecker(validate) {
 	    if (process.env.NODE_ENV !== 'production') {
 	      var manualPropTypeCallCache = {};
+	      var manualPropTypeWarningCount = 0;
 	    }
 	    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
 	      componentName = componentName || ANONYMOUS;
@@ -3904,9 +3905,12 @@
 	        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
 	          // Old behavior for people using React.PropTypes
 	          var cacheKey = componentName + ':' + propName;
-	          if (!manualPropTypeCallCache[cacheKey]) {
+	          if (!manualPropTypeCallCache[cacheKey] &&
+	          // Avoid spamming the console because they are often not actionable except for lib authors
+	          manualPropTypeWarningCount < 3) {
 	            warning(false, 'You are manually calling a React.PropTypes validation ' + 'function for the `%s` prop on `%s`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.', propFullName, componentName);
 	            manualPropTypeCallCache[cacheKey] = true;
+	            manualPropTypeWarningCount++;
 	          }
 	        }
 	      }
@@ -23854,7 +23858,6 @@
 	    'div',
 	    { className: 'app-container' },
 	    _react2.default.createElement(_Home2.default, null),
-	    _react2.default.createElement('p', null),
 	    _react2.default.createElement(_LoadSubreddit2.default, null),
 	    _react2.default.createElement(_SubredditContainer2.default, null)
 	  );
@@ -25642,11 +25645,11 @@
 	
 	var _PhotoList2 = _interopRequireDefault(_PhotoList);
 	
-	var _Weather = __webpack_require__(231);
+	var _Weather = __webpack_require__(230);
 	
 	var _Weather2 = _interopRequireDefault(_Weather);
 	
-	var _Nav = __webpack_require__(232);
+	var _Nav = __webpack_require__(231);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -25675,17 +25678,15 @@
 
 	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _PhotoListItem = __webpack_require__(230);
+	var _PhotoListItem = __webpack_require__(232);
 	
 	var _PhotoListItem2 = _interopRequireDefault(_PhotoListItem);
+	
+	var _api = __webpack_require__(233);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25702,40 +25703,43 @@
 	  );
 	};
 	
-	exports.default = PhotoList;
+	// export default React.createClass({
+	//   getInitialState () {
+	//     return {
+	//       allOutfits: {
+	//         imageUrl: "https://avatars1.githubusercontent.com/u/23620176?v=3&s=200",
+	//         name: "Kakapo",
+	//         outfits: []
+	//       }
+	//     }
+	//   },
+	//
+	//   componentDidMount () {
+	//     getTeam((err, allOutfits) => {
+	//       if (err) return console.log(err)
+	//       this.setState({ allOutfits })
+	//     })
+	//   },
+	//
+	//   render () {
+	//     return (
+	//       <div className="Home">
+	//         {this.state.allOutfits.outfits.map((outfit) => {
+	//           return (
+	//           <Status outfit={outfit} key={outfit.id}/>
+	//           )
+	//         })}
+	//         <p>PhotoList Test</p>
+	//         <PhotoListItem />
+	//       </div>
+	//     )
+	//   }
+	// })
+	
+	module.exports = PhotoList;
 
 /***/ },
 /* 230 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var PhotoListItem = function PhotoListItem() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'PhotoListItem Test'
-	    )
-	  );
-	};
-	
-	exports.default = PhotoListItem;
-
-/***/ },
-/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25766,7 +25770,7 @@
 	exports.default = Weather;
 
 /***/ },
-/* 232 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25794,6 +25798,65 @@
 	};
 	
 	exports.default = Nav;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var PhotoListItem = function PhotoListItem() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'PhotoListItem Test'
+	    )
+	  );
+	};
+	
+	exports.default = PhotoListItem;
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.listAllOutfits = undefined;
+	
+	var _superagent = __webpack_require__(220);
+	
+	var _superagent2 = _interopRequireDefault(_superagent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var apiUrl = 'http://localhost:3000/v1';
+	
+	var listAllOutfits = exports.listAllOutfits = function listAllOutfits(callback) {
+	  _superagent2.default.get(apiUrl + '/outfits').end(function (err, res) {
+	    if (err) {
+	      callback(err);
+	    } else {
+	      callback(null, res.body);
+	    }
+	  });
+	};
 
 /***/ }
 /******/ ]);
