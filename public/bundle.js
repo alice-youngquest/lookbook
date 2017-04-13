@@ -23868,15 +23868,15 @@
 	
 	var _reactRouterDom = __webpack_require__(219);
 	
-	var _PhotoList = __webpack_require__(255);
+	var _Outfits = __webpack_require__(255);
 	
-	var _PhotoList2 = _interopRequireDefault(_PhotoList);
+	var _Outfits2 = _interopRequireDefault(_Outfits);
 	
-	var _WeatherContainer = __webpack_require__(263);
+	var _WeatherContainer = __webpack_require__(264);
 	
 	var _WeatherContainer2 = _interopRequireDefault(_WeatherContainer);
 	
-	var _Nav = __webpack_require__(266);
+	var _Nav = __webpack_require__(267);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -23887,22 +23887,8 @@
 	    'div',
 	    null,
 	    _react2.default.createElement(_Nav2.default, null),
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'Home Test'
-	    ),
-	    _react2.default.createElement(
-	      _reactRouterDom.HashRouter,
-	      null,
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: Home }),
-	        _react2.default.createElement(_reactRouterDom.Route, { path: '/photo-list', component: _PhotoList2.default })
-	      )
-	    ),
-	    _react2.default.createElement(_WeatherContainer2.default, null)
+	    _react2.default.createElement(_WeatherContainer2.default, null),
+	    _react2.default.createElement(_Outfits2.default, null)
 	  );
 	};
 	
@@ -27467,60 +27453,37 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _PhotoListItem = __webpack_require__(256);
+	var _api = __webpack_require__(256);
 	
-	var _PhotoListItem2 = _interopRequireDefault(_PhotoListItem);
+	var _OutfitsList = __webpack_require__(262);
 	
-	var _api = __webpack_require__(257);
+	var _OutfitsList2 = _interopRequireDefault(_OutfitsList);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// const PhotoList = () => {
-	//   return (
-	//     <div>
-	//       <p>PhotoList Test</p>
-	//       <PhotoListItem />
-	//     </div>
-	//   )
-	// }
-	
-	exports.default = _react2.default.createClass({
-	  displayName: 'PhotoList',
+	var Outfits = _react2.default.createClass({
+	  displayName: 'Outfits',
 	  getInitialState: function getInitialState() {
-	    return {
-	      allOutfits: {
-	        imageUrl: "https://avatars1.githubusercontent.com/u/23620176?v=3&s=200",
-	        name: "Kakapo",
-	        outfits: []
-	      }
-	    };
+	    return { outfits: [] };
 	  },
 	  componentDidMount: function componentDidMount() {
 	    var _this = this;
 	
-	    (0, _api.listAllOutfits)(function (err, allOutfits) {
+	    (0, _api.listAllOutfits)(function (err, outfits) {
 	      if (err) return console.log(err);
-	      _this.setState({ allOutfits: allOutfits });
+	      _this.setState({ outfits: outfits });
 	    });
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'Home' },
-	      this.state.allOutfits.outfits.map(function (outfit) {
-	        return _react2.default.createElement(Status, { outfit: outfit, key: outfit.id });
-	      }),
-	      _react2.default.createElement(
-	        'p',
-	        null,
-	        'PhotoList Test'
-	      ),
-	      _react2.default.createElement(_PhotoListItem2.default, null)
+	      null,
+	      _react2.default.createElement(_OutfitsList2.default, { outfits: this.state.outfits })
 	    );
 	  }
 	});
 	
-	// module.exports = PhotoList
+	exports.default = Outfits;
 
 /***/ },
 /* 256 */
@@ -27531,39 +27494,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var PhotoListItem = function PhotoListItem() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'PhotoListItem Test'
-	    )
-	  );
-	};
-	
-	exports.default = PhotoListItem;
-
-/***/ },
-/* 257 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
 	exports.listAllOutfits = undefined;
 	
-	var _superagent = __webpack_require__(258);
+	var _superagent = __webpack_require__(257);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -27582,7 +27515,7 @@
 	};
 
 /***/ },
-/* 258 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27604,9 +27537,9 @@
 	  root = undefined;
 	}
 	
-	var Emitter = __webpack_require__(259);
-	var requestBase = __webpack_require__(260);
-	var isObject = __webpack_require__(261);
+	var Emitter = __webpack_require__(258);
+	var requestBase = __webpack_require__(259);
+	var isObject = __webpack_require__(260);
 	
 	/**
 	 * Noop.
@@ -27618,7 +27551,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(262).bind(null, Request);
+	var request = module.exports = __webpack_require__(261).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -28570,7 +28503,7 @@
 	};
 
 /***/ },
-/* 259 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28734,7 +28667,7 @@
 	};
 
 /***/ },
-/* 260 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28742,7 +28675,7 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(261);
+	var isObject = __webpack_require__(260);
 	
 	/**
 	 * Clear previous timeout.
@@ -29110,7 +29043,7 @@
 	};
 
 /***/ },
-/* 261 */
+/* 260 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29132,7 +29065,7 @@
 	module.exports = isObject;
 
 /***/ },
-/* 262 */
+/* 261 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29171,7 +29104,65 @@
 	module.exports = request;
 
 /***/ },
+/* 262 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _OutfitsListItem = __webpack_require__(263);
+	
+	var _OutfitsListItem2 = _interopRequireDefault(_OutfitsListItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var OutfitsList = function OutfitsList(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'ul',
+	      null,
+	      props.outfits.map(function (outfit) {
+	        return _react2.default.createElement(_OutfitsListItem2.default, { key: outfit.outfitId, photoUrl: outfit.photoUrl });
+	      })
+	    )
+	  );
+	};
+	
+	module.exports = OutfitsList;
+
+/***/ },
 /* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var OutfitsListItem = function OutfitsListItem(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    _react2.default.createElement("img", { className: "photoUrl", src: props.photoUrl, alt: "outfit-pic" })
+	  );
+	};
+	
+	exports.default = OutfitsListItem;
+
+/***/ },
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29182,7 +29173,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _Weather = __webpack_require__(264);
+	var _Weather = __webpack_require__(265);
 	
 	var _Weather2 = _interopRequireDefault(_Weather);
 	
@@ -29197,7 +29188,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Weather2.default);
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29212,7 +29203,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _weatherApi = __webpack_require__(265);
+	var _weatherApi = __webpack_require__(266);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29270,7 +29261,7 @@
 	exports.default = Weather;
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29281,7 +29272,7 @@
 	exports.receiveWeather = undefined;
 	exports.fetchWeather = fetchWeather;
 	
-	var _superagent = __webpack_require__(258);
+	var _superagent = __webpack_require__(257);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -29307,7 +29298,7 @@
 	}
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29323,15 +29314,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Nav = function Nav() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'Nav Test'
-	    )
-	  );
+	  return _react2.default.createElement('div', null);
 	};
 	
 	exports.default = Nav;
