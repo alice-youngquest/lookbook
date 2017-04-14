@@ -2,7 +2,8 @@ var development = require('../knexfile').development
 var db = require('knex')(development)
 
 function listAllOutfits () {
-  return db('outfits').select('id', 'photo_url')
+  return db('outfits')
+    .select('outfits.id as outfitId', 'outfits.photo_url as photoUrl')
 }
 
 //unfinsihed
