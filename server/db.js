@@ -1,7 +1,7 @@
 var development = require('../knexfile').development
 var db = require('knex')(development)
 
-function getImageByTemp (temperature = 15) {
+function listOutfitsByTemp (temperature = 15) {
   return db('outfits')
     .where('t_min', '<', temperature)
     .andWhere('t_max', '>', temperature)
@@ -10,13 +10,6 @@ function getImageByTemp (temperature = 15) {
 
 function listAllOutfits () {
   return db('outfits')
-    .select('outfits.id as outfitId', 'outfits.photo_url as photoUrl')
-}
-
-//unfinsihed
-function listOutfitsByTemp (temperature) {
-  return db('outfits')
-    .where('outfits.temp', temperature)
     .select('outfits.id as outfitId', 'outfits.photo_url as photoUrl')
 }
 
@@ -30,6 +23,5 @@ function listOutfitsByTag (tag) {
 module.exports = {
   listAllOutfits,
   listOutfitsByTemp,
-  listOutfitsByTag,
-  getImageByTemp
+  listOutfitsByTag
 }
