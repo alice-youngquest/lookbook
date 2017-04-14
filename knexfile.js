@@ -9,6 +9,11 @@ module.exports = {
     }
   },
 
+  test: {
+    client: 'sqlite3',
+      connection: ':memory:'
+  },
+
   staging: {
     client: 'postgresql',
     connection: {
