@@ -13,3 +13,15 @@ export const listAllOutfits = (callback) => {
       }
   })
 }
+
+export const listOutfitsByTemp = (callback) => {
+  request
+    .get(`${apiUrl}/outfits-by-temp`)
+    .end(function (err, res) {
+      if (err) {
+        callback(err)
+      } else {
+        callback(null, res.body)
+      }
+  })
+}
