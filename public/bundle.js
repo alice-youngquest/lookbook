@@ -27515,7 +27515,7 @@
 	};
 	
 	var listOutfitsByTemp = exports.listOutfitsByTemp = function listOutfitsByTemp(callback) {
-	  _superagent2.default.get(apiUrl + '/outfits-by-temp').end(function (err, res) {
+	  _superagent2.default.get(apiUrl + '/outfits').end(function (err, res) {
 	    if (err) {
 	      callback(err);
 	    } else {
