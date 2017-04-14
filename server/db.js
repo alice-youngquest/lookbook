@@ -10,7 +10,7 @@ function listAllOutfits () {
 function listOutfitsByTemp (temperature) {
   return db('outfits')
     .where('outfits.temp', temperature)
-    .select('id', 'photo_url')
+    .select('outfits.id as outfitId', 'outfits.photo_url as photoUrl')
 }
 
 //unfinsihed

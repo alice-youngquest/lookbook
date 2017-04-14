@@ -23872,11 +23872,15 @@
 	
 	var _Outfits2 = _interopRequireDefault(_Outfits);
 	
-	var _WeatherContainer = __webpack_require__(264);
+	var _OutfitsByTemp = __webpack_require__(264);
+	
+	var _OutfitsByTemp2 = _interopRequireDefault(_OutfitsByTemp);
+	
+	var _WeatherContainer = __webpack_require__(265);
 	
 	var _WeatherContainer2 = _interopRequireDefault(_WeatherContainer);
 	
-	var _Nav = __webpack_require__(267);
+	var _Nav = __webpack_require__(268);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -23888,7 +23892,8 @@
 	    null,
 	    _react2.default.createElement(_Nav2.default, null),
 	    _react2.default.createElement(_WeatherContainer2.default, null),
-	    _react2.default.createElement(_Outfits2.default, null)
+	    _react2.default.createElement(_Outfits2.default, null),
+	    _react2.default.createElement(_OutfitsByTemp2.default, null)
 	  );
 	};
 	
@@ -27494,7 +27499,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.listAllOutfits = undefined;
+	exports.listOutfitsByTemp = exports.listAllOutfits = undefined;
 	
 	var _superagent = __webpack_require__(257);
 	
@@ -27506,6 +27511,16 @@
 	
 	var listAllOutfits = exports.listAllOutfits = function listAllOutfits(callback) {
 	  _superagent2.default.get(apiUrl + '/outfits').end(function (err, res) {
+	    if (err) {
+	      callback(err);
+	    } else {
+	      callback(null, res.body);
+	    }
+	  });
+	};
+	
+	var listOutfitsByTemp = exports.listOutfitsByTemp = function listOutfitsByTemp(callback) {
+	  _superagent2.default.get(apiUrl + '/outfits-by-temp').end(function (err, res) {
 	    if (err) {
 	      callback(err);
 	    } else {
@@ -29171,9 +29186,55 @@
 	  value: true
 	});
 	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _api = __webpack_require__(256);
+	
+	var _OutfitsList = __webpack_require__(262);
+	
+	var _OutfitsList2 = _interopRequireDefault(_OutfitsList);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var OutfitsByTemp = _react2.default.createClass({
+	  displayName: 'OutfitsByTemp',
+	  getInitialState: function getInitialState() {
+	    return { outfits: [] };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var _this = this;
+	
+	    (0, _api.listOutfitsByTemp)(function (err, outfits) {
+	      if (err) return console.log(err);
+	      _this.setState({ outfits: outfits });
+	    });
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_OutfitsList2.default, { outfits: this.state.outfits })
+	    );
+	  }
+	});
+	
+	exports.default = OutfitsByTemp;
+
+/***/ },
+/* 265 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _Weather = __webpack_require__(265);
+	var _Weather = __webpack_require__(266);
 	
 	var _Weather2 = _interopRequireDefault(_Weather);
 	
@@ -29188,7 +29249,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_Weather2.default);
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29203,7 +29264,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _weatherApi = __webpack_require__(266);
+	var _weatherApi = __webpack_require__(267);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29261,7 +29322,7 @@
 	exports.default = Weather;
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29298,7 +29359,7 @@
 	}
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
