@@ -10,7 +10,7 @@ export const receiveWeather = (weather) => {
 export function fetchWeather (searchTerm) {
   return (dispatch) => {
     request
-      .get(`http://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&APPID=d7379debce2e70976673a060a36c7535
+      .get(`http://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&APPID=d7379debce2e70976673a060a36c7535&mode=json&units=metric
 `)
       .end((err, res) => {
         if (err) {

@@ -13,7 +13,7 @@ let Weather = (props) => {
       <p>City Name: {props.weatherData.name}</p>
       <p>Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}</p>
       <p>Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}</p>
-      <p>Temperature: {props.weatherData.main ? props.weatherData.main.temp : ""}</p>
+      <p>Temperature: {props.weatherData.main ? props.weatherData.main.temp : ""}°C</p>
     </div>
   )
 }
