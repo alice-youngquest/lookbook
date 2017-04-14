@@ -10,5 +10,6 @@ server.use(bodyParser.json())
 server.use(express.static(path.join(__dirname, '../public')))
 
 server.use('/v1/outfits', apiRoutes)
+server.use('/v1/outfits-by-temp', apiRoutes)
 
 module.exports = server

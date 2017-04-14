@@ -8,17 +8,18 @@ let Weather = (props) => {
         <p>The weather today is:</p>
         <input
           placeholder="Enter your city .."
-          onKeyUp={ e => { showWeather(e, props.dispatch) }}
+          onKeyUp={ e => { showWeather(e, props.dispatch)}}
         />
       <p>City Name: {props.weatherData.name}</p>
       <p>Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}</p>
       <p>Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}</p>
-      <p>Temperature: {props.weatherData.main ? props.weatherData.main.temp : ""}</p>
+      <p>Temperature: {props.weatherData.main ? props.weatherData.main.temp : ""}°C</p>
     </div>
   )
 }
 
 function showWeather (e, dispatch) {
+  console.log(e.currentTarget.value)
   if (e.keyCode === 13) {
     dispatch(fetchWeather(e.currentTarget.value.toLowerCase()))
     e.currentTarget.value = ''
