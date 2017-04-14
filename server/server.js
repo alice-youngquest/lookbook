@@ -2,14 +2,13 @@ var path = require('path')
 var express = require('express')
 var bodyParser = require('body-parser')
 
-var apiRoutes = require('./api-routes')
+var outfits = require('./api-routes')
 
 var server = express()
 
 server.use(bodyParser.json())
 server.use(express.static(path.join(__dirname, '../public')))
 
-server.use('/v1/outfits', apiRoutes)
-server.use('/v1/outfits-by-temp', apiRoutes)
+server.use('/v1/outfits', outfits)
 
 module.exports = server

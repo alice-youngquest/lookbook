@@ -4,7 +4,6 @@ import {
   Route
 } from 'react-router-dom'
 
-import Outfits from './Outfits'
 import OutfitsByTemp from './OutfitsByTemp'
 import WeatherContainer from '../containers/WeatherContainer'
 import Nav from './Nav'
@@ -14,7 +13,6 @@ const Home = () => {
     <div>
       <Nav />
       <WeatherContainer />
-      <Outfits />
       <OutfitsByTemp />
     </div>
   )

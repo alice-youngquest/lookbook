@@ -1,11 +1,11 @@
 var development = require('../knexfile').development
 var db = require('knex')(development)
 
-function listOutfitsByTemp (temperature = 15) {
+function listOutfitsByTemp (temperature = 4) {
   return db('outfits')
     .where('t_min', '<', temperature)
     .andWhere('t_max', '>', temperature)
-    .select('id', 'photo_url')
+    .select('id as outfitId', 'photo_url as photoUrl')
 }
 
 function listAllOutfits () {
