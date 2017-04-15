@@ -4,17 +4,23 @@ var listAllOutfits = require('./db')
 var listOutfitsByTemp = require('./db')
 var router = express.Router()
 
+// router.get('/', function (req, res) {
+//   const temp = parseInt(req.query.temp)
+//   if('/' + temp){
+//     db.listOutfitsByTemp().then((data) => {
+//       res.json(data)
+//     })
+//   } else {
+//     db.listAllOutfits().then((data) => {
+//       res.json(data)
+//     })
+//   }
+// })
+
 router.get('/', function (req, res) {
-  const temp = parseInt(req.query.temp)
-  if('/' + temp){
-    db.listOutfitsByTemp().then((data) => {
-      res.json(data)
-    })
-  } else {
-    db.listAllOutfits().then((data) => {
-      res.json(data)
-    })
-  }
+  db.listAllOutfits().then((data) => {
+    res.json(data)
+  })
 })
 
 module.exports = router
