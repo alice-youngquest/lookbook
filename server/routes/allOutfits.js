@@ -1,8 +1,8 @@
-var db = require('./db')
 var express = require('express')
-var listAllOutfits = require('./db')
-var listOutfitsByTemp = require('./db')
 var router = express.Router()
+
+var db = require('../db')
+var listAllOutfits = require('../db')
 
 // router.get('/', function (req, res) {
 //   const temp = parseInt(req.query.temp)
@@ -21,6 +21,9 @@ router.get('/', function (req, res) {
   db.listAllOutfits().then((data) => {
     res.json(data)
   })
+  .catch((err) => {
+      res.status(500).send(err)
+    })
 })
 
 module.exports = router

@@ -4,7 +4,7 @@ const apiUrl = 'http://localhost:3000/v1'
 
 export const listAllOutfits = (callback) => {
   request
-    .get(`${apiUrl}/outfits`)
+    .get(`${apiUrl}/all_outfits`)
     .end(function (err, res) {
       if (err) {
         callback(err)
@@ -16,7 +16,7 @@ export const listAllOutfits = (callback) => {
 
 export const listOutfitsByTemp = (callback) => {
   request
-    .get(`${apiUrl}/outfits`)
+    .get(`${apiUrl}/outfits_by_temp`)
     .end(function (err, res) {
       if (err) {
         callback(err)

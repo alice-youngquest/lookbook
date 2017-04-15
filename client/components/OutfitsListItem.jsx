@@ -6,14 +6,19 @@ const OutfitsListItem = (props) => {
   return (
     <div>
       <img className="photoUrl" src={props.photoUrl} alt="outfit-pic" />
-      <button onClick={ev => {increaseLikes(ev, props.dispatch, props.id, props.likes)}}>Add Like</button>
-      <p>This photo has {props.likes} likes!</p>
+      <button id={props.id} onClick={ev => {increaseLikes(ev, props.dispatch, props.id, props.likes)}}>Add Like</button>
+      <p>Like count: {props.likes}</p>
     </div>
   )
 }
 
 function increaseLikes (ev, dispatch, id, likes) {
   dispatch(incLikesAct(id, parseInt(likes) + 1))
+  disableLikeButton(id)
+}
+
+function disableLikeButton (id) {
+  document.getElementById(id).disabled = true
 }
 
 const provideDispatch = connect()

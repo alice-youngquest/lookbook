@@ -27552,7 +27552,7 @@
 	var apiUrl = 'http://localhost:3000/v1';
 	
 	var listAllOutfits = exports.listAllOutfits = function listAllOutfits(callback) {
-	  _superagent2.default.get(apiUrl + '/outfits').end(function (err, res) {
+	  _superagent2.default.get(apiUrl + '/all_outfits').end(function (err, res) {
 	    if (err) {
 	      callback(err);
 	    } else {
@@ -27562,7 +27562,7 @@
 	};
 	
 	var listOutfitsByTemp = exports.listOutfitsByTemp = function listOutfitsByTemp(callback) {
-	  _superagent2.default.get(apiUrl + '/outfits').end(function (err, res) {
+	  _superagent2.default.get(apiUrl + '/outfits_by_temp').end(function (err, res) {
 	    if (err) {
 	      callback(err);
 	    } else {
@@ -29234,7 +29234,7 @@
 	    _react2.default.createElement('img', { className: 'photoUrl', src: props.photoUrl, alt: 'outfit-pic' }),
 	    _react2.default.createElement(
 	      'button',
-	      { onClick: function onClick(ev) {
+	      { id: props.id, onClick: function onClick(ev) {
 	          increaseLikes(ev, props.dispatch, props.id, props.likes);
 	        } },
 	      'Add Like'
@@ -29242,15 +29242,19 @@
 	    _react2.default.createElement(
 	      'p',
 	      null,
-	      'This photo has ',
-	      props.likes,
-	      ' likes!'
+	      'Like count: ',
+	      props.likes
 	    )
 	  );
 	};
 	
 	function increaseLikes(ev, dispatch, id, likes) {
 	  dispatch((0, _incLikesAct.incLikesAct)(id, parseInt(likes) + 1));
+	  disableLikeButton(id);
+	}
+	
+	function disableLikeButton(id) {
+	  document.getElementById(id).disabled = true;
 	}
 	
 	var provideDispatch = (0, _reactRedux.connect)();
