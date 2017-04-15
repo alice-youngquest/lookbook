@@ -16,7 +16,8 @@ function listAllOutfits () {
 //unfinsihed
 function listOutfitsByTemp (temperature) {
   return db('outfits')
-    .where('outfits.temp', temperature)
+    .where('t_min', '<=', temperature)
+    .andWhere('t_max', '>=', temperature)
     .select('outfits.id as outfitId', 'outfits.photo_url as photoUrl')
 }
 

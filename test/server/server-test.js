@@ -1,23 +1,35 @@
-var supertest = require('supertest')
+var request = require('supertest')
 var cheerio = require('cheerio')
 var test = require('tape')
 
-var app = require('../../server/api-routes')
+var app = require('../../server/server')
 
-test('GET /', function (assert) {
+test('GET /v1/outfits', function (assert) {
   request(app)
-    .get('/')
+    .get('/v1/outfits')
     .expect(200)
     .expect('Content-Type', /json/)
     .end(function (err, res) {
-      var expectedThings = [
-        {id: 1, photo_url: 'http://fashion.ekstrax.com/wp-content/uploads/2015/04/Unboring-Fashion-ideas-from-Tumblr-9.jpg', temperature: '10-15'},
-        {id: 2, photo_url: 'http://2.bp.blogspot.com/-IaK8yXZ4SwM/VO1WqPp7mtI/AAAAAAAACIk/IBlnyGuspHY/s1600/chloe%2Bsuzanna%2Bboots-1.jpg', temperature: '15-20'}
-      ];
-      var actualThings = res.body;
+      var expectedIds = [ 1, 2]
+      var actualIds = res.body.map((record) => (record.outfitId));
 
       assert.error(err, 'No error');
-      assert.same(actualThings, expectedThings, 'Retrieve list of things');
+      assert.same(actualIds, expectedIds, 'Retrieve list of things');
+      assert.end();
+    });
+});
+
+test('GET /v1/outfits/[temp]', function (assert) {
+  request(app)
+    .get('/v1/outfits/10')
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .end(function (err, res) {
+      var expectedIds = [ 1 ]
+      var actualIds = res.body.map((record) => (record.outfitId));
+
+      assert.error(err, 'No error');
+      assert.same(actualIds, expectedIds, 'Only returns results which match temp');
       assert.end();
     });
 });

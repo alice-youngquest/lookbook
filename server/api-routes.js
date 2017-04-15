@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
 
 router.get('/:temp', function (req, res) {
   const temp = Number(req.params.temp)
-  db.listOutfitsByTemp(temp, (err, data) => {
+  db.listOutfitsByTemp(temp).then((data) => {
     res.json(data)
   })
 })
