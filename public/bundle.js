@@ -23846,49 +23846,17 @@
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
-	// let initialState = [
-	//   {
-	//     id: 0,
-	//     likes: 0,
-	//     photoUrl: 'https://static.pexels.com/photos/63917/pexels-photo-63917.jpeg'
-	//   },
-	//   {
-	//     id: 1,
-	//     likes: 0,
-	//     photoUrl: 'https://static.pexels.com/photos/247244/pexels-photo-247244.jpeg'
-	//   },
-	//   {
-	//     id: 2,
-	//     likes: 0,
-	//     photoUrl: 'https://static.pexels.com/photos/47451/pexels-photo-47451.jpeg'
-	//   },
-	//   {
-	//     id: 3,
-	//     likes: 0,
-	//     photoUrl: 'https://static.pexels.com/photos/88767/pexels-photo-88767.jpeg'
-	//   },
-	//   {
-	//     id: 4,
-	//     likes: 0,
-	//     photoUrl: 'https://static.pexels.com/photos/7307/pexels-photo.jpeg'
-	//   },
-	//   {
-	//     id: 5,
-	//     likes: 0,
-	//     photoUrl: 'https://static.pexels.com/photos/38630/bodybuilder-weight-training-stress-38630.jpeg'
-	//   }
-	// ]
-	
 	var likesData = function likesData() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 	
 	  switch (action.type) {
-	    case 'INC_LIKES':
+	    case 'INCR_LIKES':
 	      var newState = [].concat(_toConsumableArray(state), [{
-	        id: action.id
+	        id: action.id,
+	        likes: action.likes
 	      }]);
-	      state[action.id].likes = action.likes;
+	      console.log();
 	      return newState;
 	
 	    default:
@@ -23918,7 +23886,7 @@
 	
 	  switch (action.type) {
 	    case 'RECEIVE_OUTFITS':
-	      console.log("HITS ACTION: ", action.type);
+	      console.log("<-- That needs to go! ᗒ ͟ʖᗕ");
 	      return [].concat(_toConsumableArray(action.outfits));
 	
 	    default:
@@ -25789,7 +25757,7 @@
 /* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -25799,34 +25767,40 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _reactRedux = __webpack_require__(182);
 	
-	// import { connect } from 'react-redux'
-	// import { incLikesAct } from '../actions/incLikesAct'
+	var _incrLikes = __webpack_require__(230);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var OutfitsListItem = function OutfitsListItem(props) {
 	  return _react2.default.createElement(
-	    "div",
+	    'div',
 	    null,
-	    _react2.default.createElement("img", { className: "photoUrl", src: props.photoUrl, alt: "outfit-pic" }),
 	    _react2.default.createElement(
-	      "button",
+	      'a',
+	      { href: props.photoUrl },
+	      _react2.default.createElement('img', { className: 'photoUrl', src: props.photoUrl, alt: 'outfit-pic' })
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'button',
 	      { id: props.id, onClick: function onClick(ev) {
-	          increaseLikes(ev, props.dispatch, props.id, props.likes);
+	          addLike(ev, props.dispatch, props.id, props.likes);
 	        } },
-	      "Add Like"
+	      'Add Like'
 	    ),
 	    _react2.default.createElement(
-	      "p",
+	      'p',
 	      null,
-	      "Like count: ",
+	      'Like count: ',
 	      props.likes
 	    )
 	  );
 	};
 	
-	function increaseLikes(ev, dispatch, id, likes) {
-	  // dispatch(incLikesAct(id, parseInt(likes) + 1))
+	function addLike(ev, dispatch, id, likes) {
+	  dispatch((0, _incrLikes.incrLikes)(id, parseInt(likes) + 1));
 	  disableLikeButton(id);
 	}
 	
@@ -25834,11 +25808,33 @@
 	  document.getElementById(id).disabled = true;
 	}
 	
-	// const provideDispatch = connect()
-	// const connectedAddWord = provideDispatch(OutfitsListItem)
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    outfits: state.likesData,
+	    dispatch: state.dispatch
+	  };
+	};
 	
-	exports.default = OutfitsListItem;
-	module.exports = exports["default"];
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(OutfitsListItem);
+	module.exports = exports['default'];
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var incrLikes = exports.incrLikes = function incrLikes(id, likes) {
+	  console.log('id: ', id, 'likes: ', likes);
+	  return {
+	    type: 'INCR_LIKES',
+	    id: id,
+	    likes: likes
+	  };
+	};
 
 /***/ })
 /******/ ]);

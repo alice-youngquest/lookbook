@@ -1,19 +1,21 @@
 import React from 'react'
-// import { connect } from 'react-redux'
-// import { incLikesAct } from '../actions/incLikesAct'
+import { connect } from 'react-redux'
+import { incrLikes } from '../actions/incrLikes'
 
 const OutfitsListItem = (props) => {
   return (
     <div>
-      <img className="photoUrl" src={props.photoUrl} alt="outfit-pic" />
-      <button id={props.id} onClick={ev => {increaseLikes(ev, props.dispatch, props.id, props.likes)}}>Add Like</button>
+      <a href={props.photoUrl}>
+        <img className="photoUrl" src={props.photoUrl} alt="outfit-pic" />
+      </a><br/>
+      <button id={props.id} onClick={ev => {addLike(ev, props.dispatch, props.id, props.likes)}}>Add Like</button>
       <p>Like count: {props.likes}</p>
     </div>
   )
 }
 
-function increaseLikes (ev, dispatch, id, likes) {
-  // dispatch(incLikesAct(id, parseInt(likes) + 1))
+function addLike (ev, dispatch, id, likes) {
+  dispatch(incrLikes(id, parseInt(likes) + 1))
   disableLikeButton(id)
 }
 
@@ -21,7 +23,11 @@ function disableLikeButton (id) {
   document.getElementById(id).disabled = true
 }
 
-// const provideDispatch = connect()
-// const connectedAddWord = provideDispatch(OutfitsListItem)
+const mapStateToProps = (state) => {
+    return {
+      outfits: state.likesData,
+      dispatch: state.dispatch
+    }
+}
 
-export default OutfitsListItem
+export default connect(mapStateToProps)(OutfitsListItem)

@@ -4,7 +4,8 @@ const db = require('knex')(config)
 
 module.exports = {
   getAllOutfits,
-  getOutfitsByTemp
+  getOutfitsByTemp,
+  incrementLikes
 }
 
 function getAllOutfits () {
@@ -17,4 +18,10 @@ function getOutfitsByTemp (temperature = 14) {
   .where('t_min', '<=', temperature)
   .andWhere('t_max', '>=', temperature)
   .select('id', 'photo_url as photoUrl', 'likes')
+}
+
+function incrementLikes(id) {
+  return db('outfits')
+  .where('id', '=', id)
+  .increment('likes', 1)
 }
