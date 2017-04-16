@@ -10,7 +10,7 @@ export const receiveOutfits = (outfits) => {
 export function fetchOutfits (dbQuery) {
   return (dispatch) => {
     request
-      .get(`http://localhost:3000/v1/${dbQuery}`)
+      .get(`https://aka-lookbook.herokuapp.com/v1/${dbQuery}`)
       .end((err, res) => {
         if (err) {
           return
