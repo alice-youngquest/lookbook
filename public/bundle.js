@@ -29326,6 +29326,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Weather = function Weather(props) {
+	  console.log(props.weatherData);
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -29335,11 +29336,29 @@
 	      'The weather today is:'
 	    ),
 	    _react2.default.createElement('input', {
+	      type: 'text',
+	      list: 'cities',
 	      placeholder: 'Enter your city ..',
 	      onKeyUp: function onKeyUp(e) {
 	        showWeather(e, props.dispatch);
 	      }
 	    }),
+	    _react2.default.createElement(
+	      'datalist',
+	      { id: 'cities' },
+	      _react2.default.createElement('option', { value: 'Lima' }),
+	      _react2.default.createElement('option', { value: 'NewYork' }),
+	      _react2.default.createElement('option', { value: 'Cusco' }),
+	      _react2.default.createElement('option', { value: 'Wellington' }),
+	      _react2.default.createElement('option', { value: 'Auckland' }),
+	      _react2.default.createElement('option', { value: 'Melbourne' }),
+	      _react2.default.createElement('option', { value: 'Sydney' }),
+	      _react2.default.createElement('option', { value: 'London' }),
+	      _react2.default.createElement('option', { value: 'Huancayo' }),
+	      _react2.default.createElement('option', { value: 'Atlanta' }),
+	      _react2.default.createElement('option', { value: 'Gisbourne' }),
+	      _react2.default.createElement('option', { value: 'Christchurch' })
+	    ),
 	    _react2.default.createElement(
 	      'p',
 	      null,
@@ -29361,8 +29380,14 @@
 	    _react2.default.createElement(
 	      'p',
 	      null,
+	      'icon: ',
+	      props.weatherData.weather ? props.weatherData.weather[0].icon : ""
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
 	      'Temperature: ',
-	      props.weatherData.main ? props.weatherData.main.temp : "",
+	      props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
 	      '\xB0C'
 	    )
 	  );
