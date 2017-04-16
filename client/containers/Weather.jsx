@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {fetchWeather} from '../actions/weatherApi'
 
-let Weather = (props) => {
+const Weather = (props) => {
   console.log(props.weatherData)
   return (
     <div>
@@ -46,6 +46,10 @@ function showWeather (e, dispatch) {
   }
 }
 
-Weather = connect()(Weather)
+const mapStateToProps = (state) => {
+  return {
+    weatherData: state.weatherData
+  }
+}
 
-export default Weather
+export default connect(mapStateToProps)(Weather)

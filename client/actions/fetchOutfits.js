@@ -15,7 +15,6 @@ export function fetchOutfits (dbQuery) {
         if (err) {
           return
         }
-        console.log(res.body);
         dispatch(receiveOutfits(res.body))
       })
   }

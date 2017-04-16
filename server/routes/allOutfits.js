@@ -1,11 +1,11 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
-var db = require('../db')
+const db = require('../db')
 
 router.route('/')
   .get(function (req, res) {
-    db.listAllOutfits().then((data) => {
+    db.getAllOutfits().then((data) => {
       res.send(data)
   })
   .catch((err) => {

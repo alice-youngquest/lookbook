@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
+import { fetchOutfits } from '../actions/fetchOutfits'
 import OutfitsListItem from './OutfitsListItem'
-import fetchOutfits from '../actions/fetchOutfits'
 
 const OutfitsList = (props) => {
-   console.log('Hits OutfitsList')
-  props.dispatch(fetchOutfits('all_outfits'))
+
+  props.dispatch(fetchOutfits('outfits'))
 
   return (
     <div>
@@ -20,14 +21,11 @@ const OutfitsList = (props) => {
   )
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {
       outfits: state.returnOutfits,
       dispatch: state.dispatch
     }
 }
 
-const provideCorrectProps = connect(mapStateToProps)
-const connectedOutfits = provideCorrectProps(OutfitsList)
-
-export default connectedOutfits
+export default connect(mapStateToProps)(OutfitsList)

@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { incLikesAct } from '../actions/incLikesAct'
+// import { connect } from 'react-redux'
+// import { incLikesAct } from '../actions/incLikesAct'
 
 const OutfitsListItem = (props) => {
   return (
@@ -13,7 +13,7 @@ const OutfitsListItem = (props) => {
 }
 
 function increaseLikes (ev, dispatch, id, likes) {
-  dispatch(incLikesAct(id, parseInt(likes) + 1))
+  // dispatch(incLikesAct(id, parseInt(likes) + 1))
   disableLikeButton(id)
 }
 
@@ -21,7 +21,7 @@ function disableLikeButton (id) {
   document.getElementById(id).disabled = true
 }
 
-const provideDispatch = connect()
-const connectedAddWord = provideDispatch(OutfitsListItem)
+// const provideDispatch = connect()
+// const connectedAddWord = provideDispatch(OutfitsListItem)
 
 export default OutfitsListItem

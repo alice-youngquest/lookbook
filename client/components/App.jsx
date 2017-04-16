@@ -1,10 +1,12 @@
 import React from 'react'
 
-import Home from './Home'
+import Weather from '../containers/Weather'
+import OutfitsList from '../containers/OutfitsList'
 
 const App = () => (
   <div className='app-container'>
-    <Home />
+    <Weather />
+    <OutfitsList />
   </div>
 )
 

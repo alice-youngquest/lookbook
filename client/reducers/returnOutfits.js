@@ -1,7 +1,7 @@
 function returnOutfits (state = [], action) {
   switch (action.type) {
     case 'RECEIVE_OUTFITS':
-      console.log("Hits action ", action.type);
+      console.log("HITS ACTION: ", action.type);
       return [
         ...action.outfits
       ]
