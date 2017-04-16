@@ -1,5 +1,13 @@
 /*Set image size*/
 .photoUrl {
-  width: 200px;
-  height: 300px;
+  width:  auto;;
+  height: 95px;
 }
+
+/*{
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+}*/
