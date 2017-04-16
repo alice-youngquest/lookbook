@@ -1,7 +1,7 @@
 const test = require('ava')
-var testConfig = require('../../knexfile').test
-var knex = require('knex')
-var db = require('../../server/db')
+const testConfig = require('../../knexfile').test
+const knex = require('knex')
+const db = require('../../server/db')
 
 // Create a separate in-memory database before each test.
 // In our tests, we can get at the database as `t.context.db`.
@@ -21,11 +21,11 @@ test.afterEach(function (t) {
 })
 
 test('get image by temperature', function (t) {
-  var expectedImage = [{
+  const expectedImage = [{
     id: 1,
     photo_url: 'http://fashion.ekstrax.com/wp-content/uploads/2015/04/Unboring-Fashion-ideas-from-Tumblr-9.jpg'
   }]
-  return db.listOutfitsByTemp(14)
+  return db.getOutfitsByTemp(14)
     .then(function (image) {
       console.log(image)
       t.deepEqual(image, expectedImage)

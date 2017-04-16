@@ -1,4 +1,3 @@
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('outfits').del()
@@ -353,7 +352,7 @@ exports.seed = function(knex, Promise) {
           t_max: 50,
           t_min: 21,
           likes: 0,
-          photo_url: 'https://static.pexels.com/photos/199010/pexels-photo-199010.jpeg'
+          photo_url: 'https://static.pexels.com/photos/343255/pexels-photo-343255.jpeg'
         },
         {
           id: 50,

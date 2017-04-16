@@ -4,9 +4,9 @@ const router = express.Router()
 const db = require('../db')
 
 router.route('/')
-  .get(function (req, res) {
-    db.getAllOutfits().then((data) => {
-      res.send(data)
+  .put(function (req, res) {
+    db.incrementLikes(req.body.likes).then(() => {
+      res.send()
   })
   .catch((err) => {
       res.status(500).send(err)

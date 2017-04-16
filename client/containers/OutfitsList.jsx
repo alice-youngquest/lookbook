@@ -1,8 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
+import { fetchOutfits } from '../actions/fetchOutfits'
 import OutfitsListItem from './OutfitsListItem'
 
 const OutfitsList = (props) => {
+
+  props.dispatch(fetchOutfits('outfits'))
+
   return (
     <div>
       <ul>
@@ -16,13 +21,11 @@ const OutfitsList = (props) => {
   )
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {
-      outfits: state.likesData
+      outfits: state.returnOutfits,
+      dispatch: state.dispatch
     }
 }
 
-const provideCorrectProps = connect(mapStateToProps)
-const connectedOutfits = provideCorrectProps(OutfitsList)
-
-export default connectedOutfits
+export default connect(mapStateToProps)(OutfitsList)
