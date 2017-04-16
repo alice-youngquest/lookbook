@@ -25,7 +25,7 @@ test('get image by temperature', function (t) {
     id: 1,
     photo_url: 'http://fashion.ekstrax.com/wp-content/uploads/2015/04/Unboring-Fashion-ideas-from-Tumblr-9.jpg'
   }]
-  return db.getImageByTemp(14)
+  return db.listOutfitsByTemp(14)
     .then(function (image) {
       console.log(image)
       t.deepEqual(image, expectedImage)
