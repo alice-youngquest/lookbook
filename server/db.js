@@ -1,5 +1,6 @@
-var development = require('../knexfile').development
-var db = require('knex')(development)
+var env = process.env['NODE_ENV'] || 'development'
+var config = require('../knexfile.js')[env]
+var db = require('knex')(config)
 
 module.exports = {
   listAllOutfits,

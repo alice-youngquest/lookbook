@@ -6,7 +6,7 @@ var listOutfitsByTemp = require('../db')
 
 router.get('/', function (req, res) {
   db.listOutfitsByTemp().then((data) => {
-    res.json(data)
+    res.send(data)
   })
   .catch((err) => {
     res.status(500).send(err)

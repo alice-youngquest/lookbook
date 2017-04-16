@@ -1,8 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import OutfitsListItem from './OutfitsListItem'
+import fetchOutfits from '../actions/fetchOutfits'
 
 const OutfitsList = (props) => {
+   console.log('Hits OutfitsList')
+  props.dispatch(fetchOutfits('all_outfits'))
+
   return (
     <div>
       <ul>
@@ -18,7 +22,8 @@ const OutfitsList = (props) => {
 
 function mapStateToProps(state) {
     return {
-      outfits: state.likesData
+      outfits: state.returnOutfits,
+      dispatch: state.dispatch
     }
 }
 
