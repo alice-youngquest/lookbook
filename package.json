@@ -8,7 +8,8 @@
     "dev": "nodemon --watch server server/index & webpack --watch",
     "knex": "knex",
     "test": "tape test/**/*-test.js",
-    "ava": "ava test/**/*.test.js"
+    "ava": "ava test/**/*.test.js",
+    "postinstall": "knex migrate:latest"
   },
   "keywords": [
     "react",
@@ -35,9 +36,7 @@
     "redux-thunk": "^2.1.0",
     "supertest": "^3.0.0",
     "tap-diff": "^0.1.1",
-    "tape": "^4.6.3",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "tape": "^4.6.3"
   },
   "babel": {
     "presets": [
@@ -45,7 +44,7 @@
       "react"
     ],
     "plugins": [
-    "add-module-exports"
+      "add-module-exports"
     ]
   },
   "dependencies": {
@@ -53,7 +52,10 @@
     "express": "^4.15.2",
     "knex": "^0.12.9",
     "path": "^0.12.7",
+    "pg": "^6.1.5",
     "sqlite3": "^3.1.8",
-    "superagent": "^2.2.0"
+    "superagent": "^2.2.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }
