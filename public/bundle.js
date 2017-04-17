@@ -27492,59 +27492,63 @@
 	var Weather = function Weather(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'weatherbox' },
-	    _react2.default.createElement('input', {
-	      type: 'text',
-	      id: 'cityinput',
-	      list: 'cities',
-	      placeholder: 'Enter your city ..',
-	      onKeyUp: function onKeyUp(e) {
-	        showWeather(e, props.dispatch);
-	      }
-	    }),
-	    _react2.default.createElement(
-	      'datalist',
-	      { id: 'cities' },
-	      _react2.default.createElement('option', { value: 'Lima' }),
-	      _react2.default.createElement('option', { value: 'New York' }),
-	      _react2.default.createElement('option', { value: 'Cusco' }),
-	      _react2.default.createElement('option', { value: 'Wellington' }),
-	      _react2.default.createElement('option', { value: 'Auckland' }),
-	      _react2.default.createElement('option', { value: 'Melbourne' }),
-	      _react2.default.createElement('option', { value: 'Sydney' }),
-	      _react2.default.createElement('option', { value: 'London' }),
-	      _react2.default.createElement('option', { value: 'Huancayo' }),
-	      _react2.default.createElement('option', { value: 'Atlanta' }),
-	      _react2.default.createElement('option', { value: 'Gisbourne' }),
-	      _react2.default.createElement('option', { value: 'Christchurch' })
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'cityName' },
-	      'City Name: ',
-	      props.weatherData.name
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'forecast' },
-	      'Forecast: ',
-	      props.weatherData.weather ? props.weatherData.weather[0].main : ""
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'temperature' },
-	      'Temperature: ',
-	      props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
-	      '\xB0C'
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'icon' },
-	      props.weatherData.weather ? props.weatherData.weather[0].icon : "",
-	      _react2.default.createElement('img', { src: 'http://openweathermap.org/img/w/10d.png' })
-	    ),
+	    { className: 'weatherpage' },
 	    _react2.default.createElement(_Nav2.default, null),
-	    _react2.default.createElement(_SearchByTag2.default, null),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'weatherbox' },
+	      _react2.default.createElement('input', {
+	        type: 'text',
+	        id: 'cityinput',
+	        list: 'cities',
+	        placeholder: 'Enter your city ..',
+	        onKeyUp: function onKeyUp(e) {
+	          showWeather(e, props.dispatch);
+	        }
+	      }),
+	      _react2.default.createElement(
+	        'datalist',
+	        { id: 'cities' },
+	        _react2.default.createElement('option', { value: 'Lima' }),
+	        _react2.default.createElement('option', { value: 'New York' }),
+	        _react2.default.createElement('option', { value: 'Cusco' }),
+	        _react2.default.createElement('option', { value: 'Wellington' }),
+	        _react2.default.createElement('option', { value: 'Auckland' }),
+	        _react2.default.createElement('option', { value: 'Melbourne' }),
+	        _react2.default.createElement('option', { value: 'Sydney' }),
+	        _react2.default.createElement('option', { value: 'London' }),
+	        _react2.default.createElement('option', { value: 'Huancayo' }),
+	        _react2.default.createElement('option', { value: 'Atlanta' }),
+	        _react2.default.createElement('option', { value: 'Gisbourne' }),
+	        _react2.default.createElement('option', { value: 'Christchurch' })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'cityName' },
+	        'City Name: ',
+	        props.weatherData.name
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'forecast' },
+	        'Forecast: ',
+	        props.weatherData.weather ? props.weatherData.weather[0].main : ""
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'temperature' },
+	        'Temperature: ',
+	        props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
+	        '\xB0C'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'icon' },
+	        props.weatherData.weather ? props.weatherData.weather[0].icon : "",
+	        _react2.default.createElement('img', { src: 'http://openweathermap.org/img/w/10d.png' })
+	      ),
+	      _react2.default.createElement(_SearchByTag2.default, null)
+	    ),
 	    _react2.default.createElement(_OutfitsList2.default, null)
 	  );
 	};

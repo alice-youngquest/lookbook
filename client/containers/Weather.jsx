@@ -8,7 +8,11 @@ import SearchByTag from './SearchByTag'
 
 const Weather = (props) => {
   return (
-    <div className="weatherbox" >
+    <div className="weatherpage" >
+
+      <Nav />
+
+      <div className="weatherbox">
         <input
           type="text"
           id="cityinput"
@@ -46,8 +50,9 @@ const Weather = (props) => {
         <img src="http://openweathermap.org/img/w/10d.png" />
       </div>
 
-    <Nav />
-    <SearchByTag />
+      <SearchByTag />
+    </div>
+
     <OutfitsList />
 
     </div>
