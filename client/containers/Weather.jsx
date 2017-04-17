@@ -1,11 +1,7 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
-<<<<<<< HEAD
 import {fetchWeather} from '../actions/index'
 import OutfitsList from './OutfitsList'
-=======
-import {fetchWeather} from '../actions'
->>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 
 const Weather = (props) => {
   return (

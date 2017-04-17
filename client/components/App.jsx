@@ -12,5 +12,7 @@ const App = () => (
         <Route path='/inspo' component={Weather}/>
       </div>
     </Router>
+  </div>
+)
 
 export default App
