@@ -70,11 +70,13 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import { fetchOutfits } from './actions/fetchOutfits'
 	var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default), window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	  return f;
 	}));
 	
 	document.addEventListener('DOMContentLoaded', function () {
+	  // store.dispatch(fetchOutfits('outfits'))
 	  (0, _reactDom.render)(_react2.default.createElement(
 	    _reactRedux.Provider,
 	    { store: store },
@@ -23872,7 +23874,7 @@
 /* 218 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -23886,7 +23888,6 @@
 	
 	  switch (action.type) {
 	    case 'RECEIVE_OUTFITS':
-	      console.log("<-- That needs to go! ᗒ ͟ʖᗕ");
 	      return [].concat(_toConsumableArray(action.outfits));
 	
 	    default:
@@ -23895,7 +23896,7 @@
 	}
 	
 	exports.default = returnOutfits;
-	module.exports = exports["default"];
+	module.exports = exports['default'];
 
 /***/ },
 /* 219 */
@@ -23952,12 +23953,11 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _weatherApi = __webpack_require__(221);
+	var _index = __webpack_require__(221);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Weather = function Weather(props) {
-	  console.log(props.weatherData);
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -24027,7 +24027,7 @@
 	function showWeather(e, dispatch) {
 	  console.log(e.currentTarget.value);
 	  if (e.keyCode === 13) {
-	    dispatch((0, _weatherApi.fetchWeather)(e.currentTarget.value.toLowerCase()));
+	    dispatch((0, _index.fetchWeather)(e.currentTarget.value.toLowerCase()));
 	    e.currentTarget.value = '';
 	  }
 	}
@@ -24050,21 +24050,15 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.receiveWeather = undefined;
+	exports.receiveOutfits = exports.receiveWeather = undefined;
 	exports.fetchWeather = fetchWeather;
+	exports.fetchOutfits = fetchOutfits;
 	
 	var _superagent = __webpack_require__(222);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var receiveWeather = exports.receiveWeather = function receiveWeather(weather) {
-	  return {
-	    type: 'RECEIVE_WEATHER',
-	    weather: weather
-	  };
-	};
 	
 	function fetchWeather(searchTerm) {
 	  return function (dispatch) {
@@ -24073,10 +24067,40 @@
 	        console.error(err.message);
 	        return;
 	      }
+	      // dispatch fetchOutfits(temp)
+	      dispatch(fetchOutfits(Math.floor(res.body.main.temp)));
 	      dispatch(receiveWeather(res.body));
 	    });
 	  };
 	}
+	
+	var receiveWeather = exports.receiveWeather = function receiveWeather(weather) {
+	  return {
+	    type: 'RECEIVE_WEATHER',
+	    weather: weather
+	  };
+	};
+	
+	function fetchOutfits(temp) {
+	  return function (dispatch) {
+	    _superagent2.default.get('http://localhost:3000/v1/outfits?temp=' + temp).end(function (err, res) {
+	      if (err) {
+	        console.error(err.message);
+	        return;
+	      }
+	      dispatch(receiveOutfits(res.body));
+	    });
+	  };
+	}
+	
+	var receiveOutfits = exports.receiveOutfits = function receiveOutfits(outfits) {
+	  return {
+	    type: 'RECEIVE_OUTFITS',
+	    outfits: outfits.map(function (outfit) {
+	      return outfit;
+	    })
+	  };
+	};
 
 /***/ },
 /* 222 */
@@ -25683,17 +25707,13 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _fetchOutfits = __webpack_require__(228);
-	
-	var _OutfitsListItem = __webpack_require__(229);
+	var _OutfitsListItem = __webpack_require__(228);
 	
 	var _OutfitsListItem2 = _interopRequireDefault(_OutfitsListItem);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var OutfitsList = function OutfitsList(props) {
-	
-	  props.dispatch((0, _fetchOutfits.fetchOutfits)('outfits'));
 	
 	  return _react2.default.createElement(
 	    'div',
@@ -25727,44 +25747,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.receiveOutfits = undefined;
-	exports.fetchOutfits = fetchOutfits;
-	
-	var _superagent = __webpack_require__(222);
-	
-	var _superagent2 = _interopRequireDefault(_superagent);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var receiveOutfits = exports.receiveOutfits = function receiveOutfits(outfits) {
-	  return {
-	    type: 'RECEIVE_OUTFITS',
-	    outfits: outfits.map(function (outfit) {
-	      return outfit;
-	    })
-	  };
-	};
-	
-	function fetchOutfits(dbQuery) {
-	  return function (dispatch) {
-	    _superagent2.default.get('http://localhost:3000/v1/' + dbQuery).end(function (err, res) {
-	      if (err) {
-	        return;
-	      }
-	      dispatch(receiveOutfits(res.body));
-	    });
-	  };
-	}
-
-/***/ },
-/* 229 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
 	
 	var _react = __webpack_require__(1);
 	
@@ -25772,7 +25754,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _incrLikes = __webpack_require__(230);
+	var _incrLikes = __webpack_require__(229);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25822,7 +25804,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 230 */
+/* 229 */
 /***/ function(module, exports) {
 
 	'use strict';
