@@ -16,18 +16,11 @@ const OutfitsListItem = (props) => {
 
 function addLike (ev, dispatch, id, likes) {
   dispatch(increaseLikes(id, likes))
-  // disableLikeButton(id)
+  disableLikeButton(id)
 }
 
 function disableLikeButton (id) {
   document.getElementById(id).disabled = true
 }
 
-const mapStateToProps = (state) => {
-    return {
-      outfits: state.returnLikes,
-      dispatch: state.dispatch
-    }
-}
-
-export default connect(mapStateToProps)(OutfitsListItem)
+export default connect()(OutfitsListItem)

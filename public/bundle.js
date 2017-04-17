@@ -25792,21 +25792,14 @@
 	
 	function addLike(ev, dispatch, id, likes) {
 	  dispatch((0, _actions.increaseLikes)(id, likes));
-	  // disableLikeButton(id)
+	  disableLikeButton(id);
 	}
 	
 	function disableLikeButton(id) {
 	  document.getElementById(id).disabled = true;
 	}
 	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    outfits: state.returnLikes,
-	    dispatch: state.dispatch
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(OutfitsListItem);
+	exports.default = (0, _reactRedux.connect)()(OutfitsListItem);
 	module.exports = exports['default'];
 
 /***/ },
