@@ -1,12 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { fetchOutfits } from '../actions/fetchOutfits'
 import OutfitsListItem from './OutfitsListItem'
 
 const OutfitsList = (props) => {
-
-  props.dispatch(fetchOutfits('outfits'))
 
   return (
     <div>
