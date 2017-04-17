@@ -6,14 +6,12 @@ import OutfitsListItem from './OutfitsListItem'
 const OutfitsList = (props) => {
 
   return (
-    <div>
-      <ul>
+    <div id="imagebox">
         {props.outfits.map(function(outfit){
           return (
             <OutfitsListItem key={outfit.id} id={outfit.id} likes={outfit.likes} photoUrl={outfit.photoUrl} dispatch={props.dispatch}/>
           )
         })}
-      </ul>
     </div>
   )
 }

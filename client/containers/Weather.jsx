@@ -4,8 +4,7 @@ import {fetchWeather} from '../actions/index'
 
 const Weather = (props) => {
   return (
-    <div>
-        <p>The weather today is:</p>
+    <div id="weatherbox" >
         <input
           type="text"
           list="cities"
@@ -28,11 +27,21 @@ const Weather = (props) => {
           <option value="Christchurch" />
       </datalist>
 
-      <p>City Name: {props.weatherData.name}</p>
-      <p>Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}</p>
-      <p>Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}</p>
-      <p>icon: {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}</p>
-      <p>Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C</p>
+      <div id="cityName">
+        City Name: {props.weatherData.name}
+      </div>
+      <div id="forecast">
+        Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}
+      </div>
+      <div id="forecastDescription">
+        Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}
+      </div>
+      <div id="icon">
+        Icon: {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
+      </div>
+      <div id="temperature">
+        Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
+      </div>
     </div>
   )
 }
