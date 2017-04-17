@@ -25744,7 +25744,7 @@
 	
 	function fetchOutfits(dbQuery) {
 	  return function (dispatch) {
-	    _superagent2.default.get('https://aka-lookbook.herokuapp.com//v1/' + dbQuery).end(function (err, res) {
+	    _superagent2.default.get('https://aka-lookbook.herokuapp.com/v1/' + dbQuery).end(function (err, res) {
 	      if (err) {
 	        return;
 	      }
