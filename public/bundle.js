@@ -29398,7 +29398,11 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _reactRouterDom = __webpack_require__(220);
+	var _createBrowserHistory = __webpack_require__(222);
+	
+	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+	
+	var _index = __webpack_require__(257);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29420,21 +29424,15 @@
 	        'A fashion inspiration app based off the weather in your city'
 	      ),
 	      _react2.default.createElement(
-	        'div',
-	        { id: 'cityinput' },
+	        'form',
+	        { onSubmit: function onSubmit(e) {
+	            showWeather(e, props);
+	          }, id: 'cityinput' },
 	        _react2.default.createElement('input', {
 	          type: 'text',
 	          list: 'cities',
-	          placeholder: 'Enter your city ..',
-	          onChange: function onChange(e) {
-	            showWeather(e, props.dispatch);
-	          }
-	        }),
-	        _react2.default.createElement(
-	          'a',
-	          { id: 'button', href: 'http://localhost:3000/#/inspo' },
-	          'GO!'
-	        )
+	          placeholder: 'Enter your city ..'
+	        })
 	      ),
 	      _react2.default.createElement(
 	        'datalist',
@@ -29456,13 +29454,12 @@
 	  );
 	};
 	
-	function showWeather(e, dispatch) {
-	  console.log(e.currentTarget.value);
-	  console.log(Object.keys(_reactRouterDom.HashRouter));
-	  if (e.keyCode === 13) {
-	    dispatch(fetchWeather(e.currentTarget.value.toLowerCase()));
-	    e.currentTarget.value = '';
-	  }
+	function showWeather(e, props) {
+	  e.preventDefault();
+	  console.log(e.currentTarget.children[0].value);
+	  props.history.push("/inspo");
+	  props.dispatch((0, _index.fetchWeather)(e.currentTarget.children[0].value.toLowerCase()));
+	  e.currentTarget.value = '';
 	}
 	
 	exports.default = (0, _reactRedux.connect)()(Home);
