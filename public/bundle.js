@@ -24065,7 +24065,7 @@
 	
 	function fetchWeather(searchTerm) {
 	  return function (dispatch) {
-	    _superagent2.default.get('https://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&APPID=d7379debce2e70976673a060a36c7535&mode=json&units=metric\n').end(function (err, res) {
+	    _superagent2.default.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&APPID=d7379debce2e70976673a060a36c7535&mode=json&units=metric\n').end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
