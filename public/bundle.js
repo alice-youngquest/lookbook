@@ -60,6 +60,8 @@
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
+	var _fetchOutfits = __webpack_require__(228);
+	
 	var _reducers = __webpack_require__(215);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
@@ -75,6 +77,8 @@
 	}));
 	
 	document.addEventListener('DOMContentLoaded', function () {
+	  // store.dispatch(fetchOutfits('outfits'))
+	
 	  (0, _reactDom.render)(_react2.default.createElement(
 	    _reactRedux.Provider,
 	    { store: store },
@@ -23872,7 +23876,7 @@
 /* 218 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -23886,7 +23890,6 @@
 	
 	  switch (action.type) {
 	    case 'RECEIVE_OUTFITS':
-	      console.log("<-- That needs to go! ᗒ ͟ʖᗕ");
 	      return [].concat(_toConsumableArray(action.outfits));
 	
 	    default:
@@ -23895,7 +23898,7 @@
 	}
 	
 	exports.default = returnOutfits;
-	module.exports = exports["default"];
+	module.exports = exports['default'];
 
 /***/ },
 /* 219 */
@@ -24069,6 +24072,7 @@
 	        console.error(err.message);
 	        return;
 	      }
+	      // dispatch fetchOutfits(temp)
 	      dispatch(receiveWeather(res.body));
 	    });
 	  };
@@ -25679,8 +25683,6 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _fetchOutfits = __webpack_require__(228);
-	
 	var _OutfitsListItem = __webpack_require__(229);
 	
 	var _OutfitsListItem2 = _interopRequireDefault(_OutfitsListItem);
@@ -25688,8 +25690,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var OutfitsList = function OutfitsList(props) {
-	
-	  props.dispatch((0, _fetchOutfits.fetchOutfits)('outfits'));
 	
 	  return _react2.default.createElement(
 	    'div',
@@ -25741,7 +25741,10 @@
 	  };
 	};
 	
-	function fetchOutfits(dbQuery) {
+	function fetchOutfits(temperature) {
+	  // if temperature undefined GET /outfits
+	  // if (temperature) GET /outfits?temp=${temperature}
+	
 	  return function (dispatch) {
 	    _superagent2.default.get('http://localhost:3000/v1/' + dbQuery).end(function (err, res) {
 	      if (err) {

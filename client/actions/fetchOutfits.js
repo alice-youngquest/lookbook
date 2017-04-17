@@ -7,7 +7,10 @@ export const receiveOutfits = (outfits) => {
   }
 }
 
-export function fetchOutfits (dbQuery) {
+export function fetchOutfits (temperature) {
+  // if temperature undefined GET /outfits
+  // if (temperature) GET /outfits?temp=${temperature}
+
   return (dispatch) => {
     request
       .get(`http://localhost:3000/v1/${dbQuery}`)

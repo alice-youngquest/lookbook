@@ -17,6 +17,7 @@ export function fetchWeather (searchTerm) {
           console.error(err.message)
           return
         }
+        // dispatch fetchOutfits(temp)
         dispatch(receiveWeather(res.body))
       })
   }
