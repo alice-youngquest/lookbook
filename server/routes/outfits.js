@@ -3,8 +3,9 @@ const router = express.Router()
 
 const db = require('../db')
 
-router.get('/outfits', function (req, res) {
-    db.getAllOutfits().then((data) => {
+router.get('/', function (req, res) {
+const options = {temp: parseInt(req.query.temp, 10)}
+    db.getOutfits(options).then((data) => {
       res.json(data)
   })
   .catch((err) => {
@@ -12,15 +13,6 @@ router.get('/outfits', function (req, res) {
     })
 })
 
-router.get('/outfits?temp=', function (req, res) {
-  const temp = req.query.temp
-  db.getOutfitsByTemp(temp).then((data) => {
-    res.json(data)
-  })
-  .catch((err) => {
-    res.status(500).send(err)
-  })
-})
 
 module.exports = router
 

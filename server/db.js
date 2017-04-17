@@ -5,7 +5,16 @@ const db = require('knex')(config)
 module.exports = {
   getAllOutfits,
   getOutfitsByTemp,
-  incrementLikes
+  incrementLikes,
+  getOutfits
+}
+
+function getOutfits (options) {
+  if(options.temp) {
+    return getOutfitsByTemp(options.temp)
+  } else {
+    return getAllOutfits()
+  }
 }
 
 function getAllOutfits () {

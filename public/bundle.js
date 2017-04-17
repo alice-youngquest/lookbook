@@ -60,25 +60,23 @@
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _fetchOutfits = __webpack_require__(215);
-	
-	var _reducers = __webpack_require__(216);
+	var _reducers = __webpack_require__(215);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _App = __webpack_require__(220);
+	var _App = __webpack_require__(219);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import { fetchOutfits } from './actions/fetchOutfits'
 	var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default), window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	  return f;
 	}));
 	
 	document.addEventListener('DOMContentLoaded', function () {
 	  // store.dispatch(fetchOutfits('outfits'))
-	
 	  (0, _reactDom.render)(_react2.default.createElement(
 	    _reactRedux.Provider,
 	    { store: store },
@@ -23782,40 +23780,6 @@
 
 /***/ },
 /* 215 */
-/***/ function(module, exports) {
-
-	// import request from 'superagent'
-	//
-	// export const receiveOutfits = (outfits) => {
-	//   return {
-	//     type: 'RECEIVE_OUTFITS',
-	//     outfits: outfits.map(outfit => outfit)
-	//   }
-	// }
-	//
-	// export function fetchOutfits (temp) {
-	//   // if temperature undefined GET /outfits
-	//   // if (temperature) GET /outfits?temp=${temperature}
-	//   if(temp == undefined) {
-	//     .get(`http://localhost:3000/v1/outfits`)
-	//   } else {
-	//     return (dispatch) => {
-	//       request
-	//         .get(`http://localhost:3000/v1/outfits?temp=${temp}`)
-	//         .end((err, res) => {
-	//           if (err) {
-	//             console.error(err.message)
-	//             return
-	//           }
-	//           dispatch(receiveOutfits(res.body))
-	//         })
-	//     }
-	//   }
-	// }
-	"use strict";
-
-/***/ },
-/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23826,15 +23790,15 @@
 	
 	var _redux = __webpack_require__(191);
 	
-	var _weather = __webpack_require__(217);
+	var _weather = __webpack_require__(216);
 	
 	var _weather2 = _interopRequireDefault(_weather);
 	
-	var _likes = __webpack_require__(218);
+	var _likes = __webpack_require__(217);
 	
 	var _likes2 = _interopRequireDefault(_likes);
 	
-	var _returnOutfits = __webpack_require__(219);
+	var _returnOutfits = __webpack_require__(218);
 	
 	var _returnOutfits2 = _interopRequireDefault(_returnOutfits);
 	
@@ -23848,7 +23812,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 217 */
+/* 216 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23873,7 +23837,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 218 */
+/* 217 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23907,7 +23871,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 219 */
+/* 218 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23935,7 +23899,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 220 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23948,11 +23912,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Weather = __webpack_require__(221);
+	var _Weather = __webpack_require__(220);
 	
 	var _Weather2 = _interopRequireDefault(_Weather);
 	
-	var _OutfitsList = __webpack_require__(228);
+	var _OutfitsList = __webpack_require__(227);
 	
 	var _OutfitsList2 = _interopRequireDefault(_OutfitsList);
 	
@@ -23971,7 +23935,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 221 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23986,7 +23950,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _index = __webpack_require__(222);
+	var _index = __webpack_require__(221);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24075,7 +24039,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 222 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24087,7 +24051,7 @@
 	exports.fetchWeather = fetchWeather;
 	exports.fetchOutfits = fetchOutfits;
 	
-	var _superagent = __webpack_require__(223);
+	var _superagent = __webpack_require__(222);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -24115,21 +24079,15 @@
 	};
 	
 	function fetchOutfits(temp) {
-	  // if temperature undefined GET /outfits
-	  // if (temperature) GET /outfits?temp=${temperature}
-	  if (temp == undefined) {
-	    _superagent2.default.get('http://localhost:3000/v1/outfits');
-	  } else {
-	    return function (dispatch) {
-	      _superagent2.default.get('http://localhost:3000/v1/outfits?temp=' + temp).end(function (err, res) {
-	        if (err) {
-	          console.error(err.message);
-	          return;
-	        }
-	        dispatch(receiveOutfits(res.body));
-	      });
-	    };
-	  }
+	  return function (dispatch) {
+	    _superagent2.default.get('http://localhost:3000/v1/outfits?temp=' + temp).end(function (err, res) {
+	      if (err) {
+	        console.error(err.message);
+	        return;
+	      }
+	      dispatch(receiveOutfits(res.body));
+	    });
+	  };
 	}
 	
 	var receiveOutfits = exports.receiveOutfits = function receiveOutfits(outfits) {
@@ -24142,7 +24100,7 @@
 	};
 
 /***/ },
-/* 223 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24164,9 +24122,9 @@
 	  root = undefined;
 	}
 	
-	var Emitter = __webpack_require__(224);
-	var requestBase = __webpack_require__(225);
-	var isObject = __webpack_require__(226);
+	var Emitter = __webpack_require__(223);
+	var requestBase = __webpack_require__(224);
+	var isObject = __webpack_require__(225);
 	
 	/**
 	 * Noop.
@@ -24178,7 +24136,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(227).bind(null, Request);
+	var request = module.exports = __webpack_require__(226).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -25130,7 +25088,7 @@
 	};
 
 /***/ },
-/* 224 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25294,7 +25252,7 @@
 	};
 
 /***/ },
-/* 225 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25302,7 +25260,7 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(226);
+	var isObject = __webpack_require__(225);
 	
 	/**
 	 * Clear previous timeout.
@@ -25670,7 +25628,7 @@
 	};
 
 /***/ },
-/* 226 */
+/* 225 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25692,7 +25650,7 @@
 	module.exports = isObject;
 
 /***/ },
-/* 227 */
+/* 226 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25731,7 +25689,7 @@
 	module.exports = request;
 
 /***/ },
-/* 228 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25746,7 +25704,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _OutfitsListItem = __webpack_require__(229);
+	var _OutfitsListItem = __webpack_require__(228);
 	
 	var _OutfitsListItem2 = _interopRequireDefault(_OutfitsListItem);
 	
@@ -25778,7 +25736,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 229 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25793,7 +25751,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _incrLikes = __webpack_require__(230);
+	var _incrLikes = __webpack_require__(229);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25843,7 +25801,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 230 */
+/* 229 */
 /***/ function(module, exports) {
 
 	'use strict';
