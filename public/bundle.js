@@ -25859,7 +25859,17 @@
 	  return _react2.default.createElement(
 	    "div",
 	    null,
-	    _react2.default.createElement("div", { id: "circle" })
+	    _react2.default.createElement("div", { id: "circle" }),
+	    _react2.default.createElement(
+	      "div",
+	      { id: "text" },
+	      "LOOKBOOK"
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      { id: "texttwo" },
+	      "A fashion inspiration app based off the weather"
+	    )
 	  );
 	};
 	
