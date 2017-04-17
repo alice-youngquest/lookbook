@@ -3,10 +3,10 @@ const config = require('../knexfile.js')[env]
 const db = require('knex')(config)
 
 module.exports = {
+  getOutfits,
   getAllOutfits,
   getOutfitsByTemp,
   incrementLikes,
-  getOutfits
 }
 
 function getOutfits (options) {
@@ -22,7 +22,7 @@ function getAllOutfits () {
     .select('id', 'outfits.photo_url as photoUrl', 'likes')
 }
 
-function getOutfitsByTemp (temp = 14) {
+function getOutfitsByTemp (temp) {
   return db('outfits')
   .where('t_min', '<=', temp)
   .andWhere('t_max', '>=', temp)
@@ -32,5 +32,7 @@ function getOutfitsByTemp (temp = 14) {
 function incrementLikes(id) {
   return db('outfits')
   .where('id', '=', id)
-  .increment('likes', 1)
+  .increment('likes', 1).then(function () {
+    return db('outfits').first()
+  })
 }

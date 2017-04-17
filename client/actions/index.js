@@ -51,11 +51,23 @@ export const receiveOutfits = (outfits) => {
 
 //INCREASE LIKES
 
-export const incrLikes = (id, likes) => {
-    console.log('id: ', id, 'likes: ', likes);
+export const increaseLikes = (id) => {
+  return (dispatch) => {
+    request
+      .post(`http://localhost:3000/v1/outfits/likes/${id}`)
+      .end((err, res) => {
+        if (err) {
+          console.error(err.message)
+          return
+        }
+        dispatch(receiveLikes(res.body))
+      })
+  }
+}
+
+export const receiveLikes = (outfits) => {
   return {
-    type: 'INCR_LIKES',
-    id,
-    likes
+    type: 'RECEIVE_LIKES',
+    outfits: outfits
   }
 }

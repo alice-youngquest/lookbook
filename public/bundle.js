@@ -23792,20 +23792,20 @@
 	
 	var _weather2 = _interopRequireDefault(_weather);
 	
-	var _likes = __webpack_require__(217);
+	var _receiveOutfits = __webpack_require__(217);
 	
-	var _likes2 = _interopRequireDefault(_likes);
+	var _receiveOutfits2 = _interopRequireDefault(_receiveOutfits);
 	
-	var _returnOutfits = __webpack_require__(218);
+	var _receiveLikes = __webpack_require__(218);
 	
-	var _returnOutfits2 = _interopRequireDefault(_returnOutfits);
+	var _receiveLikes2 = _interopRequireDefault(_receiveLikes);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = (0, _redux.combineReducers)({
 	  weatherData: _weather2.default,
-	  likesData: _likes2.default,
-	  returnOutfits: _returnOutfits2.default
+	  returnOutfits: _receiveOutfits2.default,
+	  returnLikes: _receiveLikes2.default
 	});
 	module.exports = exports['default'];
 
@@ -23846,40 +23846,6 @@
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
-	var likesData = function likesData() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case 'INCR_LIKES':
-	      var newState = [].concat(_toConsumableArray(state), [{
-	        id: action.id,
-	        likes: action.likes
-	      }]);
-	      console.log();
-	      return newState;
-	
-	    default:
-	      return state;
-	
-	  }
-	};
-	
-	exports.default = likesData;
-	module.exports = exports['default'];
-
-/***/ },
-/* 218 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
 	function returnOutfits() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
@@ -23894,6 +23860,42 @@
 	}
 	
 	exports.default = returnOutfits;
+	module.exports = exports['default'];
+
+/***/ },
+/* 218 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	var returnLikes = function returnLikes() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'RECEIVE_LIKES':
+	      // const newState = [
+	      //   ...state,
+	      //   {
+	      //     id: action.id,
+	      //     likes: action.likes
+	      //   }
+	      // ]
+	      var newState = [].concat(_toConsumableArray(action.outfits));
+	      return newState;
+	
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = returnLikes;
 	module.exports = exports['default'];
 
 /***/ },
@@ -24020,7 +24022,6 @@
 	};
 	
 	function showWeather(e, dispatch) {
-	  console.log(e.currentTarget.value);
 	  if (e.keyCode === 13) {
 	    dispatch((0, _actions.fetchWeather)(e.currentTarget.value.toLowerCase()));
 	    e.currentTarget.value = '';
@@ -24045,7 +24046,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.incrLikes = exports.receiveOutfits = exports.receiveWeather = undefined;
+	exports.receiveLikes = exports.increaseLikes = exports.receiveOutfits = exports.receiveWeather = undefined;
 	exports.fetchWeather = fetchWeather;
 	exports.fetchOutfits = fetchOutfits;
 	
@@ -24103,12 +24104,22 @@
 	
 	//INCREASE LIKES
 	
-	var incrLikes = exports.incrLikes = function incrLikes(id, likes) {
-	  console.log('id: ', id, 'likes: ', likes);
+	var increaseLikes = exports.increaseLikes = function increaseLikes(id) {
+	  return function (dispatch) {
+	    _superagent2.default.post('http://localhost:3000/v1/outfits/likes/' + id).end(function (err, res) {
+	      if (err) {
+	        console.error(err.message);
+	        return;
+	      }
+	      dispatch(receiveLikes(res.body));
+	    });
+	  };
+	};
+	
+	var receiveLikes = exports.receiveLikes = function receiveLikes(outfits) {
 	  return {
-	    type: 'INCR_LIKES',
-	    id: id,
-	    likes: likes
+	    type: 'RECEIVE_LIKES',
+	    outfits: outfits
 	  };
 	};
 
@@ -25795,8 +25806,8 @@
 	};
 	
 	function addLike(ev, dispatch, id, likes) {
-	  dispatch((0, _actions.incrLikes)(id, parseInt(likes) + 1));
-	  disableLikeButton(id);
+	  dispatch((0, _actions.increaseLikes)(id, likes));
+	  // disableLikeButton(id)
 	}
 	
 	function disableLikeButton(id) {
@@ -25805,7 +25816,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    outfits: state.likesData,
+	    outfits: state.returnLikes,
 	    dispatch: state.dispatch
 	  };
 	};

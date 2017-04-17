@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux'
 
 import weatherData from './weather'
-import likesData from './likes'
-import returnOutfits from './returnOutfits'
+import returnOutfits from './receiveOutfits'
+import returnLikes from './receiveLikes'
 
 export default combineReducers({
   weatherData,
-  likesData,
-  returnOutfits
+  returnOutfits,
+  returnLikes
 })

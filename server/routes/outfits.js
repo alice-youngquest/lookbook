@@ -13,4 +13,13 @@ const options = {temp: parseInt(req.query.temp, 10)}
     })
 })
 
+router.post('/likes/:id', function (req, res) {
+    db.incrementLikes(req.params.id, req.body.likes).then((outfits) => {
+      res.json(outfits)
+  })
+  .catch((err) => {
+      res.status(500).send(err)
+    })
+})
+
 module.exports = router
