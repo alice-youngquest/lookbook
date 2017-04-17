@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {fetchWeather} from '../actions/index'
+import OutfitsList from './OutfitsList'
 
 const Weather = (props) => {
   return (
@@ -33,6 +34,9 @@ const Weather = (props) => {
       <p>Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}</p>
       <p>icon: {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}</p>
       <p>Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C</p>
+
+    <OutfitsList />
+
     </div>
   )
 }
@@ -50,5 +54,6 @@ const mapStateToProps = (state) => {
     weatherData: state.weatherData
   }
 }
+
 
 export default connect(mapStateToProps)(Weather)
