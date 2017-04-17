@@ -12,8 +12,7 @@ export function fetchWeather (searchTerm) {
           console.error(err.message)
           return
         }
-        // dispatch fetchOutfits(temp)
-        dispatch(fetchOutfits(Math.floor(res.body.main.temp)))
+        dispatch(fetchOutfitsByTemp(Math.floor(res.body.main.temp)))
         dispatch(receiveWeather(res.body))
       })
   }
@@ -28,10 +27,24 @@ export const receiveWeather = (weather) => {
 
 //OUTFITS
 
-export function fetchOutfits (temp) {
+export function fetchOutfitsByTemp (temp) {
   return (dispatch) => {
     request
       .get(`http://localhost:3000/v1/outfits?temp=${temp}`)
+      .end((err, res) => {
+        if (err) {
+          console.error(err.message)
+          return
+        }
+        dispatch(receiveOutfits(res.body))
+      })
+  }
+}
+
+export function fetchOutfitsByTag (tag) {
+  return (dispatch) => {
+    request
+      .get(`http://localhost:3000/v1/outfits?tag=${tag}`)
       .end((err, res) => {
         if (err) {
           console.error(err.message)

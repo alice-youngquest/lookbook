@@ -6,18 +6,18 @@ exports.seed = function(knex, Promise) {
       return knex('join').insert([
         {
           id: 0,
-          tags_id: '1',
-          outfits_id: '1'
+          tags_id: 3,
+          outfits_id: 0
         },
         {
           id: 1,
-          tags_id: '4',
-          outfits_id: '2'
+          tags_id: 2,
+          outfits_id: 14
         },
         {
           id: 2,
-          tags_id: '2',
-          outfits_id: '2'
+          tags_id: 3,
+          outfits_id: 19
         }
       ]);
     });
