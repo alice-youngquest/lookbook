@@ -39,7 +39,9 @@ function incrementLikes (id) {
     .where('id', '=', id)
     .increment('likes', 1)
       .then(function () {
-        return db('outfits').first()
+        return db('outfits')
+          .where('id', '=', id)
+          .first()
       })
 }
 

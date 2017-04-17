@@ -73,14 +73,15 @@ export const increaseLikes = (id) => {
           console.error(err.message)
           return
         }
+        console.log(res.body);
         dispatch(receiveLikes(res.body))
       })
   }
 }
 
-export const receiveLikes = (outfits) => {
+export const receiveLikes = (likedOutfit) => {
   return {
     type: 'RECEIVE_LIKES',
-    outfits: outfits
+    updatedOutfit: likedOutfit
   }
 }
