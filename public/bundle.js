@@ -64,7 +64,7 @@
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _App = __webpack_require__(219);
+	var _App = __webpack_require__(218);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
@@ -23849,22 +23849,13 @@
 	    case 'RECEIVE_OUTFITS':
 	      return [].concat(_toConsumableArray(action.outfits));
 	    case 'RECEIVE_LIKES':
-	      // const newState = [
-	      //   ...state,
-	      //   {
-	      //     id: action.id,
-	      //     likes: action.likes
-	      //   }
-	      // ]
-	      console.log(action);
-	
-	      var newState = [].concat(_toConsumableArray(state)).map(function (outfit) {
+	      var newState = [].concat(_toConsumableArray(state));
+	      newState.map(function (outfit) {
 	        if (outfit.id == action.updatedOutfit.id) {
 	          outfit.likes = action.updatedOutfit.likes;
 	        }
 	        return outfit;
 	      });
-	      console.log(newState);
 	      return newState;
 	
 	    default:
@@ -23876,8 +23867,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 218 */,
-/* 219 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23890,15 +23880,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Weather = __webpack_require__(220);
+	var _Weather = __webpack_require__(219);
 	
 	var _Weather2 = _interopRequireDefault(_Weather);
 	
-	var _OutfitsList = __webpack_require__(227);
+	var _OutfitsList = __webpack_require__(226);
 	
 	var _OutfitsList2 = _interopRequireDefault(_OutfitsList);
 	
-	var _SearchByTag = __webpack_require__(229);
+	var _SearchByTag = __webpack_require__(228);
 	
 	var _SearchByTag2 = _interopRequireDefault(_SearchByTag);
 	
@@ -23918,7 +23908,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 220 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23933,7 +23923,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _actions = __webpack_require__(221);
+	var _actions = __webpack_require__(220);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24021,7 +24011,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 221 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24034,7 +24024,7 @@
 	exports.fetchOutfitsByTemp = fetchOutfitsByTemp;
 	exports.fetchOutfitsByTag = fetchOutfitsByTag;
 	
-	var _superagent = __webpack_require__(222);
+	var _superagent = __webpack_require__(221);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -24106,7 +24096,6 @@
 	        console.error(err.message);
 	        return;
 	      }
-	      console.log(res.body);
 	      dispatch(receiveLikes(res.body));
 	    });
 	  };
@@ -24120,7 +24109,7 @@
 	};
 
 /***/ },
-/* 222 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24142,9 +24131,9 @@
 	  root = undefined;
 	}
 	
-	var Emitter = __webpack_require__(223);
-	var requestBase = __webpack_require__(224);
-	var isObject = __webpack_require__(225);
+	var Emitter = __webpack_require__(222);
+	var requestBase = __webpack_require__(223);
+	var isObject = __webpack_require__(224);
 	
 	/**
 	 * Noop.
@@ -24156,7 +24145,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(226).bind(null, Request);
+	var request = module.exports = __webpack_require__(225).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -25108,7 +25097,7 @@
 	};
 
 /***/ },
-/* 223 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25272,7 +25261,7 @@
 	};
 
 /***/ },
-/* 224 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25280,7 +25269,7 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(225);
+	var isObject = __webpack_require__(224);
 	
 	/**
 	 * Clear previous timeout.
@@ -25648,7 +25637,7 @@
 	};
 
 /***/ },
-/* 225 */
+/* 224 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25670,7 +25659,7 @@
 	module.exports = isObject;
 
 /***/ },
-/* 226 */
+/* 225 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25709,7 +25698,7 @@
 	module.exports = request;
 
 /***/ },
-/* 227 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25724,7 +25713,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _OutfitsListItem = __webpack_require__(228);
+	var _OutfitsListItem = __webpack_require__(227);
 	
 	var _OutfitsListItem2 = _interopRequireDefault(_OutfitsListItem);
 	
@@ -25756,7 +25745,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 228 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25771,7 +25760,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _actions = __webpack_require__(221);
+	var _actions = __webpack_require__(220);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25821,7 +25810,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 229 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25836,7 +25825,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _actions = __webpack_require__(221);
+	var _actions = __webpack_require__(220);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	

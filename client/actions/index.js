@@ -73,7 +73,6 @@ export const increaseLikes = (id) => {
           console.error(err.message)
           return
         }
-        console.log(res.body);
         dispatch(receiveLikes(res.body))
       })
   }
