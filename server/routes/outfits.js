@@ -13,16 +13,4 @@ const options = {temp: parseInt(req.query.temp, 10)}
     })
 })
 
-
 module.exports = router
-
-
-// REST outfits by temp
-
-// GET /outfits
-  // -> all outfits
-  // GET /outfits?temp=16
-  // const temp = req.query.temp
-  // -> db.getOutfitsByTemp(temp)
-  // res.json
-//

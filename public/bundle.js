@@ -70,13 +70,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// import { fetchOutfits } from './actions/fetchOutfits'
 	var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default), window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	  return f;
 	}));
 	
 	document.addEventListener('DOMContentLoaded', function () {
-	  // store.dispatch(fetchOutfits('outfits'))
 	  (0, _reactDom.render)(_react2.default.createElement(
 	    _reactRedux.Provider,
 	    { store: store },
@@ -23950,7 +23948,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _index = __webpack_require__(221);
+	var _actions = __webpack_require__(221);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24024,7 +24022,7 @@
 	function showWeather(e, dispatch) {
 	  console.log(e.currentTarget.value);
 	  if (e.keyCode === 13) {
-	    dispatch((0, _index.fetchWeather)(e.currentTarget.value.toLowerCase()));
+	    dispatch((0, _actions.fetchWeather)(e.currentTarget.value.toLowerCase()));
 	    e.currentTarget.value = '';
 	  }
 	}
@@ -24047,7 +24045,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.receiveOutfits = exports.receiveWeather = undefined;
+	exports.incrLikes = exports.receiveOutfits = exports.receiveWeather = undefined;
 	exports.fetchWeather = fetchWeather;
 	exports.fetchOutfits = fetchOutfits;
 	
@@ -24056,6 +24054,8 @@
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//WEATHER
 	
 	function fetchWeather(searchTerm) {
 	  return function (dispatch) {
@@ -24078,6 +24078,8 @@
 	  };
 	};
 	
+	//OUTFITS
+	
 	function fetchOutfits(temp) {
 	  return function (dispatch) {
 	    _superagent2.default.get('http://localhost:3000/v1/outfits?temp=' + temp).end(function (err, res) {
@@ -24096,6 +24098,17 @@
 	    outfits: outfits.map(function (outfit) {
 	      return outfit;
 	    })
+	  };
+	};
+	
+	//INCREASE LIKES
+	
+	var incrLikes = exports.incrLikes = function incrLikes(id, likes) {
+	  console.log('id: ', id, 'likes: ', likes);
+	  return {
+	    type: 'INCR_LIKES',
+	    id: id,
+	    likes: likes
 	  };
 	};
 
@@ -25751,7 +25764,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _incrLikes = __webpack_require__(229);
+	var _actions = __webpack_require__(221);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25782,7 +25795,7 @@
 	};
 	
 	function addLike(ev, dispatch, id, likes) {
-	  dispatch((0, _incrLikes.incrLikes)(id, parseInt(likes) + 1));
+	  dispatch((0, _actions.incrLikes)(id, parseInt(likes) + 1));
 	  disableLikeButton(id);
 	}
 	
@@ -25799,24 +25812,6 @@
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(OutfitsListItem);
 	module.exports = exports['default'];
-
-/***/ },
-/* 229 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var incrLikes = exports.incrLikes = function incrLikes(id, likes) {
-	  console.log('id: ', id, 'likes: ', likes);
-	  return {
-	    type: 'INCR_LIKES',
-	    id: id,
-	    likes: likes
-	  };
-	};
 
 /***/ }
 /******/ ]);

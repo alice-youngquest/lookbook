@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { incrLikes } from '../actions/incrLikes'
+import { incrLikes } from '../actions'
 
 const OutfitsListItem = (props) => {
   return (
