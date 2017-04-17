@@ -9,10 +9,13 @@ module.exports = {
   getTagIdByTagName,
   getOutfitsByTag,
   incrementLikes,
+  getOutfitsByTempAndTag
 }
 
 function getOutfits (options) {
-  if(options.temp) {
+  if (options.temp && options.tag) {
+    return getOutfitsByTempAndTag(options.temp, options.tag)
+  } else if (options.temp) {
     return getOutfitsByTemp(options.temp)
   } else if (options.tag) {
     return getTagIdByTagName(options.tag)
@@ -58,4 +61,8 @@ function getOutfitsByTag (tagObj) {
           .andOn('join.tags_id', '=', tagId)
       })
     .join('outfits', 'join.outfits_id', '=', 'outfits.id')
+}
+
+function getOutfitsByTempAndTag (temp, tag) {
+
 }
