@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {fetchWeather} from '../actions/weatherApi'
 
 const Weather = (props) => {
-  console.log(props.weatherData)
   return (
     <div>
         <p>The weather today is:</p>

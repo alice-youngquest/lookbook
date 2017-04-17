@@ -23954,7 +23954,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Weather = function Weather(props) {
-	  console.log(props.weatherData);
 	  return _react2.default.createElement(
 	    'div',
 	    null,
