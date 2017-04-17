@@ -23888,9 +23888,19 @@
 	
 	var _OutfitsList2 = _interopRequireDefault(_OutfitsList);
 	
+<<<<<<< HEAD
 	var _SearchByTag = __webpack_require__(228);
 	
 	var _SearchByTag2 = _interopRequireDefault(_SearchByTag);
+=======
+	var _Home = __webpack_require__(230);
+	
+	var _Home2 = _interopRequireDefault(_Home);
+	
+	var _Nav = __webpack_require__(231);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
+>>>>>>> 6e98c8d6c43b9c458156f730a2310faa8e373f1b
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23898,6 +23908,7 @@
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'app-container' },
+	    _react2.default.createElement(_Nav2.default, null),
 	    _react2.default.createElement(_Weather2.default, null),
 	    _react2.default.createElement(_SearchByTag2.default, null),
 	    _react2.default.createElement(_OutfitsList2.default, null)
@@ -23930,14 +23941,10 @@
 	var Weather = function Weather(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'The weather today is:'
-	    ),
+	    { className: 'weatherbox' },
 	    _react2.default.createElement('input', {
 	      type: 'text',
+	      id: 'cityinput',
 	      list: 'cities',
 	      placeholder: 'Enter your city ..',
 	      onKeyUp: function onKeyUp(e) {
@@ -23948,7 +23955,7 @@
 	      'datalist',
 	      { id: 'cities' },
 	      _react2.default.createElement('option', { value: 'Lima' }),
-	      _react2.default.createElement('option', { value: 'NewYork' }),
+	      _react2.default.createElement('option', { value: 'New York' }),
 	      _react2.default.createElement('option', { value: 'Cusco' }),
 	      _react2.default.createElement('option', { value: 'Wellington' }),
 	      _react2.default.createElement('option', { value: 'Auckland' }),
@@ -23961,35 +23968,29 @@
 	      _react2.default.createElement('option', { value: 'Christchurch' })
 	    ),
 	    _react2.default.createElement(
-	      'p',
-	      null,
+	      'div',
+	      { id: 'cityName' },
 	      'City Name: ',
 	      props.weatherData.name
 	    ),
 	    _react2.default.createElement(
-	      'p',
-	      null,
+	      'div',
+	      { id: 'forecast' },
 	      'Forecast: ',
 	      props.weatherData.weather ? props.weatherData.weather[0].main : ""
 	    ),
 	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'Description: ',
-	      props.weatherData.weather ? props.weatherData.weather[0].description : ""
-	    ),
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'icon: ',
-	      props.weatherData.weather ? props.weatherData.weather[0].icon : ""
-	    ),
-	    _react2.default.createElement(
-	      'p',
-	      null,
+	      'div',
+	      { id: 'temperature' },
 	      'Temperature: ',
 	      props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
 	      '\xB0C'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'icon' },
+	      props.weatherData.weather ? props.weatherData.weather[0].icon : "",
+	      _react2.default.createElement('img', { src: 'http://openweathermap.org/img/w/10d.png' })
 	    )
 	  );
 	};
@@ -25723,14 +25724,10 @@
 	
 	  return _react2.default.createElement(
 	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'ul',
-	      null,
-	      props.outfits.map(function (outfit) {
-	        return _react2.default.createElement(_OutfitsListItem2.default, { key: outfit.id, id: outfit.id, likes: outfit.likes, photoUrl: outfit.photoUrl, dispatch: props.dispatch });
-	      })
-	    )
+	    { className: 'imagebox' },
+	    props.outfits.map(function (outfit) {
+	      return _react2.default.createElement(_OutfitsListItem2.default, { key: outfit.id, id: outfit.id, likes: outfit.likes, photoUrl: outfit.photoUrl, dispatch: props.dispatch });
+	    })
 	  );
 	};
 	
@@ -25769,23 +25766,34 @@
 	    'div',
 	    null,
 	    _react2.default.createElement(
-	      'a',
-	      { href: props.photoUrl },
-	      _react2.default.createElement('img', { className: 'photoUrl', src: props.photoUrl, alt: 'outfit-pic' })
-	    ),
-	    _react2.default.createElement('br', null),
-	    _react2.default.createElement(
-	      'button',
-	      { id: props.id, onClick: function onClick(ev) {
-	          addLike(ev, props.dispatch, props.id, props.likes);
-	        } },
-	      'Add Like'
+	      'div',
+	      { id: 'imagesingle' },
+	      _react2.default.createElement(
+	        'a',
+	        { href: props.photoUrl },
+	        _react2.default.createElement('img', { className: 'photoUrl', src: props.photoUrl, alt: 'outfit-pic' })
+	      )
 	    ),
 	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'Like count: ',
-	      props.likes
+	      'div',
+	      { id: 'likebutton' },
+	      _react2.default.createElement(
+	        'button',
+	        { id: props.id, onClick: function onClick(ev) {
+	            addLike(ev, props.dispatch, props.id, props.likes);
+	          } },
+	        'Add Like'
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'likecount' },
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        'Like count: ',
+	        props.likes
+	      )
 	    )
 	  );
 	};
@@ -25848,6 +25856,78 @@
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(SearchByTag);
 	module.exports = exports['default'];
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Home = function Home() {
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    _react2.default.createElement(
+	      "div",
+	      { id: "circle" },
+	      _react2.default.createElement(
+	        "div",
+	        { id: "text" },
+	        "LOOKBOOK"
+	      ),
+	      _react2.default.createElement(
+	        "p",
+	        { id: "texttwo" },
+	        "A fashion inspiration app based off the weather"
+	      )
+	    )
+	  );
+	};
+	
+	exports.default = Home;
+	module.exports = exports["default"];
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Nav = function Nav() {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "nav" },
+	    "Nav Bar",
+	    _react2.default.createElement("input", {
+	      type: "text",
+	      id: "navsearchbar",
+	      placeholder: "Search ..."
+	    })
+	  );
+	};
+	
+	exports.default = Nav;
+	module.exports = exports["default"];
 
 /***/ }
 /******/ ]);

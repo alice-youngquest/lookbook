@@ -4,10 +4,10 @@ import {fetchWeather} from '../actions'
 
 const Weather = (props) => {
   return (
-    <div>
-        <p>The weather today is:</p>
+    <div className="weatherbox" >
         <input
           type="text"
+          id="cityinput"
           list="cities"
           placeholder="Enter your city .."
           onKeyUp={ e => { showWeather(e, props.dispatch)}}
@@ -15,7 +15,7 @@ const Weather = (props) => {
 
       <datalist id="cities">
           <option value="Lima" />
-          <option value="NewYork" />
+          <option value="New York" />
           <option value="Cusco" />
           <option value="Wellington" />
           <option value="Auckland" />
@@ -28,11 +28,19 @@ const Weather = (props) => {
           <option value="Christchurch" />
       </datalist>
 
-      <p>City Name: {props.weatherData.name}</p>
-      <p>Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}</p>
-      <p>Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}</p>
-      <p>icon: {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}</p>
-      <p>Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C</p>
+      <div id="cityName">
+        City Name: {props.weatherData.name}
+      </div>
+      <div id="forecast">
+        Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}
+      </div>
+      <div id="temperature">
+        Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
+      </div>
+      <div id="icon">
+        {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
+        <img src="http://openweathermap.org/img/w/10d.png" />
+      </div>
     </div>
   )
 }

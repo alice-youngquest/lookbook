@@ -5,11 +5,21 @@ import { increaseLikes } from '../actions'
 const OutfitsListItem = (props) => {
   return (
     <div>
-      <a href={props.photoUrl}>
-        <img className="photoUrl" src={props.photoUrl} alt="outfit-pic" />
-      </a><br/>
-      <button id={props.id} onClick={ev => {addLike(ev, props.dispatch, props.id, props.likes)}}>Add Like</button>
-      <p>Like count: {props.likes}</p>
+
+      <div id="imagesingle">
+        <a href={props.photoUrl}>
+          <img className="photoUrl" src={props.photoUrl} alt="outfit-pic" />
+        </a>
+      </div>
+
+      <div id="likebutton">
+        <button id={props.id} onClick={ev => {addLike(ev, props.dispatch, props.id, props.likes)}}>Add Like</button>
+      </div>
+
+      <div id="likecount">
+        <p>Like count: {props.likes}</p>
+      </div>
+
     </div>
   )
 }
