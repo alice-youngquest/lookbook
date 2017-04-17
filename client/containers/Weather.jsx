@@ -7,6 +7,7 @@ const Weather = (props) => {
     <div id="weatherbox" >
         <input
           type="text"
+          id="cityinput"
           list="cities"
           placeholder="Enter your city .."
           onKeyUp={ e => { showWeather(e, props.dispatch)}}
@@ -36,11 +37,12 @@ const Weather = (props) => {
       <div id="forecastDescription">
         Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}
       </div>
-      <div id="icon">
-        Icon: {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
-      </div>
       <div id="temperature">
         Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
+      </div>
+      <div id="icon">
+        {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
+        <img src="http://openweathermap.org/img/w/10d.png" />
       </div>
     </div>
   )

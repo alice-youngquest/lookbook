@@ -1,33 +1,71 @@
+.app-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
 .photoUrl {
   width:  auto;
   height: 95px;
 }
 
 #imagesingle {
-  flex-grow: 1;
   padding: 3px;
 }
 
 #imagebox {
-  display: flex;
+  /*display: flex;*/
 }
 
 .nav {
-  display: block;
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
   margin: 30px;
   padding: 15px;
+  border: 3px solid black;
   border-radius: 5px;
   background-color: #9AAAB4;
+  font-family: courier;
+  font-weight: bolder;
+  font-size: 22px
+}
+
+@media all and (max-width: 800px) {
+  .nav {
+    justify-content: space-around;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .nav {
+    flex-direction: column;
+  }
+}
+
+#navsearchbar {
+  padding: 5px;
+  border-radius: 5px;
+  float: right;
 }
 
 #weatherbox {
-  display: block;
   padding: 15px;
   margin: 30px;
   width: 20%;
+  border: 3px solid black;
   background-color: #9AAAB4;
   border-radius: 5px;
+  font-family: 'Concert One';
+  font-size: 18px;
 }
+
+#cityinput {
+  padding: 15px;
+  text-align: center;
+  border-radius: 5px;
+}
+
 
 #cityName {
   margin: 1%;

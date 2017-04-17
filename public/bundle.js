@@ -23969,6 +23969,7 @@
 	    { id: 'weatherbox' },
 	    _react2.default.createElement('input', {
 	      type: 'text',
+	      id: 'cityinput',
 	      list: 'cities',
 	      placeholder: 'Enter your city ..',
 	      onKeyUp: function onKeyUp(e) {
@@ -24011,16 +24012,16 @@
 	    ),
 	    _react2.default.createElement(
 	      'div',
-	      { id: 'icon' },
-	      'Icon: ',
-	      props.weatherData.weather ? props.weatherData.weather[0].icon : ""
-	    ),
-	    _react2.default.createElement(
-	      'div',
 	      { id: 'temperature' },
 	      'Temperature: ',
 	      props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
 	      '\xB0C'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'icon' },
+	      props.weatherData.weather ? props.weatherData.weather[0].icon : "",
+	      _react2.default.createElement('img', { src: 'http://openweathermap.org/img/w/10d.png' })
 	    )
 	  );
 	};
@@ -25889,7 +25890,12 @@
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "nav" },
-	    "Home"
+	    "Nav Bar",
+	    _react2.default.createElement("input", {
+	      type: "text",
+	      id: "navsearchbar",
+	      placeholder: "Search ..."
+	    })
 	  );
 	};
 	
