@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {fetchWeather} from '../actions/index'
+import {fetchWeather} from '../actions'
 
 const Weather = (props) => {
   return (
@@ -38,7 +38,6 @@ const Weather = (props) => {
 }
 
 function showWeather (e, dispatch) {
-  console.log(e.currentTarget.value)
   if (e.keyCode === 13) {
     dispatch(fetchWeather(e.currentTarget.value.toLowerCase()))
     e.currentTarget.value = ''

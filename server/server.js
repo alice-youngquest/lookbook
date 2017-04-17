@@ -2,7 +2,7 @@ const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const outfits = require('./routes/outfits')
+const outfits = require('./routes')
 
 const server = express()
 
