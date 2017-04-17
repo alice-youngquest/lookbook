@@ -15,7 +15,7 @@ const Weather = (props) => {
 
       <datalist id="cities">
           <option value="Lima" />
-          <option value="NewYork" />
+          <option value="New York" />
           <option value="Cusco" />
           <option value="Wellington" />
           <option value="Auckland" />
@@ -33,9 +33,6 @@ const Weather = (props) => {
       </div>
       <div id="forecast">
         Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}
-      </div>
-      <div id="forecastDescription">
-        Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}
       </div>
       <div id="temperature">
         Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C

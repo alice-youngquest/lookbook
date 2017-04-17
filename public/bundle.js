@@ -23980,7 +23980,7 @@
 	      'datalist',
 	      { id: 'cities' },
 	      _react2.default.createElement('option', { value: 'Lima' }),
-	      _react2.default.createElement('option', { value: 'NewYork' }),
+	      _react2.default.createElement('option', { value: 'New York' }),
 	      _react2.default.createElement('option', { value: 'Cusco' }),
 	      _react2.default.createElement('option', { value: 'Wellington' }),
 	      _react2.default.createElement('option', { value: 'Auckland' }),
@@ -24003,12 +24003,6 @@
 	      { id: 'forecast' },
 	      'Forecast: ',
 	      props.weatherData.weather ? props.weatherData.weather[0].main : ""
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'forecastDescription' },
-	      'Description: ',
-	      props.weatherData.weather ? props.weatherData.weather[0].description : ""
 	    ),
 	    _react2.default.createElement(
 	      'div',
