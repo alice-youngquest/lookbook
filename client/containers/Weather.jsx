@@ -4,7 +4,7 @@ import {fetchWeather} from '../actions/index'
 
 const Weather = (props) => {
   return (
-    <div id="weatherbox" >
+    <div className="weatherbox" >
         <input
           type="text"
           id="cityinput"

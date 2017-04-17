@@ -23966,7 +23966,7 @@
 	var Weather = function Weather(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    { id: 'weatherbox' },
+	    { className: 'weatherbox' },
 	    _react2.default.createElement('input', {
 	      type: 'text',
 	      id: 'cityinput',
@@ -25719,7 +25719,7 @@
 	
 	  return _react2.default.createElement(
 	    'div',
-	    { id: 'imagebox' },
+	    { className: 'imagebox' },
 	    props.outfits.map(function (outfit) {
 	      return _react2.default.createElement(_OutfitsListItem2.default, { key: outfit.id, id: outfit.id, likes: outfit.likes, photoUrl: outfit.photoUrl, dispatch: props.dispatch });
 	    })

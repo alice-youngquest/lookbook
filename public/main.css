@@ -1,24 +1,33 @@
 .app-container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.nav, .imagebox {
+  flex: 1 100%;
 }
 
 .photoUrl {
   width:  auto;
-  height: 95px;
+  height: 200px;
 }
 
 #imagesingle {
-  padding: 3px;
 }
 
-#imagebox {
-  /*display: flex;*/
+.imagebox {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 
 .nav {
-  display:flex;
+  display: block;
   flex-flow: row wrap;
   justify-content: flex-end;
   margin: 30px;
@@ -31,7 +40,8 @@
   font-size: 22px
 }
 
-@media all and (max-width: 800px) {
+/* Medium screens */
+@media all and (max-width: 600px) {
   .nav {
     justify-content: space-around;
   }
@@ -49,7 +59,8 @@
   float: right;
 }
 
-#weatherbox {
+.weatherbox {
+  display: block;
   padding: 15px;
   margin: 30px;
   width: 20%;
@@ -58,6 +69,7 @@
   border-radius: 5px;
   font-family: 'Concert One';
   font-size: 18px;
+  width: 25%;
 }
 
 #cityinput {
@@ -96,6 +108,11 @@
   padding: 5px;
   border-radius: 5px;
 }
+
+
+
+
+/* Home page */
 
 body {
   background-image: url("./pics/concrete.jpeg");
