@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { incrLikes } from '../actions/incrLikes'
+import { increaseLikes } from '../actions'
 
 const OutfitsListItem = (props) => {
   return (
@@ -15,7 +15,7 @@ const OutfitsListItem = (props) => {
 }
 
 function addLike (ev, dispatch, id, likes) {
-  dispatch(incrLikes(id, parseInt(likes) + 1))
+  dispatch(increaseLikes(id, likes))
   disableLikeButton(id)
 }
 
@@ -23,11 +23,4 @@ function disableLikeButton (id) {
   document.getElementById(id).disabled = true
 }
 
-const mapStateToProps = (state) => {
-    return {
-      outfits: state.likesData,
-      dispatch: state.dispatch
-    }
-}
-
-export default connect(mapStateToProps)(OutfitsListItem)
+export default connect()(OutfitsListItem)

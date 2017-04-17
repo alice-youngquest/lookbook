@@ -64,19 +64,17 @@
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
-	var _App = __webpack_require__(219);
+	var _App = __webpack_require__(218);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// import { fetchOutfits } from './actions/fetchOutfits'
 	var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default), window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	  return f;
 	}));
 	
 	document.addEventListener('DOMContentLoaded', function () {
-	  // store.dispatch(fetchOutfits('outfits'))
 	  (0, _reactDom.render)(_react2.default.createElement(
 	    _reactRedux.Provider,
 	    { store: store },
@@ -23794,20 +23792,15 @@
 	
 	var _weather2 = _interopRequireDefault(_weather);
 	
-	var _likes = __webpack_require__(217);
+	var _receiveOutfits = __webpack_require__(217);
 	
-	var _likes2 = _interopRequireDefault(_likes);
-	
-	var _returnOutfits = __webpack_require__(218);
-	
-	var _returnOutfits2 = _interopRequireDefault(_returnOutfits);
+	var _receiveOutfits2 = _interopRequireDefault(_receiveOutfits);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = (0, _redux.combineReducers)({
 	  weatherData: _weather2.default,
-	  likesData: _likes2.default,
-	  returnOutfits: _returnOutfits2.default
+	  returnOutfits: _receiveOutfits2.default
 	});
 	module.exports = exports['default'];
 
@@ -23848,40 +23841,6 @@
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
-	var likesData = function likesData() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case 'INCR_LIKES':
-	      var newState = [].concat(_toConsumableArray(state), [{
-	        id: action.id,
-	        likes: action.likes
-	      }]);
-	      console.log();
-	      return newState;
-	
-	    default:
-	      return state;
-	
-	  }
-	};
-	
-	exports.default = likesData;
-	module.exports = exports['default'];
-
-/***/ },
-/* 218 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
 	function returnOutfits() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
@@ -23889,6 +23848,15 @@
 	  switch (action.type) {
 	    case 'RECEIVE_OUTFITS':
 	      return [].concat(_toConsumableArray(action.outfits));
+	    case 'RECEIVE_LIKES':
+	      var newState = [].concat(_toConsumableArray(state));
+	      newState.map(function (outfit) {
+	        if (outfit.id == action.updatedOutfit.id) {
+	          outfit.likes = action.updatedOutfit.likes;
+	        }
+	        return outfit;
+	      });
+	      return newState;
 	
 	    default:
 	      return state;
@@ -23899,7 +23867,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 219 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23912,6 +23880,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+<<<<<<< HEAD
 	var _reactRouterDom = __webpack_require__(220);
 	
 	var _Weather = __webpack_require__(256);
@@ -27138,6 +27107,13 @@
 	    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
 	  }return target;
 	}
+=======
+	var _Weather = __webpack_require__(219);
+	
+	var _Weather2 = _interopRequireDefault(_Weather);
+	
+	var _OutfitsList = __webpack_require__(226);
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 	
 	function _classCallCheck(instance, Constructor) {
 	  if (!(instance instanceof Constructor)) {
@@ -27145,6 +27121,7 @@
 	  }
 	}
 	
+<<<<<<< HEAD
 	function _possibleConstructorReturn(self, call) {
 	  if (!self) {
 	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -27159,6 +27136,22 @@
 	
 	var isModifiedEvent = function isModifiedEvent(event) {
 	  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+=======
+	var _SearchByTag = __webpack_require__(228);
+	
+	var _SearchByTag2 = _interopRequireDefault(_SearchByTag);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var App = function App() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'app-container' },
+	    _react2.default.createElement(_Weather2.default, null),
+	    _react2.default.createElement(_SearchByTag2.default, null),
+	    _react2.default.createElement(_OutfitsList2.default, null)
+	  );
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 	};
 	
 	/**
@@ -27236,6 +27229,7 @@
 	exports.default = Link;
 
 /***/ },
+<<<<<<< HEAD
 /* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -27495,6 +27489,9 @@
 
 /***/ },
 /* 256 */
+=======
+/* 219 */
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27509,11 +27506,15 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
+<<<<<<< HEAD
 	var _index = __webpack_require__(257);
 	
 	var _OutfitsList = __webpack_require__(263);
 	
 	var _OutfitsList2 = _interopRequireDefault(_OutfitsList);
+=======
+	var _actions = __webpack_require__(220);
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27586,9 +27587,8 @@
 	};
 	
 	function showWeather(e, dispatch) {
-	  console.log(e.currentTarget.value);
 	  if (e.keyCode === 13) {
-	    dispatch((0, _index.fetchWeather)(e.currentTarget.value.toLowerCase()));
+	    dispatch((0, _actions.fetchWeather)(e.currentTarget.value.toLowerCase()));
 	    e.currentTarget.value = '';
 	  }
 	}
@@ -27603,7 +27603,11 @@
 	module.exports = exports['default'];
 
 /***/ },
+<<<<<<< HEAD
 /* 257 */
+=======
+/* 220 */
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27611,15 +27615,22 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.receiveOutfits = exports.receiveWeather = undefined;
+	exports.receiveLikes = exports.increaseLikes = exports.receiveOutfits = exports.receiveWeather = undefined;
 	exports.fetchWeather = fetchWeather;
-	exports.fetchOutfits = fetchOutfits;
+	exports.fetchOutfitsByTemp = fetchOutfitsByTemp;
+	exports.fetchOutfitsByTag = fetchOutfitsByTag;
 	
+<<<<<<< HEAD
 	var _superagent = __webpack_require__(258);
+=======
+	var _superagent = __webpack_require__(221);
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//WEATHER
 	
 	function fetchWeather(searchTerm) {
 	  return function (dispatch) {
@@ -27628,8 +27639,7 @@
 	        console.error(err.message);
 	        return;
 	      }
-	      // dispatch fetchOutfits(temp)
-	      dispatch(fetchOutfits(Math.floor(res.body.main.temp)));
+	      dispatch(fetchOutfitsByTemp(Math.floor(res.body.main.temp)));
 	      dispatch(receiveWeather(res.body));
 	    });
 	  };
@@ -27642,9 +27652,23 @@
 	  };
 	};
 	
-	function fetchOutfits(temp) {
+	//OUTFITS
+	
+	function fetchOutfitsByTemp(temp) {
 	  return function (dispatch) {
 	    _superagent2.default.get('http://localhost:3000/v1/outfits?temp=' + temp).end(function (err, res) {
+	      if (err) {
+	        console.error(err.message);
+	        return;
+	      }
+	      dispatch(receiveOutfits(res.body));
+	    });
+	  };
+	}
+	
+	function fetchOutfitsByTag(tag) {
+	  return function (dispatch) {
+	    _superagent2.default.get('http://localhost:3000/v1/outfits?tag=' + tag).end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
@@ -27662,9 +27686,34 @@
 	    })
 	  };
 	};
+	
+	//INCREASE LIKES
+	
+	var increaseLikes = exports.increaseLikes = function increaseLikes(id) {
+	  return function (dispatch) {
+	    _superagent2.default.post('http://localhost:3000/v1/outfits/likes/' + id).end(function (err, res) {
+	      if (err) {
+	        console.error(err.message);
+	        return;
+	      }
+	      dispatch(receiveLikes(res.body));
+	    });
+	  };
+	};
+	
+	var receiveLikes = exports.receiveLikes = function receiveLikes(likedOutfit) {
+	  return {
+	    type: 'RECEIVE_LIKES',
+	    updatedOutfit: likedOutfit
+	  };
+	};
 
 /***/ },
+<<<<<<< HEAD
 /* 258 */
+=======
+/* 221 */
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27686,9 +27735,15 @@
 	  root = undefined;
 	}
 	
+<<<<<<< HEAD
 	var Emitter = __webpack_require__(259);
 	var requestBase = __webpack_require__(260);
 	var isObject = __webpack_require__(261);
+=======
+	var Emitter = __webpack_require__(222);
+	var requestBase = __webpack_require__(223);
+	var isObject = __webpack_require__(224);
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 	
 	/**
 	 * Noop.
@@ -27700,7 +27755,11 @@
 	 * Expose `request`.
 	 */
 	
+<<<<<<< HEAD
 	var request = module.exports = __webpack_require__(262).bind(null, Request);
+=======
+	var request = module.exports = __webpack_require__(225).bind(null, Request);
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 	
 	/**
 	 * Determine XHR.
@@ -28652,7 +28711,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 259 */
+=======
+/* 222 */
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28816,7 +28879,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 260 */
+=======
+/* 223 */
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28824,7 +28891,11 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
+<<<<<<< HEAD
 	var isObject = __webpack_require__(261);
+=======
+	var isObject = __webpack_require__(224);
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 	
 	/**
 	 * Clear previous timeout.
@@ -29192,7 +29263,11 @@
 	};
 
 /***/ },
+<<<<<<< HEAD
 /* 261 */
+=======
+/* 224 */
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29214,7 +29289,11 @@
 	module.exports = isObject;
 
 /***/ },
+<<<<<<< HEAD
 /* 262 */
+=======
+/* 225 */
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29253,7 +29332,11 @@
 	module.exports = request;
 
 /***/ },
+<<<<<<< HEAD
 /* 263 */
+=======
+/* 226 */
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29268,7 +29351,11 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
+<<<<<<< HEAD
 	var _OutfitsListItem = __webpack_require__(264);
+=======
+	var _OutfitsListItem = __webpack_require__(227);
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 	
 	var _OutfitsListItem2 = _interopRequireDefault(_OutfitsListItem);
 	
@@ -29300,7 +29387,11 @@
 	module.exports = exports['default'];
 
 /***/ },
+<<<<<<< HEAD
 /* 264 */
+=======
+/* 227 */
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29315,7 +29406,11 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
+<<<<<<< HEAD
 	var _incrLikes = __webpack_require__(265);
+=======
+	var _actions = __webpack_require__(220);
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29346,7 +29441,7 @@
 	};
 	
 	function addLike(ev, dispatch, id, likes) {
-	  dispatch((0, _incrLikes.incrLikes)(id, parseInt(likes) + 1));
+	  dispatch((0, _actions.increaseLikes)(id, likes));
 	  disableLikeButton(id);
 	}
 	
@@ -29354,33 +29449,60 @@
 	  document.getElementById(id).disabled = true;
 	}
 	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    outfits: state.likesData,
-	    dispatch: state.dispatch
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(OutfitsListItem);
+	exports.default = (0, _reactRedux.connect)()(OutfitsListItem);
 	module.exports = exports['default'];
 
 /***/ },
+<<<<<<< HEAD
 /* 265 */
 /***/ function(module, exports) {
+=======
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+>>>>>>> cc7f4199b3ea2b967cd02cae0f85991e94d04348
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var incrLikes = exports.incrLikes = function incrLikes(id, likes) {
-	  console.log('id: ', id, 'likes: ', likes);
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _actions = __webpack_require__(220);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var SearchByTag = function SearchByTag(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement('input', { placeholder: 'Enter a tag ..', onKeyUp: function onKeyUp(ev) {
+	        inputTag(ev, props.dispatch);
+	      } })
+	  );
+	};
+	
+	function inputTag(ev, dispatch) {
+	  if (ev.keyCode === 13) {
+	    dispatch((0, _actions.fetchOutfitsByTag)(ev.currentTarget.value.toLowerCase()));
+	    ev.currentTarget.value = '';
+	  }
+	}
+	
+	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    type: 'INCR_LIKES',
-	    id: id,
-	    likes: likes
+	    outfits: state.returnOutfits,
+	    dispatch: state.dispatch
 	  };
 	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(SearchByTag);
+	module.exports = exports['default'];
 
 /***/ },
 /* 266 */
