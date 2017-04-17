@@ -17,7 +17,7 @@ server.use(bodyParser.json())
 server.use(express.static(path.join(__dirname, '../public')))
 
 server.use('/v1/outfits', allOutfits)
-server.use('/v1/outfitsByTemp', outfitsByTemp)
-server.use('/v1/increaseLikes', increaseLikes)
+// server.use('/v1/outfitsByTemp', outfitsByTemp)
+// server.use('/v1/increaseLikes', increaseLikes)
 
 module.exports = server

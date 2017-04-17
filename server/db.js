@@ -13,10 +13,10 @@ function getAllOutfits () {
     .select('id', 'outfits.photo_url as photoUrl', 'likes')
 }
 
-function getOutfitsByTemp (temperature = 14) {
+function getOutfitsByTemp (temp = 14) {
   return db('outfits')
-  .where('t_min', '<=', temperature)
-  .andWhere('t_max', '>=', temperature)
+  .where('t_min', '<=', temp)
+  .andWhere('t_max', '>=', temp)
   .select('id', 'photo_url as photoUrl', 'likes')
 }
 

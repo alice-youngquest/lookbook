@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {fetchWeather} from '../actions/weatherApi'
+import {fetchWeather} from '../actions/index'
 
 const Weather = (props) => {
   return (
