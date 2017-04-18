@@ -34,13 +34,13 @@
 
 /* Medium screens */
 @media all and (max-width: 600px) {
-  .nav {
+  .tag, .tagtext {
     justify-content: space-around;
   }
 }
 
 @media all and (max-width: 500px) {
-  .nav {
+  .tag, .tagtext {
     flex-direction: column;
   }
 }
@@ -86,18 +86,18 @@
   font-family: courier;
 }
 
-#tag {
+.tag {
   text-align: center;
   position: relative;
   top: 450px;
-  right: 500px;
+  right: 3px;
 }
 
-#tagtext {
+.tagtext {
   text-align: center;
   position: relative;
   top: 400px;
-  right: 497px;
+  right: 4px;
   font-size: 20px;
   font-family: courier;
 }

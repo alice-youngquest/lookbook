@@ -32,7 +32,6 @@ const Weather = (props) => {
           <option value="Gisbourne" />
           <option value="Christchurch" />
       </datalist>
-      
       <div id="title">LOOKBOOK</div>
       <div id="cityName">
         City: {props.weatherData.name}
