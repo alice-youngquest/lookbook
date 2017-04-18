@@ -27587,13 +27587,6 @@
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Weather);
-	
-	// <Skycons color='black' icon='CLEAR_DAY'/> 01n
-	//   <Skycons color='black' icon='CLOUDY'/> 03n
-	//     <Skycons color='black' icon='RAIN'/> 10n
-	//       <Skycons color='black' icon='SNOW'/> 13n
-	//         <Skycons color='black' icon='WIND'/>
-	
 	module.exports = exports['default'];
 
 /***/ },
