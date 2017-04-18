@@ -3,10 +3,10 @@ import request from 'superagent'
 //WEATHER
 
 export function fetchWeather (searchTerm) {
-  return (dispatch) => { console.log(searchTerm);
+  return (dispatch) => { 
     request
       .get(`/v1/weather/${searchTerm}`)
-      .end((err, res) => { console.log(res.body);
+      .end((err, res) => {
         if (err) {
           console.error(err.message)
           return
