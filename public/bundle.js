@@ -27594,7 +27594,7 @@
 	
 	function fetchWeather(searchTerm) {
 	  return function (dispatch) {
-	    _superagent2.default.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&APPID=d7379debce2e70976673a060a36c7535&mode=json&units=metric').end(function (err, res) {
+	    _superagent2.default.get('/v1/weather/' + searchTerm).end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
@@ -27616,7 +27616,7 @@
 	
 	function fetchOutfitsByTemp(temp) {
 	  return function (dispatch) {
-	    _superagent2.default.get('http://localhost:3000/v1/outfits?temp=' + temp).end(function (err, res) {
+	    _superagent2.default.get('/v1/outfits?temp=' + temp).end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
@@ -27628,7 +27628,7 @@
 	
 	function fetchOutfitsByTag(tag) {
 	  return function (dispatch) {
-	    _superagent2.default.get('http://localhost:3000/v1/outfits?tag=' + tag).end(function (err, res) {
+	    _superagent2.default.get('/v1/outfits?tag=' + tag).end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
@@ -27649,7 +27649,7 @@
 	
 	function fetchOutfitsByTempAndTag(temp, tag) {
 	  return function (dispatch) {
-	    _superagent2.default.get('http://localhost:3000/v1/outfits?temp=' + temp + '&tag=' + tag).end(function (err, res) {
+	    _superagent2.default.get('/v1/outfits?temp=' + temp + '&tag=' + tag).end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
@@ -27663,7 +27663,7 @@
 	
 	var increaseLikes = exports.increaseLikes = function increaseLikes(id) {
 	  return function (dispatch) {
-	    _superagent2.default.post('http://localhost:3000/v1/outfits/likes/' + id).end(function (err, res) {
+	    _superagent2.default.post('/v1/outfits/likes/' + id).end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
