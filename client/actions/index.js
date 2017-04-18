@@ -61,7 +61,9 @@ export const receiveOutfits = (outfits) => {
   }
 }
 
-export function fetchOutfitsByTempAndTag (temp, tag) {
+export function fetchOutfitsByTempAndTag (tag) {
+  const tempData = document.getElementById("temperature")
+  const temp = tempData.dataset.temp
   return (dispatch) => {
     request
       .get(`/v1/outfits?temp=${temp}&tag=${tag}`)
