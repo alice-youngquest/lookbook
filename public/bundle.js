@@ -23886,7 +23886,7 @@
 	
 	var _Weather2 = _interopRequireDefault(_Weather);
 	
-	var _Home = __webpack_require__(266);
+	var _Home = __webpack_require__(261);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
@@ -27475,15 +27475,15 @@
 	
 	var _index = __webpack_require__(256);
 	
-	var _OutfitsList = __webpack_require__(262);
+	var _OutfitsList = __webpack_require__(257);
 	
 	var _OutfitsList2 = _interopRequireDefault(_OutfitsList);
 	
-	var _Nav = __webpack_require__(264);
+	var _Nav = __webpack_require__(259);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
-	var _SearchByTag = __webpack_require__(265);
+	var _SearchByTag = __webpack_require__(260);
 	
 	var _SearchByTag2 = _interopRequireDefault(_SearchByTag);
 	
@@ -27584,7 +27584,7 @@
 	exports.fetchOutfitsByTag = fetchOutfitsByTag;
 	exports.fetchOutfitsByTempAndTag = fetchOutfitsByTempAndTag;
 	
-	var _superagent = __webpack_require__(257);
+	var _superagent = __webpack_require__(262);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -27686,6 +27686,280 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _OutfitsListItem = __webpack_require__(258);
+	
+	var _OutfitsListItem2 = _interopRequireDefault(_OutfitsListItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var OutfitsList = function OutfitsList(props) {
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'imagebox' },
+	    props.outfits.map(function (outfit) {
+	      return _react2.default.createElement(_OutfitsListItem2.default, { key: outfit.id, id: outfit.id, likes: outfit.likes, photoUrl: outfit.photoUrl, dispatch: props.dispatch });
+	    })
+	  );
+	};
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    outfits: state.returnOutfits,
+	    dispatch: state.dispatch
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(OutfitsList);
+	module.exports = exports['default'];
+
+/***/ },
+/* 258 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _actions = __webpack_require__(256);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var OutfitsListItem = function OutfitsListItem(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'imagesingle' },
+	      _react2.default.createElement(
+	        'a',
+	        { href: props.photoUrl },
+	        _react2.default.createElement('img', { className: 'photoUrl', src: props.photoUrl, alt: 'outfit-pic' })
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'likebutton' },
+	      _react2.default.createElement(
+	        'button',
+	        { id: props.id, onClick: function onClick(ev) {
+	            addLike(ev, props.dispatch, props.id, props.likes);
+	          } },
+	        'Add Like'
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'likecount' },
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        'Like count: ',
+	        props.likes
+	      )
+	    )
+	  );
+	};
+	
+	function addLike(ev, dispatch, id, likes) {
+	  dispatch((0, _actions.increaseLikes)(id, likes));
+	  disableLikeButton(id);
+	}
+	
+	function disableLikeButton(id) {
+	  document.getElementById(id).disabled = true;
+	}
+	
+	exports.default = (0, _reactRedux.connect)()(OutfitsListItem);
+	module.exports = exports['default'];
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Nav = function Nav() {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "nav" },
+	    "Nav Bar",
+	    _react2.default.createElement("input", {
+	      type: "text",
+	      id: "navsearchbar",
+	      placeholder: "Search ..."
+	    })
+	  );
+	};
+	
+	exports.default = Nav;
+	module.exports = exports["default"];
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _actions = __webpack_require__(256);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var SearchByTag = function SearchByTag(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement('input', { placeholder: 'Enter a tag ..', onKeyUp: function onKeyUp(ev) {
+	        inputTag(ev, props.dispatch);
+	      } })
+	  );
+	};
+	
+	function inputTag(ev, dispatch) {
+	  if (ev.keyCode === 13) {
+	    dispatch((0, _actions.fetchOutfitsByTag)(ev.currentTarget.value.toLowerCase()));
+	    ev.currentTarget.value = '';
+	  }
+	}
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    outfits: state.returnOutfits,
+	    dispatch: state.dispatch
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(SearchByTag);
+	module.exports = exports['default'];
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _createBrowserHistory = __webpack_require__(221);
+	
+	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
+	
+	var _index = __webpack_require__(256);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Home = function Home(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'circle' },
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'text' },
+	        'LOOKBOOK'
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        { id: 'texttwo' },
+	        'A fashion inspiration app based off the weather in your city'
+	      ),
+	      _react2.default.createElement(
+	        'form',
+	        { onSubmit: function onSubmit(e) {
+	            showWeather(e, props);
+	          }, id: 'cityinput' },
+	        _react2.default.createElement('input', {
+	          type: 'text',
+	          list: 'cities',
+	          placeholder: 'Enter your city ..'
+	        })
+	      ),
+	      _react2.default.createElement(
+	        'datalist',
+	        { id: 'cities' },
+	        _react2.default.createElement('option', { value: 'Lima' }),
+	        _react2.default.createElement('option', { value: 'NewYork' }),
+	        _react2.default.createElement('option', { value: 'Cusco' }),
+	        _react2.default.createElement('option', { value: 'Wellington' }),
+	        _react2.default.createElement('option', { value: 'Auckland' }),
+	        _react2.default.createElement('option', { value: 'Melbourne' }),
+	        _react2.default.createElement('option', { value: 'Sydney' }),
+	        _react2.default.createElement('option', { value: 'London' }),
+	        _react2.default.createElement('option', { value: 'Huancayo' }),
+	        _react2.default.createElement('option', { value: 'Atlanta' }),
+	        _react2.default.createElement('option', { value: 'Gisbourne' }),
+	        _react2.default.createElement('option', { value: 'Christchurch' })
+	      )
+	    )
+	  );
+	};
+	
+	function showWeather(e, props) {
+	  e.preventDefault();
+	  console.log(e.currentTarget.children[0].value);
+	  props.history.push("/inspo");
+	  props.dispatch((0, _index.fetchWeather)(e.currentTarget.children[0].value.toLowerCase()));
+	  e.currentTarget.value = '';
+	}
+	
+	exports.default = (0, _reactRedux.connect)()(Home);
+	module.exports = exports['default'];
+
+/***/ },
+/* 262 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	/**
 	 * Root reference for iframes.
 	 */
@@ -27703,9 +27977,9 @@
 	  root = undefined;
 	}
 	
-	var Emitter = __webpack_require__(258);
-	var requestBase = __webpack_require__(259);
-	var isObject = __webpack_require__(260);
+	var Emitter = __webpack_require__(263);
+	var requestBase = __webpack_require__(264);
+	var isObject = __webpack_require__(265);
 	
 	/**
 	 * Noop.
@@ -27717,7 +27991,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(261).bind(null, Request);
+	var request = module.exports = __webpack_require__(266).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -28669,7 +28943,7 @@
 	};
 
 /***/ },
-/* 258 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28833,7 +29107,7 @@
 	};
 
 /***/ },
-/* 259 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28841,7 +29115,7 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(260);
+	var isObject = __webpack_require__(265);
 	
 	/**
 	 * Clear previous timeout.
@@ -29209,7 +29483,7 @@
 	};
 
 /***/ },
-/* 260 */
+/* 265 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29231,7 +29505,7 @@
 	module.exports = isObject;
 
 /***/ },
-/* 261 */
+/* 266 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29268,280 +29542,6 @@
 	}
 	
 	module.exports = request;
-
-/***/ },
-/* 262 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _OutfitsListItem = __webpack_require__(263);
-	
-	var _OutfitsListItem2 = _interopRequireDefault(_OutfitsListItem);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var OutfitsList = function OutfitsList(props) {
-	
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'imagebox' },
-	    props.outfits.map(function (outfit) {
-	      return _react2.default.createElement(_OutfitsListItem2.default, { key: outfit.id, id: outfit.id, likes: outfit.likes, photoUrl: outfit.photoUrl, dispatch: props.dispatch });
-	    })
-	  );
-	};
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    outfits: state.returnOutfits,
-	    dispatch: state.dispatch
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(OutfitsList);
-	module.exports = exports['default'];
-
-/***/ },
-/* 263 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _actions = __webpack_require__(256);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var OutfitsListItem = function OutfitsListItem(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'imagesingle' },
-	      _react2.default.createElement(
-	        'a',
-	        { href: props.photoUrl },
-	        _react2.default.createElement('img', { className: 'photoUrl', src: props.photoUrl, alt: 'outfit-pic' })
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'likebutton' },
-	      _react2.default.createElement(
-	        'button',
-	        { id: props.id, onClick: function onClick(ev) {
-	            addLike(ev, props.dispatch, props.id, props.likes);
-	          } },
-	        'Add Like'
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'likecount' },
-	      _react2.default.createElement(
-	        'p',
-	        null,
-	        'Like count: ',
-	        props.likes
-	      )
-	    )
-	  );
-	};
-	
-	function addLike(ev, dispatch, id, likes) {
-	  dispatch((0, _actions.increaseLikes)(id, likes));
-	  disableLikeButton(id);
-	}
-	
-	function disableLikeButton(id) {
-	  document.getElementById(id).disabled = true;
-	}
-	
-	exports.default = (0, _reactRedux.connect)()(OutfitsListItem);
-	module.exports = exports['default'];
-
-/***/ },
-/* 264 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Nav = function Nav() {
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "nav" },
-	    "Nav Bar",
-	    _react2.default.createElement("input", {
-	      type: "text",
-	      id: "navsearchbar",
-	      placeholder: "Search ..."
-	    })
-	  );
-	};
-	
-	exports.default = Nav;
-	module.exports = exports["default"];
-
-/***/ },
-/* 265 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _actions = __webpack_require__(256);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var SearchByTag = function SearchByTag(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement('input', { placeholder: 'Enter a tag ..', onKeyUp: function onKeyUp(ev) {
-	        inputTag(ev, props.dispatch);
-	      } })
-	  );
-	};
-	
-	function inputTag(ev, dispatch) {
-	  if (ev.keyCode === 13) {
-	    dispatch((0, _actions.fetchOutfitsByTag)(ev.currentTarget.value.toLowerCase()));
-	    ev.currentTarget.value = '';
-	  }
-	}
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    outfits: state.returnOutfits,
-	    dispatch: state.dispatch
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(SearchByTag);
-	module.exports = exports['default'];
-
-/***/ },
-/* 266 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _createBrowserHistory = __webpack_require__(221);
-	
-	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
-	
-	var _index = __webpack_require__(256);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Home = function Home(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'circle' },
-	      _react2.default.createElement(
-	        'div',
-	        { id: 'text' },
-	        'LOOKBOOK'
-	      ),
-	      _react2.default.createElement(
-	        'p',
-	        { id: 'texttwo' },
-	        'A fashion inspiration app based off the weather in your city'
-	      ),
-	      _react2.default.createElement(
-	        'form',
-	        { onSubmit: function onSubmit(e) {
-	            showWeather(e, props);
-	          }, id: 'cityinput' },
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          list: 'cities',
-	          placeholder: 'Enter your city ..'
-	        })
-	      ),
-	      _react2.default.createElement(
-	        'datalist',
-	        { id: 'cities' },
-	        _react2.default.createElement('option', { value: 'Lima' }),
-	        _react2.default.createElement('option', { value: 'NewYork' }),
-	        _react2.default.createElement('option', { value: 'Cusco' }),
-	        _react2.default.createElement('option', { value: 'Wellington' }),
-	        _react2.default.createElement('option', { value: 'Auckland' }),
-	        _react2.default.createElement('option', { value: 'Melbourne' }),
-	        _react2.default.createElement('option', { value: 'Sydney' }),
-	        _react2.default.createElement('option', { value: 'London' }),
-	        _react2.default.createElement('option', { value: 'Huancayo' }),
-	        _react2.default.createElement('option', { value: 'Atlanta' }),
-	        _react2.default.createElement('option', { value: 'Gisbourne' }),
-	        _react2.default.createElement('option', { value: 'Christchurch' })
-	      )
-	    )
-	  );
-	};
-	
-	function showWeather(e, props) {
-	  e.preventDefault();
-	  console.log(e.currentTarget.children[0].value);
-	  props.history.push("/inspo");
-	  props.dispatch((0, _index.fetchWeather)(e.currentTarget.children[0].value.toLowerCase()));
-	  e.currentTarget.value = '';
-	}
-	
-	exports.default = (0, _reactRedux.connect)()(Home);
-	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
