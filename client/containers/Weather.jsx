@@ -4,12 +4,16 @@ import {fetchWeather} from '../actions/index'
 import OutfitsList from './OutfitsList'
 import Nav from '../components/Nav'
 import SearchByTag from './SearchByTag'
+import Skycons from 'react-skycons'
 
 
 const Weather = (props) => {
+  let iconCode = props.weatherData.weather ? props.weatherData.weather[0].icon : ""
+  let iconTag = tagForIconCode(iconCode)
+
   return (
-    <div className="weatherpage" >
-      <div className="weatherbox">
+  <div className="weatherpage" >
+     <div className="weatherbox">
         <input
           type="text"
           id="citymenu"
@@ -17,7 +21,6 @@ const Weather = (props) => {
           placeholder="Enter your city .."
           onKeyUp={ e => { showWeather(e, props.dispatch)}}
         />
-
       <datalist id="cities">
           <option value="Lima" />
           <option value="New York" />
@@ -32,7 +35,6 @@ const Weather = (props) => {
           <option value="Gisbourne" />
           <option value="Christchurch" />
       </datalist>
-      
       <div id="title">LOOKBOOK</div>
       <div id="cityName">
         City: {props.weatherData.name}
@@ -43,13 +45,24 @@ const Weather = (props) => {
       <div id="temperature">
         Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
       </div>
+      <div className="weatherIcon">
+         <Skycons color='black' icon={iconTag}/>
+      </div>
       <SearchByTag />
     </div>
-
-    <OutfitsList />
-
-    </div>
+   <OutfitsList />
+  </div>
   )
+}
+
+function tagForIconCode(iconCode) {
+  let map = {
+    '01n': 'CLEAR_DAY',
+    '03n': 'CLOUDY',
+    '10n': 'RAIN',
+    '13n': 'SNOW',
+  }
+  return map[iconCode] ? map[iconCode] : 'CLEAR_NIGHT'
 }
 
 function showWeather (e, dispatch) {
@@ -67,9 +80,3 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps)(Weather)
-
-
-// <div id="icon">
-//   {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
-//   <img src="http://openweathermap.org/img/w/10d.png" />
-// </div>
