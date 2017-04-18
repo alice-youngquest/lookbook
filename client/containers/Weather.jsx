@@ -34,17 +34,17 @@ const Weather = (props) => {
       </datalist>
       <div id="title">LOOKBOOK</div>
       <div id="cityName">
-        City: {props.weatherData.name}
+        {props.weatherData.name}
       </div>
       <div id="forecast">
-        Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}
+        {props.weatherData.weather ? props.weatherData.weather[0].main : ""}
       </div>
       <div id="temperature">
-        Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
+        {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
       </div>
       <SearchByTag />
     </div>
-
+    
     <OutfitsList />
 
     </div>

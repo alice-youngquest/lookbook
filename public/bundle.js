@@ -27529,19 +27529,16 @@
 	      _react2.default.createElement(
 	        'div',
 	        { id: 'cityName' },
-	        'City: ',
 	        props.weatherData.name
 	      ),
 	      _react2.default.createElement(
 	        'div',
 	        { id: 'forecast' },
-	        'Forecast: ',
 	        props.weatherData.weather ? props.weatherData.weather[0].main : ""
 	      ),
 	      _react2.default.createElement(
 	        'div',
 	        { id: 'temperature' },
-	        'Temperature: ',
 	        props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
 	        '\xB0C'
 	      ),
