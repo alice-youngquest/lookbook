@@ -27540,7 +27540,7 @@
 	      ),
 	      _react2.default.createElement(
 	        'div',
-	        { id: 'temperature' },
+	        { id: 'temperature', 'data-temp': props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "" },
 	        'Temperature: ',
 	        props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
 	        '\xB0C'
@@ -27651,7 +27651,9 @@
 	  };
 	};
 	
-	function fetchOutfitsByTempAndTag(temp, tag) {
+	function fetchOutfitsByTempAndTag(tag) {
+	  var tempData = document.getElementById("temperature");
+	  var temp = tempData.dataset.temp;
 	  return function (dispatch) {
 	    _superagent2.default.get('/v1/outfits?temp=' + temp + '&tag=' + tag).end(function (err, res) {
 	      if (err) {
@@ -29451,7 +29453,7 @@
 	
 	function inputTag(ev, dispatch) {
 	  if (ev.keyCode === 13) {
-	    dispatch((0, _actions.fetchOutfitsByTag)(ev.currentTarget.value.toLowerCase()));
+	    dispatch((0, _actions.fetchOutfitsByTempAndTag)(ev.currentTarget.value.toLowerCase()));
 	    ev.currentTarget.value = '';
 	  }
 	}

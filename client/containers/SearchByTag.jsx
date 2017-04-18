@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchOutfitsByTag } from '../actions'
+import { fetchOutfitsByTempAndTag } from '../actions'
 
 const SearchByTag = (props) => {
   return (
@@ -15,7 +15,7 @@ const SearchByTag = (props) => {
 
 function inputTag (ev, dispatch) {
   if (ev.keyCode === 13) {
-    dispatch(fetchOutfitsByTag(ev.currentTarget.value.toLowerCase()))
+    dispatch(fetchOutfitsByTempAndTag(ev.currentTarget.value.toLowerCase()))
     ev.currentTarget.value = ''
   }
 }
