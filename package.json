@@ -30,6 +30,7 @@
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
+    "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-test-renderer": "^15.5.4",
     "redux": "^3.5.2",
@@ -50,6 +51,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "history": "^4.6.1",
     "knex": "^0.12.9",
     "path": "^0.12.7",
     "pg": "^6.1.5",

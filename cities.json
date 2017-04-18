@@ -1,0 +1,9 @@
+"cities": [
+  {"id": 1, "city": "wellington"},
+  {"id": 2, "city": "sydney"},
+  {"id": 3, "city": "auckland"},
+  {"id": 4, "city": "lima"},
+  {"id": 5, "city": "cusco"},
+  {"id": 6, "city": "moscow"},
+  {"id": 7, "city": "london"}
+]

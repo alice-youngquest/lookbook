@@ -1,14 +1,21 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {fetchWeather} from '../actions/weatherApi'
+import {fetchWeather} from '../actions/index'
+import OutfitsList from './OutfitsList'
+import Nav from '../components/Nav'
+import SearchByTag from './SearchByTag'
+
 
 const Weather = (props) => {
-  console.log(props.weatherData)
   return (
-    <div>
-        <p>The weather today is:</p>
+    <div className="weatherpage" >
+
+      <Nav />
+
+      <div className="weatherbox">
         <input
           type="text"
+          id="citymenu"
           list="cities"
           placeholder="Enter your city .."
           onKeyUp={ e => { showWeather(e, props.dispatch)}}
@@ -16,7 +23,7 @@ const Weather = (props) => {
 
       <datalist id="cities">
           <option value="Lima" />
-          <option value="NewYork" />
+          <option value="New York" />
           <option value="Cusco" />
           <option value="Wellington" />
           <option value="Auckland" />
@@ -29,17 +36,30 @@ const Weather = (props) => {
           <option value="Christchurch" />
       </datalist>
 
-      <p>City Name: {props.weatherData.name}</p>
-      <p>Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}</p>
-      <p>Description: {props.weatherData.weather ? props.weatherData.weather[0].description : ""}</p>
-      <p>icon: {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}</p>
-      <p>Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C</p>
+      <div id="cityName">
+        City: {props.weatherData.name}
+      </div>
+      <div id="forecast">
+        Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}
+      </div>
+      <div id="temperature">
+        Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
+      </div>
+      <div id="icon">
+        {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
+        <img src="http://openweathermap.org/img/w/10d.png" />
+      </div>
+
+      <SearchByTag />
+    </div>
+
+    <OutfitsList />
+
     </div>
   )
 }
 
 function showWeather (e, dispatch) {
-  console.log(e.currentTarget.value)
   if (e.keyCode === 13) {
     dispatch(fetchWeather(e.currentTarget.value.toLowerCase()))
     e.currentTarget.value = ''
@@ -51,5 +71,6 @@ const mapStateToProps = (state) => {
     weatherData: state.weatherData
   }
 }
+
 
 export default connect(mapStateToProps)(Weather)

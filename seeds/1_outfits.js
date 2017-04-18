@@ -44,7 +44,7 @@ exports.seed = function(knex, Promise) {
           t_max: 50,
           t_min: 21,
           likes: 0,
-          photo_url: 'https://static.pexels.com/photos/38630/bodybuilder-weight-training-stress-38630.jpeg'
+          photo_url: 'https://static.pexels.com/photos/235531/pexels-photo-235531.jpeg'
         },
         {
           id: 6,
@@ -562,7 +562,7 @@ exports.seed = function(knex, Promise) {
           t_max: 50,
           t_min: 21,
           likes: 0,
-          photo_url: 'https://static.pexels.com/photos/235531/pexels-photo-235531.jpeg'
+          photo_url: 'https://static.pexels.com/photos/38630/bodybuilder-weight-training-stress-38630.jpeg'
         },
         {
           id: 80,
