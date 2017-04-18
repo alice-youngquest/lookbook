@@ -27493,7 +27493,6 @@
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'weatherpage' },
-	    _react2.default.createElement(_Nav2.default, null),
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'weatherbox' },
@@ -27524,6 +27523,11 @@
 	      ),
 	      _react2.default.createElement(
 	        'div',
+	        { id: 'title' },
+	        'LOOKBOOK'
+	      ),
+	      _react2.default.createElement(
+	        'div',
 	        { id: 'cityName' },
 	        'City: ',
 	        props.weatherData.name
@@ -27540,12 +27544,6 @@
 	        'Temperature: ',
 	        props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
 	        '\xB0C'
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { id: 'icon' },
-	        props.weatherData.weather ? props.weatherData.weather[0].icon : "",
-	        _react2.default.createElement('img', { src: 'http://openweathermap.org/img/w/10d.png' })
 	      ),
 	      _react2.default.createElement(_SearchByTag2.default, null)
 	    ),
@@ -27567,6 +27565,12 @@
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Weather);
+	
+	// <div id="icon">
+	//   {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
+	//   <img src="http://openweathermap.org/img/w/10d.png" />
+	// </div>
+	
 	module.exports = exports['default'];
 
 /***/ },
@@ -29319,7 +29323,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	var OutfitsListItem = function OutfitsListItem(props) {
+	  var _React$createElement;
+	
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -29335,21 +29343,17 @@
 	    _react2.default.createElement(
 	      'div',
 	      { id: 'likebutton' },
+	      _react2.default.createElement('input', { id: 'toggle-heart', type: 'checkbox' }),
 	      _react2.default.createElement(
-	        'button',
-	        { id: props.id, onClick: function onClick(ev) {
-	            addLike(ev, props.dispatch, props.id, props.likes);
-	          } },
-	        'Add Like'
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'likecount' },
+	        'label',
+	        (_React$createElement = { id: 'heart' }, _defineProperty(_React$createElement, 'id', props.id), _defineProperty(_React$createElement, 'onClick', function onClick(ev) {
+	          addLike(ev, props.dispatch, props.id, props.likes);
+	        }), _React$createElement),
+	        '\u2764'
+	      ),
 	      _react2.default.createElement(
-	        'p',
-	        null,
-	        'Like count: ',
+	        'div',
+	        { id: 'number' },
 	        props.likes
 	      )
 	    )
@@ -29424,9 +29428,18 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    _react2.default.createElement('input', { placeholder: 'Enter a tag ..', onKeyUp: function onKeyUp(ev) {
-	        inputTag(ev, props.dispatch);
-	      } })
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'tag' },
+	      _react2.default.createElement('input', { placeholder: 'sunny, cloudy, snowy ..', onKeyUp: function onKeyUp(ev) {
+	          inputTag(ev, props.dispatch);
+	        } })
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'tagtext' },
+	      'filter by tag'
+	    )
 	  );
 	};
 	

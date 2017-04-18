@@ -5,7 +5,10 @@ import { fetchOutfitsByTag } from '../actions'
 const SearchByTag = (props) => {
   return (
     <div>
-      <input placeholder="Enter a tag .." onKeyUp={ev => {inputTag(ev, props.dispatch)}}/>
+      <div id="tag">
+        <input placeholder="sunny, cloudy, snowy .." onKeyUp={ev => {inputTag(ev, props.dispatch)}}/>
+      </div>
+      <div id="tagtext">filter by tag</div>
     </div>
   )
 }

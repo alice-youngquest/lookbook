@@ -13,13 +13,10 @@ const OutfitsListItem = (props) => {
       </div>
 
       <div id="likebutton">
-        <button id={props.id} onClick={ev => {addLike(ev, props.dispatch, props.id, props.likes)}}>Add Like</button>
+        <input id="toggle-heart" type="checkbox" />
+        <label id="heart" id={props.id} onClick={ev => {addLike(ev, props.dispatch, props.id, props.likes)}}>❤</label>
+        <div id="number">{props.likes}</div>
       </div>
-
-      <div id="likecount">
-        <p>Like count: {props.likes}</p>
-      </div>
-
     </div>
   )
 }

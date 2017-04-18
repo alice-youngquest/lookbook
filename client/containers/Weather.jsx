@@ -9,9 +9,6 @@ import SearchByTag from './SearchByTag'
 const Weather = (props) => {
   return (
     <div className="weatherpage" >
-
-      <Nav />
-
       <div className="weatherbox">
         <input
           type="text"
@@ -35,7 +32,8 @@ const Weather = (props) => {
           <option value="Gisbourne" />
           <option value="Christchurch" />
       </datalist>
-
+      
+      <div id="title">LOOKBOOK</div>
       <div id="cityName">
         City: {props.weatherData.name}
       </div>
@@ -45,11 +43,6 @@ const Weather = (props) => {
       <div id="temperature">
         Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
       </div>
-      <div id="icon">
-        {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
-        <img src="http://openweathermap.org/img/w/10d.png" />
-      </div>
-
       <SearchByTag />
     </div>
 
@@ -74,3 +67,9 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps)(Weather)
+
+
+// <div id="icon">
+//   {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
+//   <img src="http://openweathermap.org/img/w/10d.png" />
+// </div>
