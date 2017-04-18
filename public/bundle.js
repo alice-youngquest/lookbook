@@ -27593,7 +27593,9 @@
 	
 	function fetchWeather(searchTerm) {
 	  return function (dispatch) {
-	    _superagent2.default.get('http://localhost:3000/v1/weather/q=' + searchTerm).end(function (err, res) {
+	    console.log(searchTerm);
+	    _superagent2.default.get('/v1/weather/' + searchTerm).end(function (err, res) {
+	      console.log(res.body);
 	      if (err) {
 	        console.error(err.message);
 	        return;
@@ -27615,7 +27617,7 @@
 	
 	function fetchOutfitsByTemp(temp) {
 	  return function (dispatch) {
-	    _superagent2.default.get('http://localhost:3000/v1/outfits?temp=' + temp).end(function (err, res) {
+	    _superagent2.default.get('/v1/outfits?temp=' + temp).end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
@@ -27627,7 +27629,7 @@
 	
 	function fetchOutfitsByTag(tag) {
 	  return function (dispatch) {
-	    _superagent2.default.get('http://localhost:3000/v1/outfits?tag=' + tag).end(function (err, res) {
+	    _superagent2.default.get('/v1/outfits?tag=' + tag).end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
@@ -27650,7 +27652,7 @@
 	
 	var increaseLikes = exports.increaseLikes = function increaseLikes(id) {
 	  return function (dispatch) {
-	    _superagent2.default.post('http://localhost:3000/v1/outfits/likes/' + id).end(function (err, res) {
+	    _superagent2.default.post('/v1/outfits/likes/' + id).end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;

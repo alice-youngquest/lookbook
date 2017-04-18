@@ -3,10 +3,10 @@ import request from 'superagent'
 //WEATHER
 
 export function fetchWeather (searchTerm) {
-  return (dispatch) => {
+  return (dispatch) => { console.log(searchTerm);
     request
-      .get(`http://localhost:3000/v1/weather/q=${searchTerm}`)
-      .end((err, res) => {
+      .get(`/v1/weather/${searchTerm}`)
+      .end((err, res) => { console.log(res.body);
         if (err) {
           console.error(err.message)
           return
@@ -29,7 +29,7 @@ export const receiveWeather = (weather) => {
 export function fetchOutfitsByTemp (temp) {
   return (dispatch) => {
     request
-      .get(`http://localhost:3000/v1/outfits?temp=${temp}`)
+      .get(`/v1/outfits?temp=${temp}`)
       .end((err, res) => {
         if (err) {
           console.error(err.message)
@@ -43,7 +43,7 @@ export function fetchOutfitsByTemp (temp) {
 export function fetchOutfitsByTag (tag) {
   return (dispatch) => {
     request
-      .get(`http://localhost:3000/v1/outfits?tag=${tag}`)
+      .get(`/v1/outfits?tag=${tag}`)
       .end((err, res) => {
         if (err) {
           console.error(err.message)
@@ -66,7 +66,7 @@ export const receiveOutfits = (outfits) => {
 export const increaseLikes = (id) => {
   return (dispatch) => {
     request
-      .post(`http://localhost:3000/v1/outfits/likes/${id}`)
+      .post(`/v1/outfits/likes/${id}`)
       .end((err, res) => {
         if (err) {
           console.error(err.message)
