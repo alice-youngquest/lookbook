@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import createHistory from 'history/createBrowserHistory'
 
 import {fetchWeather} from '../actions/index'
 
