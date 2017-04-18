@@ -27582,6 +27582,7 @@
 	exports.fetchWeather = fetchWeather;
 	exports.fetchOutfitsByTemp = fetchOutfitsByTemp;
 	exports.fetchOutfitsByTag = fetchOutfitsByTag;
+	exports.fetchOutfitsByTempAndTag = fetchOutfitsByTempAndTag;
 	
 	var _superagent = __webpack_require__(257);
 	
@@ -27593,7 +27594,7 @@
 	
 	function fetchWeather(searchTerm) {
 	  return function (dispatch) {
-	    _superagent2.default.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&APPID=d7379debce2e70976673a060a36c7535&mode=json&units=metric\n').end(function (err, res) {
+	    _superagent2.default.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&APPID=d7379debce2e70976673a060a36c7535&mode=json&units=metric').end(function (err, res) {
 	      if (err) {
 	        console.error(err.message);
 	        return;
@@ -27645,6 +27646,18 @@
 	    })
 	  };
 	};
+	
+	function fetchOutfitsByTempAndTag(temp, tag) {
+	  return function (dispatch) {
+	    _superagent2.default.get('http://localhost:3000/v1/outfits?temp=' + temp + '&tag=' + tag).end(function (err, res) {
+	      if (err) {
+	        console.error(err.message);
+	        return;
+	      }
+	      dispatch(receiveOutfits(res.body));
+	    });
+	  };
+	}
 	
 	//INCREASE LIKES
 	

@@ -5,8 +5,7 @@ import request from 'superagent'
 export function fetchWeather (searchTerm) {
   return (dispatch) => {
     request
-      .get(`http://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&APPID=d7379debce2e70976673a060a36c7535&mode=json&units=metric
-`)
+      .get(`http://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&APPID=d7379debce2e70976673a060a36c7535&mode=json&units=metric`)
       .end((err, res) => {
         if (err) {
           console.error(err.message)
@@ -59,6 +58,20 @@ export const receiveOutfits = (outfits) => {
   return {
     type: 'RECEIVE_OUTFITS',
     outfits: outfits.map(outfit => outfit)
+  }
+}
+
+export function fetchOutfitsByTempAndTag (temp, tag) {
+  return (dispatch) => {
+    request
+      .get(`http://localhost:3000/v1/outfits?temp=${temp}&tag=${tag}`)
+      .end((err, res) => {
+        if (err) {
+          console.error(err.message)
+          return
+        }
+        dispatch(receiveOutfits(res.body))
+      })
   }
 }
 
