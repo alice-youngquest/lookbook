@@ -15,7 +15,7 @@ const Weather = (props) => {
       <div className="weatherbox">
         <input
           type="text"
-          id="cityinput"
+          id="citymenu"
           list="cities"
           placeholder="Enter your city .."
           onKeyUp={ e => { showWeather(e, props.dispatch)}}
@@ -37,7 +37,7 @@ const Weather = (props) => {
       </datalist>
 
       <div id="cityName">
-        City Name: {props.weatherData.name}
+        City: {props.weatherData.name}
       </div>
       <div id="forecast">
         Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}

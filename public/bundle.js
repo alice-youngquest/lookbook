@@ -27499,7 +27499,7 @@
 	      { className: 'weatherbox' },
 	      _react2.default.createElement('input', {
 	        type: 'text',
-	        id: 'cityinput',
+	        id: 'citymenu',
 	        list: 'cities',
 	        placeholder: 'Enter your city ..',
 	        onKeyUp: function onKeyUp(e) {
@@ -27525,7 +27525,7 @@
 	      _react2.default.createElement(
 	        'div',
 	        { id: 'cityName' },
-	        'City Name: ',
+	        'City: ',
 	        props.weatherData.name
 	      ),
 	      _react2.default.createElement(
