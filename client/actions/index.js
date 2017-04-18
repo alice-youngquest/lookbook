@@ -3,7 +3,7 @@ import request from 'superagent'
 //WEATHER
 
 export function fetchWeather (searchTerm) {
-  return (dispatch) => { 
+  return (dispatch) => {
     request
       .get(`/v1/weather/${searchTerm}`)
       .end((err, res) => {
