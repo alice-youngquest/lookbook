@@ -61,6 +61,22 @@ export const receiveOutfits = (outfits) => {
   }
 }
 
+export function fetchOutfitsByTempAndTag (tag) {
+  const tempData = document.getElementById("temperature")
+  const temp = tempData.dataset.temp
+  return (dispatch) => {
+    request
+      .get(`/v1/outfits?temp=${temp}&tag=${tag}`)
+      .end((err, res) => {
+        if (err) {
+          console.error(err.message)
+          return
+        }
+        dispatch(receiveOutfits(res.body))
+      })
+  }
+}
+
 //INCREASE LIKES
 
 export const increaseLikes = (id) => {

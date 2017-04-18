@@ -86,8 +86,8 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 16,
-          tags_id: 2,
-          outfits_id: 9
+          tags_id: 1,
+          outfits_id: 12
         },
         {
           id: 17,
@@ -96,11 +96,6 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 18,
-          tags_id: 2,
-          outfits_id: 10
-        },
-        {
-          id: 19,
           tags_id: 2,
           outfits_id: 10
         },
