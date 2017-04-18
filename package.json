@@ -29,6 +29,7 @@
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
+    "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-test-renderer": "^15.5.4",
     "redux": "^3.5.2",
@@ -54,7 +55,6 @@
     "history": "^4.6.1",
     "knex": "^0.12.9",
     "path": "^0.12.7",
-    "react-router": "^4.1.1",
     "sqlite3": "^3.1.8",
     "superagent": "^2.2.0"
   }
