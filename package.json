@@ -9,7 +9,9 @@
     "knex": "knex",
     "test": "tape test/**/*-test.js",
     "ava": "ava test/**/*.test.js",
-    "postinstall": "knex migrate:latest"
+    "postinstall": "knex migrate:latest",
+    "client-test": "babel-node test/client/actions/*-test.js",
+    "ava": "ava test/**/*.test.js"
   },
   "keywords": [
     "react",
@@ -19,6 +21,7 @@
   "license": "ISC",
   "devDependencies": {
     "ava": "^0.19.1",
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -26,15 +29,19 @@
     "babel-preset-react": "^6.11.1",
     "cheerio": "^0.22.0",
     "enzyme": "^2.8.1",
+    "nock": "^9.0.13",
     "nodemon": "^1.11.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-router": "^4.1.1",
+    "react-skycons": "^0.3.0",
     "react-test-renderer": "^15.5.4",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
+    "sinon": "^2.1.0",
     "supertest": "^3.0.0",
     "tap-diff": "^0.1.1",
     "tape": "^4.6.3"

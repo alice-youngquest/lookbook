@@ -5,7 +5,7 @@ import request from 'superagent'
 export function fetchWeather (searchTerm) {
   return (dispatch) => {
     request
-      .get(`http://localhost:3000/v1/weather/q=${searchTerm}`)
+      .get(`/v1/weather/${searchTerm}`)
       .end((err, res) => {
         if (err) {
           console.error(err.message)
@@ -29,7 +29,7 @@ export const receiveWeather = (weather) => {
 export function fetchOutfitsByTemp (temp) {
   return (dispatch) => {
     request
-      .get(`http://localhost:3000/v1/outfits?temp=${temp}`)
+      .get(`/v1/outfits?temp=${temp}`)
       .end((err, res) => {
         if (err) {
           console.error(err.message)
@@ -43,7 +43,7 @@ export function fetchOutfitsByTemp (temp) {
 export function fetchOutfitsByTag (tag) {
   return (dispatch) => {
     request
-      .get(`http://localhost:3000/v1/outfits?tag=${tag}`)
+      .get(`/v1/outfits?tag=${tag}`)
       .end((err, res) => {
         if (err) {
           console.error(err.message)
@@ -61,12 +61,28 @@ export const receiveOutfits = (outfits) => {
   }
 }
 
+export function fetchOutfitsByTempAndTag (tag) {
+  const tempData = document.getElementById("temperature")
+  const temp = tempData.dataset.temp
+  return (dispatch) => {
+    request
+      .get(`/v1/outfits?temp=${temp}&tag=${tag}`)
+      .end((err, res) => {
+        if (err) {
+          console.error(err.message)
+          return
+        }
+        dispatch(receiveOutfits(res.body))
+      })
+  }
+}
+
 //INCREASE LIKES
 
 export const increaseLikes = (id) => {
   return (dispatch) => {
     request
-      .post(`http://localhost:3000/v1/outfits/likes/${id}`)
+      .post(`/v1/outfits/likes/${id}`)
       .end((err, res) => {
         if (err) {
           console.error(err.message)

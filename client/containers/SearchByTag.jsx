@@ -1,18 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchOutfitsByTag } from '../actions'
+import { fetchOutfitsByTempAndTag } from '../actions'
 
 const SearchByTag = (props) => {
   return (
     <div>
-      <input placeholder="Enter a tag .." onKeyUp={ev => {inputTag(ev, props.dispatch)}}/>
+      <div className="tag">
+        <input placeholder="sunny, cloudy, snowy .." onKeyUp={ev => {inputTag(ev, props.dispatch)}}/>
+      </div>
+      <div className="tagtext">filter by tag</div>
     </div>
   )
 }
 
 function inputTag (ev, dispatch) {
   if (ev.keyCode === 13) {
-    dispatch(fetchOutfitsByTag(ev.currentTarget.value.toLowerCase()))
+    dispatch(fetchOutfitsByTempAndTag(ev.currentTarget.value.toLowerCase()))
     ev.currentTarget.value = ''
   }
 }

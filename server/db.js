@@ -65,6 +65,18 @@ function getOutfitsByTag (tagObj) {
     .join('outfits', 'join.outfits_id', '=', 'outfits.id')
 }
 
-function getOutfitsByTempAndTag (temp, tag) {
+function byTagNameSubquery(tag_name) {
+  return db('join').select('join.outfits_id')
+    .join('tags', 'join.tags_id', '=', 'tags.id')
+    .where('tags.tag', '=', tag_name)
+}
 
+function getOutfitsByTempAndTag (temp, tag_name) {
+  let subquery = byTagNameSubquery(tag_name)
+
+  return db('outfits')
+    .where('t_min', '<=', temp)
+    .andWhere('t_max', '>=', temp)
+    .whereIn('outfits.id', subquery)
+    .select('id', 'photo_url as photoUrl', 'likes')
 }

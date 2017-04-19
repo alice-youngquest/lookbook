@@ -13,13 +13,9 @@ const OutfitsListItem = (props) => {
       </div>
 
       <div id="likebutton">
-        <button id={props.id} onClick={ev => {addLike(ev, props.dispatch, props.id, props.likes)}}>Add Like</button>
+        <input id="toggle-heart" type="checkbox" />
+        <label id={props.id} onClick={ev => {addLike(ev, props.dispatch, props.id, props.likes)}}>❤ {props.likes}</label>
       </div>
-
-      <div id="likecount">
-        <p>Like count: {props.likes}</p>
-      </div>
-
     </div>
   )
 }
@@ -33,4 +29,5 @@ function disableLikeButton (id) {
   document.getElementById(id).disabled = true
 }
 
+// <div id="number">{props.likes}</div>
 export default connect()(OutfitsListItem)

@@ -2,61 +2,48 @@ import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {fetchWeather} from '../actions/index'
 import OutfitsList from './OutfitsList'
-import Nav from '../components/Nav'
 import SearchByTag from './SearchByTag'
+import Skycons from 'react-skycons'
 
 
 const Weather = (props) => {
+  let iconCode = props.weatherData.weather ? props.weatherData.weather[0].icon : ""
+  let iconTag = tagForIconCode(iconCode)
+
   return (
-    <div className="weatherpage" >
-
-      <Nav />
-
-      <div className="weatherbox">
-        <input
-          type="text"
-          id="citymenu"
-          list="cities"
-          placeholder="Enter your city .."
-          onKeyUp={ e => { showWeather(e, props.dispatch)}}
-        />
-
-      <datalist id="cities">
-          <option value="Lima" />
-          <option value="New York" />
-          <option value="Cusco" />
-          <option value="Wellington" />
-          <option value="Auckland" />
-          <option value="Melbourne" />
-          <option value="Sydney" />
-          <option value="London" />
-          <option value="Huancayo" />
-          <option value="Atlanta" />
-          <option value="Gisbourne" />
-          <option value="Christchurch" />
-      </datalist>
-
+  <div className="weatherpage" >
+     <div className="weatherbox">
+      <div id="title">LOOKBOOK</div>
       <div id="cityName">
-        City: {props.weatherData.name}
+        {props.weatherData.name}
       </div>
       <div id="forecast">
-        Forecast: {props.weatherData.weather ? props.weatherData.weather[0].main : ""}
+        {props.weatherData.weather ? props.weatherData.weather[0].main : ""}
       </div>
-      <div id="temperature">
-        Temperature: {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
+      <div id="temperature" data-temp={props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}>
+        {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
       </div>
-      <div id="icon">
-        {props.weatherData.weather ? props.weatherData.weather[0].icon : ""}
-        <img src="http://openweathermap.org/img/w/10d.png" />
+      <div className="weatherIcon">
+         <Skycons color='black' icon={iconTag}/>
       </div>
-
       <SearchByTag />
     </div>
-
-    <OutfitsList />
-
-    </div>
+   <OutfitsList />
+  </div>
   )
+}
+
+function tagForIconCode(iconCode) {
+  let map = {
+    '01n': 'CLEAR_DAY',
+    '02n': 'CLOUDY',
+    '03n': 'CLOUDY',
+    '04n': 'CLOUDY',
+    '09n': 'RAIN',
+    '10n': 'RAIN',
+    '13n': 'SNOW',
+  }
+  return map[iconCode] ? map[iconCode] : 'CLEAR_NIGHT'
 }
 
 function showWeather (e, dispatch) {
@@ -74,3 +61,29 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps)(Weather)
+
+
+
+//goes under weatherbox
+
+// <input
+//   type="text"
+//   id="citymenu"
+//   list="cities"
+//   placeholder="Enter your city .."
+//   onKeyUp={ e => { showWeather(e, props.dispatch)}}
+// />
+// <datalist id="cities">
+//   <option value="Lima" />
+//   <option value="New York" />
+//   <option value="Cusco" />
+//   <option value="Wellington" />
+//   <option value="Auckland" />
+//   <option value="Melbourne" />
+//   <option value="Sydney" />
+//   <option value="London" />
+//   <option value="Huancayo" />
+//   <option value="Atlanta" />
+//   <option value="Gisbourne" />
+//   <option value="Christchurch" />
+// </datalist>
