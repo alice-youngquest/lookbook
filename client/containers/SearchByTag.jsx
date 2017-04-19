@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchOutfitsByTempAndTag } from '../actions'
+import { filterOutfits } from '../actions'
 
 const SearchByTag = (props) => {
   return (
@@ -15,7 +15,11 @@ const SearchByTag = (props) => {
 
 function inputTag (ev, dispatch) {
   if (ev.keyCode === 13) {
-    dispatch(fetchOutfitsByTempAndTag(ev.currentTarget.value.toLowerCase()))
+    console.log('hit')
+    dispatch(filterOutfits({
+      tag: ev.currentTarget.value.toLowerCase(),
+      temp: document.getElementById("temperature").dataset.temp
+    }))
     ev.currentTarget.value = ''
   }
 }

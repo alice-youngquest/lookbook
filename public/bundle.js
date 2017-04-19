@@ -27600,9 +27600,7 @@
 	});
 	exports.receiveLikes = exports.increaseLikes = exports.receiveOutfits = exports.receiveWeather = undefined;
 	exports.fetchWeather = fetchWeather;
-	exports.fetchOutfitsByTemp = fetchOutfitsByTemp;
-	exports.fetchOutfitsByTag = fetchOutfitsByTag;
-	exports.fetchOutfitsByTempAndTag = fetchOutfitsByTempAndTag;
+	exports.filterOutfits = filterOutfits;
 	
 	var _superagent = __webpack_require__(257);
 	
@@ -27619,7 +27617,11 @@
 	        console.error(err.message);
 	        return;
 	      }
-	      dispatch(fetchOutfitsByTemp(Math.floor(res.body.main.temp)));
+	      dispatch(filterOutfits({
+	        temp: Math.floor(res.body.main.temp),
+	        tag: ""
+	      }));
+	
 	      dispatch(receiveWeather(res.body));
 	    });
 	  };
@@ -27634,29 +27636,6 @@
 	
 	//OUTFITS
 	
-	function fetchOutfitsByTemp(temp) {
-	  return function (dispatch) {
-	    _superagent2.default.get('/v1/outfits?temp=' + temp).end(function (err, res) {
-	      if (err) {
-	        console.error(err.message);
-	        return;
-	      }
-	      dispatch(receiveOutfits(res.body));
-	    });
-	  };
-	}
-	
-	function fetchOutfitsByTag(tag) {
-	  return function (dispatch) {
-	    _superagent2.default.get('/v1/outfits?tag=' + tag).end(function (err, res) {
-	      if (err) {
-	        console.error(err.message);
-	        return;
-	      }
-	      dispatch(receiveOutfits(res.body));
-	    });
-	  };
-	}
 	
 	var receiveOutfits = exports.receiveOutfits = function receiveOutfits(outfits) {
 	  return {
@@ -27667,9 +27646,13 @@
 	  };
 	};
 	
-	function fetchOutfitsByTempAndTag(tag) {
-	  var tempData = document.getElementById("temperature");
-	  var temp = tempData.dataset.temp;
+	function filterOutfits(options) {
+	  var tag = options.tag,
+	      temp = options.temp;
+	
+	  if (!tag) tag = '';
+	  if (!temp) temp = '';
+	
 	  return function (dispatch) {
 	    _superagent2.default.get('/v1/outfits?temp=' + temp + '&tag=' + tag).end(function (err, res) {
 	      if (err) {
@@ -29469,7 +29452,11 @@
 	
 	function inputTag(ev, dispatch) {
 	  if (ev.keyCode === 13) {
-	    dispatch((0, _actions.fetchOutfitsByTempAndTag)(ev.currentTarget.value.toLowerCase()));
+	    console.log('hit');
+	    dispatch((0, _actions.filterOutfits)({
+	      tag: ev.currentTarget.value.toLowerCase(),
+	      temp: document.getElementById("temperature").dataset.temp
+	    }));
 	    ev.currentTarget.value = '';
 	  }
 	}
