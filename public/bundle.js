@@ -27516,7 +27516,7 @@
 	      ),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'temperature', 'data-temp': props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "" },
+	        { id: 'temperature', className: 'temperature', 'data-temp': props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "" },
 	        props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
 	        '\xB0C'
 	      ),
