@@ -14,7 +14,7 @@ const Weather = (props) => {
   return (
   <div className="weatherpage" >
      <div className="weatherbox">
-      <div id="title">LOOKBOOK</div>
+      <a href="/" id="title">LOOKBOOK</a>
       <div id="cityName">
         {props.weatherData.name}
       </div>

@@ -27504,8 +27504,8 @@
 	      'div',
 	      { className: 'weatherbox' },
 	      _react2.default.createElement(
-	        'div',
-	        { id: 'title' },
+	        'a',
+	        { href: '/', id: 'title' },
 	        'LOOKBOOK'
 	      ),
 	      _react2.default.createElement(
@@ -29374,10 +29374,10 @@
 	    _react2.default.createElement(
 	      'div',
 	      { id: 'likebutton' },
-	      _react2.default.createElement('input', { id: 'toggle-heart', type: 'checkbox' }),
+	      _react2.default.createElement('input', { id: 'toggle-heart' }),
 	      _react2.default.createElement(
-	        'label',
-	        { id: props.id, onClick: function onClick(ev) {
+	        'button',
+	        { id: props.id, className: 'heart-button', onClick: function onClick(ev) {
 	            addLike(ev, props.dispatch, props.id, props.likes);
 	          } },
 	        '\u2764 ',
@@ -29396,7 +29396,6 @@
 	  document.getElementById(id).disabled = true;
 	}
 	
-	// <div id="number">{props.likes}</div>
 	exports.default = (0, _reactRedux.connect)()(OutfitsListItem);
 	module.exports = exports['default'];
 
