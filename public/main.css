@@ -149,6 +149,25 @@ body {
   left: -100vw;
 }
 
+.heart-button {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  background-color: white;
+}
+
+.heart-button:hover {
+cursor: pointer;
+}
+
+.heart-button:disabled {
+  color: #e98994;
+}
+
+.heart-button:focus {
+  outline: none;
+}
+
 #number {
   position: relative;;
   bottom: 19px;
