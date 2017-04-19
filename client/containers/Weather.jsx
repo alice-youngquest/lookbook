@@ -36,13 +36,17 @@ const Weather = (props) => {
 
 function tagForIconCode(iconCode) {
   let map = {
-    '01n': 'CLEAR_DAY',
-    '02n': 'CLOUDY',
-    '03n': 'CLOUDY',
-    '04n': 'CLOUDY',
-    '09n': 'RAIN',
-    '10n': 'RAIN',
-    '13n': 'SNOW',
+    '01d': 'CLEAR_DAY',
+    '01n': 'CLEAR_NIGHT',
+    '02d': 'CLOUDY',
+    '02n': 'PARTLY_CLOUDY_NIGHT',
+    '03d': 'CLOUDY',
+    '03n': 'PARTLY_CLOUDY_NIGHT',
+    '04d': 'CLOUDY',
+    '04n': 'PARTLY_CLOUDY_NIGHT',
+    '09d': 'RAIN',
+    '10d': 'RAIN',
+    '13d': 'SNOW',
   }
   return map[iconCode] ? map[iconCode] : 'CLEAR_NIGHT'
 }

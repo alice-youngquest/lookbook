@@ -23903,7 +23903,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
-	        _react2.default.createElement(_reactRouterDom.Route, { path: '/inspo', component: _Weather2.default })
+	        _react2.default.createElement(_reactRouterDom.Route, { path: '/lookbook', component: _Weather2.default })
 	      )
 	    )
 	  );
@@ -27537,13 +27537,17 @@
 	
 	function tagForIconCode(iconCode) {
 	  var map = {
-	    '01n': 'CLEAR_DAY',
-	    '02n': 'CLOUDY',
-	    '03n': 'CLOUDY',
-	    '04n': 'CLOUDY',
-	    '09n': 'RAIN',
-	    '10n': 'RAIN',
-	    '13n': 'SNOW'
+	    '01d': 'CLEAR_DAY',
+	    '01n': 'CLEAR_NIGHT',
+	    '02d': 'CLOUDY',
+	    '02n': 'PARTLY_CLOUDY_NIGHT',
+	    '03d': 'CLOUDY',
+	    '03n': 'PARTLY_CLOUDY_NIGHT',
+	    '04d': 'CLOUDY',
+	    '04n': 'PARTLY_CLOUDY_NIGHT',
+	    '09d': 'RAIN',
+	    '10d': 'RAIN',
+	    '13d': 'SNOW'
 	  };
 	  return map[iconCode] ? map[iconCode] : 'CLEAR_NIGHT';
 	}
@@ -30343,7 +30347,7 @@
 	function showWeather(e, props) {
 	  e.preventDefault();
 	  console.log(e.currentTarget.children[0].value);
-	  props.history.push("/inspo");
+	  props.history.push("/lookbook");
 	  props.dispatch((0, _index.fetchWeather)(e.currentTarget.children[0].value.toLowerCase()));
 	  e.currentTarget.value = '';
 	}

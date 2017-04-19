@@ -42,7 +42,7 @@ const Home = (props) => {
 function showWeather (e, props) {
   e.preventDefault()
   console.log(e.currentTarget.children[0].value)
-    props.history.push("/inspo")
+    props.history.push("/lookbook")
     props.dispatch(fetchWeather(e.currentTarget.children[0].value.toLowerCase()))
     e.currentTarget.value = ''
 }
