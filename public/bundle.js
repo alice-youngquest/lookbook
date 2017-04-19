@@ -23792,15 +23792,15 @@
 	
 	var _weather2 = _interopRequireDefault(_weather);
 	
-	var _receiveOutfits = __webpack_require__(217);
+	var _outfits = __webpack_require__(217);
 	
-	var _receiveOutfits2 = _interopRequireDefault(_receiveOutfits);
+	var _outfits2 = _interopRequireDefault(_outfits);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = (0, _redux.combineReducers)({
 	  weatherData: _weather2.default,
-	  returnOutfits: _receiveOutfits2.default
+	  outfits: _outfits2.default
 	});
 	module.exports = exports['default'];
 
@@ -23841,7 +23841,7 @@
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
-	function returnOutfits() {
+	function outfits() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 	
@@ -23863,7 +23863,7 @@
 	  }
 	}
 	
-	exports.default = returnOutfits;
+	exports.default = outfits;
 	module.exports = exports['default'];
 
 /***/ },
@@ -29326,7 +29326,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    outfits: state.returnOutfits,
+	    outfits: state.outfits,
 	    dispatch: state.dispatch
 	  };
 	};
