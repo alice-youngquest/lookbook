@@ -9,15 +9,13 @@ const Home = (props) => {
       <div id="circle">
         <div id="text">LOOKBOOK</div>
         <p id="texttwo">A fashion inspiration app based off the weather in your city</p>
-
         <form onSubmit={ e => {showWeather(e, props)}} id="cityinput">
           <input
             type="text"
             list="cities"
             placeholder="Enter your city .."
           />
-      </form>
-
+        </form>
         <datalist id="cities">
             <option value="Lima" />
             <option value="NewYork" />
@@ -32,8 +30,6 @@ const Home = (props) => {
             <option value="Gisbourne" />
             <option value="Christchurch" />
         </datalist>
-
-
       </div>
     </div>
   )
@@ -42,11 +38,9 @@ const Home = (props) => {
 function showWeather (e, props) {
   e.preventDefault()
   console.log(e.currentTarget.children[0].value)
-    props.history.push("/inspo")
+    props.history.push("/lookbook")
     props.dispatch(fetchWeather(e.currentTarget.children[0].value.toLowerCase()))
     e.currentTarget.value = ''
 }
-
-
 
 export default connect()(Home)
