@@ -27504,8 +27504,8 @@
 	      'div',
 	      { className: 'weatherbox' },
 	      _react2.default.createElement(
-	        'div',
-	        { id: 'title' },
+	        'a',
+	        { href: '/', id: 'title' },
 	        'LOOKBOOK'
 	      ),
 	      _react2.default.createElement(
