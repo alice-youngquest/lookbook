@@ -39,6 +39,7 @@ function tagForIconCode(iconCode) {
     '01n': 'CLEAR_DAY',
     '02n': 'CLOUDY',
     '03n': 'CLOUDY',
+    '04n': 'CLOUDY',
     '09n': 'RAIN',
     '10n': 'RAIN',
     '13n': 'SNOW',

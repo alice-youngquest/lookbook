@@ -23886,7 +23886,7 @@
 	
 	var _Weather2 = _interopRequireDefault(_Weather);
 	
-	var _Home = __webpack_require__(256);
+	var _Home = __webpack_require__(268);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
@@ -27473,21 +27473,21 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _index = __webpack_require__(257);
+	var _index = __webpack_require__(256);
 	
-	var _OutfitsList = __webpack_require__(263);
+	var _OutfitsList = __webpack_require__(262);
 	
 	var _OutfitsList2 = _interopRequireDefault(_OutfitsList);
 	
-	var _Nav = __webpack_require__(265);
+	var _Nav = __webpack_require__(264);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
-	var _SearchByTag = __webpack_require__(266);
+	var _SearchByTag = __webpack_require__(265);
 	
 	var _SearchByTag2 = _interopRequireDefault(_SearchByTag);
 	
-	var _reactSkycons = __webpack_require__(267);
+	var _reactSkycons = __webpack_require__(266);
 	
 	var _reactSkycons2 = _interopRequireDefault(_reactSkycons);
 	
@@ -27540,6 +27540,7 @@
 	    '01n': 'CLEAR_DAY',
 	    '02n': 'CLOUDY',
 	    '03n': 'CLOUDY',
+	    '04n': 'CLOUDY',
 	    '09n': 'RAIN',
 	    '10n': 'RAIN',
 	    '13n': 'SNOW'
@@ -27597,92 +27598,13 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(182);
-	
-	var _index = __webpack_require__(257);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Home = function Home(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'div',
-	      { id: 'circle' },
-	      _react2.default.createElement(
-	        'div',
-	        { id: 'text' },
-	        'LOOKBOOK'
-	      ),
-	      _react2.default.createElement(
-	        'p',
-	        { id: 'texttwo' },
-	        'A fashion inspiration app based off the weather in your city'
-	      ),
-	      _react2.default.createElement(
-	        'form',
-	        { onSubmit: function onSubmit(e) {
-	            showWeather(e, props);
-	          }, id: 'cityinput' },
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          list: 'cities',
-	          placeholder: 'Enter your city ..'
-	        })
-	      ),
-	      _react2.default.createElement(
-	        'datalist',
-	        { id: 'cities' },
-	        _react2.default.createElement('option', { value: 'Lima' }),
-	        _react2.default.createElement('option', { value: 'NewYork' }),
-	        _react2.default.createElement('option', { value: 'Cusco' }),
-	        _react2.default.createElement('option', { value: 'Wellington' }),
-	        _react2.default.createElement('option', { value: 'Auckland' }),
-	        _react2.default.createElement('option', { value: 'Melbourne' }),
-	        _react2.default.createElement('option', { value: 'Sydney' }),
-	        _react2.default.createElement('option', { value: 'London' }),
-	        _react2.default.createElement('option', { value: 'Huancayo' }),
-	        _react2.default.createElement('option', { value: 'Atlanta' }),
-	        _react2.default.createElement('option', { value: 'Gisbourne' }),
-	        _react2.default.createElement('option', { value: 'Christchurch' })
-	      )
-	    )
-	  );
-	};
-	
-	function showWeather(e, props) {
-	  e.preventDefault();
-	  console.log(e.currentTarget.children[0].value);
-	  props.history.push("/inspo");
-	  props.dispatch((0, _index.fetchWeather)(e.currentTarget.children[0].value.toLowerCase()));
-	  e.currentTarget.value = '';
-	}
-	
-	exports.default = (0, _reactRedux.connect)()(Home);
-	module.exports = exports['default'];
-
-/***/ },
-/* 257 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
 	exports.receiveLikes = exports.increaseLikes = exports.receiveOutfits = exports.receiveWeather = undefined;
 	exports.fetchWeather = fetchWeather;
 	exports.fetchOutfitsByTemp = fetchOutfitsByTemp;
 	exports.fetchOutfitsByTag = fetchOutfitsByTag;
 	exports.fetchOutfitsByTempAndTag = fetchOutfitsByTempAndTag;
 	
-	var _superagent = __webpack_require__(258);
+	var _superagent = __webpack_require__(257);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -27781,7 +27703,7 @@
 	};
 
 /***/ },
-/* 258 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27803,9 +27725,9 @@
 	  root = undefined;
 	}
 	
-	var Emitter = __webpack_require__(259);
-	var requestBase = __webpack_require__(260);
-	var isObject = __webpack_require__(261);
+	var Emitter = __webpack_require__(258);
+	var requestBase = __webpack_require__(259);
+	var isObject = __webpack_require__(260);
 	
 	/**
 	 * Noop.
@@ -27817,7 +27739,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(262).bind(null, Request);
+	var request = module.exports = __webpack_require__(261).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -28769,7 +28691,7 @@
 	};
 
 /***/ },
-/* 259 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28933,7 +28855,7 @@
 	};
 
 /***/ },
-/* 260 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28941,7 +28863,7 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(261);
+	var isObject = __webpack_require__(260);
 	
 	/**
 	 * Clear previous timeout.
@@ -29309,7 +29231,7 @@
 	};
 
 /***/ },
-/* 261 */
+/* 260 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29331,7 +29253,7 @@
 	module.exports = isObject;
 
 /***/ },
-/* 262 */
+/* 261 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29370,7 +29292,7 @@
 	module.exports = request;
 
 /***/ },
-/* 263 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29385,7 +29307,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _OutfitsListItem = __webpack_require__(264);
+	var _OutfitsListItem = __webpack_require__(263);
 	
 	var _OutfitsListItem2 = _interopRequireDefault(_OutfitsListItem);
 	
@@ -29413,7 +29335,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 264 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29428,7 +29350,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _actions = __webpack_require__(257);
+	var _actions = __webpack_require__(256);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29475,7 +29397,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 265 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29507,7 +29429,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 266 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29522,7 +29444,7 @@
 	
 	var _reactRedux = __webpack_require__(182);
 	
-	var _actions = __webpack_require__(257);
+	var _actions = __webpack_require__(256);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29563,7 +29485,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 267 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29624,7 +29546,7 @@
 	  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 	}
 	
-	var Skycons = __webpack_require__(268)(window);
+	var Skycons = __webpack_require__(267)(window);
 	
 	var ReactSkycons = function (_Component) {
 	  _inherits(ReactSkycons, _Component);
@@ -29707,7 +29629,7 @@
 	exports.default = ReactSkycons;
 
 /***/ },
-/* 268 */
+/* 267 */
 /***/ function(module, exports) {
 
 	/* jshint browser:true, node:true */
@@ -30349,6 +30271,85 @@
 	  };
 	  return Skycons;
 	};
+
+/***/ },
+/* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(182);
+	
+	var _index = __webpack_require__(256);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Home = function Home(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'div',
+	      { id: 'circle' },
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'text' },
+	        'LOOKBOOK'
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        { id: 'texttwo' },
+	        'A fashion inspiration app based off the weather in your city'
+	      ),
+	      _react2.default.createElement(
+	        'form',
+	        { onSubmit: function onSubmit(e) {
+	            showWeather(e, props);
+	          }, id: 'cityinput' },
+	        _react2.default.createElement('input', {
+	          type: 'text',
+	          list: 'cities',
+	          placeholder: 'Enter your city ..'
+	        })
+	      ),
+	      _react2.default.createElement(
+	        'datalist',
+	        { id: 'cities' },
+	        _react2.default.createElement('option', { value: 'Lima' }),
+	        _react2.default.createElement('option', { value: 'NewYork' }),
+	        _react2.default.createElement('option', { value: 'Cusco' }),
+	        _react2.default.createElement('option', { value: 'Wellington' }),
+	        _react2.default.createElement('option', { value: 'Auckland' }),
+	        _react2.default.createElement('option', { value: 'Melbourne' }),
+	        _react2.default.createElement('option', { value: 'Sydney' }),
+	        _react2.default.createElement('option', { value: 'London' }),
+	        _react2.default.createElement('option', { value: 'Huancayo' }),
+	        _react2.default.createElement('option', { value: 'Atlanta' }),
+	        _react2.default.createElement('option', { value: 'Gisbourne' }),
+	        _react2.default.createElement('option', { value: 'Christchurch' })
+	      )
+	    )
+	  );
+	};
+	
+	function showWeather(e, props) {
+	  e.preventDefault();
+	  console.log(e.currentTarget.children[0].value);
+	  props.history.push("/inspo");
+	  props.dispatch((0, _index.fetchWeather)(e.currentTarget.children[0].value.toLowerCase()));
+	  e.currentTarget.value = '';
+	}
+	
+	exports.default = (0, _reactRedux.connect)()(Home);
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
