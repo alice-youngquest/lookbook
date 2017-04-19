@@ -23886,7 +23886,7 @@
 	
 	var _Weather2 = _interopRequireDefault(_Weather);
 	
-	var _Home = __webpack_require__(268);
+	var _Home = __webpack_require__(267);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
@@ -23903,7 +23903,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default }),
-	        _react2.default.createElement(_reactRouterDom.Route, { path: '/inspo', component: _Weather2.default })
+	        _react2.default.createElement(_reactRouterDom.Route, { path: '/lookbook', component: _Weather2.default })
 	      )
 	    )
 	  );
@@ -27479,15 +27479,11 @@
 	
 	var _OutfitsList2 = _interopRequireDefault(_OutfitsList);
 	
-	var _Nav = __webpack_require__(264);
-	
-	var _Nav2 = _interopRequireDefault(_Nav);
-	
-	var _SearchByTag = __webpack_require__(265);
+	var _SearchByTag = __webpack_require__(264);
 	
 	var _SearchByTag2 = _interopRequireDefault(_SearchByTag);
 	
-	var _reactSkycons = __webpack_require__(266);
+	var _reactSkycons = __webpack_require__(265);
 	
 	var _reactSkycons2 = _interopRequireDefault(_reactSkycons);
 	
@@ -27504,23 +27500,23 @@
 	      'div',
 	      { className: 'weatherbox' },
 	      _react2.default.createElement(
-	        'div',
-	        { id: 'title' },
+	        'a',
+	        { href: '/', className: 'title' },
 	        'LOOKBOOK'
 	      ),
 	      _react2.default.createElement(
 	        'div',
-	        { id: 'cityName' },
+	        { className: 'cityName' },
 	        props.weatherData.name
 	      ),
 	      _react2.default.createElement(
 	        'div',
-	        { id: 'forecast' },
+	        { className: 'forecast' },
 	        props.weatherData.weather ? props.weatherData.weather[0].main : ""
 	      ),
 	      _react2.default.createElement(
 	        'div',
-	        { id: 'temperature', 'data-temp': props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "" },
+	        { className: 'temperature', 'data-temp': props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "" },
 	        props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
 	        '\xB0C'
 	      ),
@@ -27537,12 +27533,19 @@
 	
 	function tagForIconCode(iconCode) {
 	  var map = {
-	    '01n': 'CLEAR_DAY',
-	    '02n': 'CLOUDY',
-	    '03n': 'CLOUDY',
-	    '04n': 'CLOUDY',
+	    '01d': 'CLEAR_DAY',
+	    '01n': 'CLEAR_NIGHT',
+	    '02d': 'CLOUDY',
+	    '02n': 'PARTLY_CLOUDY_NIGHT',
+	    '03d': 'CLOUDY',
+	    '03n': 'PARTLY_CLOUDY_NIGHT',
+	    '04d': 'CLOUDY',
+	    '04n': 'PARTLY_CLOUDY_NIGHT',
+	    '09d': 'RAIN',
 	    '09n': 'RAIN',
-	    '10n': 'RAIN',
+	    '10d': 'RAIN',
+	    '10m': 'RAIN',
+	    '13d': 'SNOW',
 	    '13n': 'SNOW'
 	  };
 	  return map[iconCode] ? map[iconCode] : 'CLEAR_NIGHT';
@@ -27562,31 +27565,6 @@
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Weather);
-	
-	//goes under weatherbox
-	
-	// <input
-	//   type="text"
-	//   id="citymenu"
-	//   list="cities"
-	//   placeholder="Enter your city .."
-	//   onKeyUp={ e => { showWeather(e, props.dispatch)}}
-	// />
-	// <datalist id="cities">
-	//   <option value="Lima" />
-	//   <option value="New York" />
-	//   <option value="Cusco" />
-	//   <option value="Wellington" />
-	//   <option value="Auckland" />
-	//   <option value="Melbourne" />
-	//   <option value="Sydney" />
-	//   <option value="London" />
-	//   <option value="Huancayo" />
-	//   <option value="Atlanta" />
-	//   <option value="Gisbourne" />
-	//   <option value="Christchurch" />
-	// </datalist>
-	
 	module.exports = exports['default'];
 
 /***/ },
@@ -29353,10 +29331,10 @@
 	    _react2.default.createElement(
 	      'div',
 	      { id: 'likebutton' },
-	      _react2.default.createElement('input', { id: 'toggle-heart', type: 'checkbox' }),
+	      _react2.default.createElement('input', { id: 'toggle-heart' }),
 	      _react2.default.createElement(
-	        'label',
-	        { id: props.id, onClick: function onClick(ev) {
+	        'button',
+	        { id: props.id, className: 'heart-button', onClick: function onClick(ev) {
 	            addLike(ev, props.dispatch, props.id, props.likes);
 	          } },
 	        '\u2764 ',
@@ -29375,44 +29353,11 @@
 	  document.getElementById(id).disabled = true;
 	}
 	
-	// <div id="number">{props.likes}</div>
 	exports.default = (0, _reactRedux.connect)()(OutfitsListItem);
 	module.exports = exports['default'];
 
 /***/ },
 /* 264 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Nav = function Nav() {
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "nav" },
-	    "Nav Bar",
-	    _react2.default.createElement("input", {
-	      type: "text",
-	      id: "navsearchbar",
-	      placeholder: "Search ..."
-	    })
-	  );
-	};
-	
-	exports.default = Nav;
-	module.exports = exports["default"];
-
-/***/ },
-/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29472,7 +29417,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 266 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29533,7 +29478,7 @@
 	  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 	}
 	
-	var Skycons = __webpack_require__(267)(window);
+	var Skycons = __webpack_require__(266)(window);
 	
 	var ReactSkycons = function (_Component) {
 	  _inherits(ReactSkycons, _Component);
@@ -29616,7 +29561,7 @@
 	exports.default = ReactSkycons;
 
 /***/ },
-/* 267 */
+/* 266 */
 /***/ function(module, exports) {
 
 	/* jshint browser:true, node:true */
@@ -30260,7 +30205,7 @@
 	};
 
 /***/ },
-/* 268 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30330,7 +30275,7 @@
 	function showWeather(e, props) {
 	  e.preventDefault();
 	  console.log(e.currentTarget.children[0].value);
-	  props.history.push("/inspo");
+	  props.history.push("/lookbook");
 	  props.dispatch((0, _index.fetchWeather)(e.currentTarget.children[0].value.toLowerCase()));
 	  e.currentTarget.value = '';
 	}

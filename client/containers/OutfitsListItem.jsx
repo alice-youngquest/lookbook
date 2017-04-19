@@ -5,16 +5,14 @@ import { increaseLikes } from '../actions'
 const OutfitsListItem = (props) => {
   return (
     <div>
-
       <div id="imagesingle">
         <a href={props.photoUrl}>
           <img className="photoUrl" src={props.photoUrl} alt="outfit-pic" />
         </a>
       </div>
-
       <div id="likebutton">
-        <input id="toggle-heart" type="checkbox" />
-        <label id={props.id} onClick={ev => {addLike(ev, props.dispatch, props.id, props.likes)}}>❤ {props.likes}</label>
+        <input id="toggle-heart" />
+        <button id={props.id} className="heart-button" onClick={ev => {addLike(ev, props.dispatch, props.id, props.likes)}}>❤ {props.likes}</button>
       </div>
     </div>
   )
@@ -29,5 +27,4 @@ function disableLikeButton (id) {
   document.getElementById(id).disabled = true
 }
 
-// <div id="number">{props.likes}</div>
 export default connect()(OutfitsListItem)
