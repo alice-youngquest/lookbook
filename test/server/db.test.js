@@ -21,13 +21,13 @@ test.afterEach(function (t) {
 })
 
 test('get image by temperature', function (t) {
-  const expectedImage = [{
-    id: 1,
-    photo_url: 'http://fashion.ekstrax.com/wp-content/uploads/2015/04/Unboring-Fashion-ideas-from-Tumblr-9.jpg'
-  }]
-  return db.getOutfitsByTemp(14)
-    .then(function (image) {
-      console.log(image)
-      t.deepEqual(image, expectedImage)
+  const expectedImage = {
+    id: 0,
+    photoUrl: 'https://static.pexels.com/photos/63917/pexels-photo-63917.jpeg',
+    likes: 0
+  }
+  return db.getOutfitsByTemp(7)
+    .then(function (outfits) {
+      t.deepEqual(outfits[0], expectedImage)
     })
 })
