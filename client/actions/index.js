@@ -11,7 +11,11 @@ export function fetchWeather (searchTerm) {
           console.error(err.message)
           return
         }
-        dispatch(fetchOutfitsByTemp(Math.floor(res.body.main.temp)))
+        dispatch(filterOutfits({
+          temp: Math.floor(res.body.main.temp),
+          tag: ""
+        }))
+
         dispatch(receiveWeather(res.body))
       })
   }
@@ -26,33 +30,6 @@ export const receiveWeather = (weather) => {
 
 //OUTFITS
 
-export function fetchOutfitsByTemp (temp) {
-  return (dispatch) => {
-    request
-      .get(`/v1/outfits?temp=${temp}`)
-      .end((err, res) => {
-        if (err) {
-          console.error(err.message)
-          return
-        }
-        dispatch(receiveOutfits(res.body))
-      })
-  }
-}
-
-export function fetchOutfitsByTag (tag) {
-  return (dispatch) => {
-    request
-      .get(`/v1/outfits?tag=${tag}`)
-      .end((err, res) => {
-        if (err) {
-          console.error(err.message)
-          return
-        }
-        dispatch(receiveOutfits(res.body))
-      })
-  }
-}
 
 export const receiveOutfits = (outfits) => {
   return {
@@ -61,9 +38,11 @@ export const receiveOutfits = (outfits) => {
   }
 }
 
-export function fetchOutfitsByTempAndTag (tag) {
-  const tempData = document.getElementById("temperature")
-  const temp = tempData.dataset.temp
+export function filterOutfits (options) {
+  let {tag, temp} = options
+  if (!tag) tag = ''
+  if (!temp) temp = ''
+
   return (dispatch) => {
     request
       .get(`/v1/outfits?temp=${temp}&tag=${tag}`)
