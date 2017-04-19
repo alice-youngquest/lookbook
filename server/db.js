@@ -9,7 +9,8 @@ module.exports = {
   getTagIdByTagName,
   getOutfitsByTag,
   incrementLikes,
-  getOutfitsByTempAndTag
+  getOutfitsByTempAndTag,
+  knex: db
 }
 
 function getOutfits (options) {
@@ -34,7 +35,7 @@ function getOutfitsByTemp (temp) {
   return db('outfits')
     .where('t_min', '<=', temp)
     .andWhere('t_max', '>=', temp)
-    .select('id', 'photo_url as photoUrl', 'likes')
+    .select()
 }
 
 function incrementLikes (id) {
@@ -78,5 +79,5 @@ function getOutfitsByTempAndTag (temp, tag_name) {
     .where('t_min', '<=', temp)
     .andWhere('t_max', '>=', temp)
     .whereIn('outfits.id', subquery)
-    .select('id', 'photo_url as photoUrl', 'likes')
+    .select('id', 'photo_url as photoUrl', 'likes', 't_max', 't_min')
 }
