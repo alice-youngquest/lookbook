@@ -18,7 +18,7 @@ const OutfitsList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-      outfits: state.returnOutfits,
+      outfits: state.outfits,
       dispatch: state.dispatch
     }
 }

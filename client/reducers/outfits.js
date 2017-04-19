@@ -1,4 +1,4 @@
-function returnOutfits (state = [], action) {
+function outfits (state = [], action) {
   switch (action.type) {
     case 'RECEIVE_OUTFITS':
       return [
@@ -21,4 +21,4 @@ function returnOutfits (state = [], action) {
   }
 }
 
-export default returnOutfits
+export default outfits
