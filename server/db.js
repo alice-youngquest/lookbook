@@ -35,7 +35,7 @@ function getOutfitsByTemp (temp) {
   return db('outfits')
     .where('t_min', '<=', temp)
     .andWhere('t_max', '>=', temp)
-    .select()
+    .select('id', 'outfits.photo_url as photoUrl', 'likes', 't_max', 't_min')
 }
 
 function incrementLikes (id) {

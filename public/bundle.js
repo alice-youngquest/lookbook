@@ -27516,7 +27516,7 @@
 	      ),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'temperature', 'data-temp': props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "" },
+	        { id: 'temperature', className: 'temperature', 'data-temp': props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "" },
 	        props.weatherData.main ? Math.floor(props.weatherData.main.temp) : "",
 	        '\xB0C'
 	      ),
@@ -29397,7 +29397,6 @@
 	
 	function inputTag(ev, dispatch) {
 	  if (ev.keyCode === 13) {
-	    console.log('hit');
 	    dispatch((0, _actions.filterOutfits)({
 	      tag: ev.currentTarget.value.toLowerCase(),
 	      temp: document.getElementById("temperature").dataset.temp
@@ -30274,7 +30273,6 @@
 	
 	function showWeather(e, props) {
 	  e.preventDefault();
-	  console.log(e.currentTarget.children[0].value);
 	  props.history.push("/lookbook");
 	  props.dispatch((0, _index.fetchWeather)(e.currentTarget.children[0].value.toLowerCase()));
 	  e.currentTarget.value = '';

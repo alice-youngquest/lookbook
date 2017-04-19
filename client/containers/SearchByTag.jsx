@@ -15,7 +15,6 @@ const SearchByTag = (props) => {
 
 function inputTag (ev, dispatch) {
   if (ev.keyCode === 13) {
-    console.log('hit')
     dispatch(filterOutfits({
       tag: ev.currentTarget.value.toLowerCase(),
       temp: document.getElementById("temperature").dataset.temp
