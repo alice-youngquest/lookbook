@@ -5,7 +5,9 @@ const bodyParser = require('body-parser')
 const outfits = require('./routes')
 const serverWeatherApi = require('./routes/serverWeatherApi')
 
+const db = require('./db')
 const server = express()
+server.set('knex', db.knex)
 
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({

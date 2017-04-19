@@ -12,6 +12,7 @@ router.get('/', function (req, res) {
     res.json(data)
   })
   .catch((err) => {
+    console.log(err);
     res.status(500).send(err)
   })
 })
