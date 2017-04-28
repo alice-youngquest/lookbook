@@ -3,9 +3,27 @@ const config = require('../knexfile.js')[env]
 const db = require('knex')(config)
 
 module.exports = {
+  getOutfits,
   getAllOutfits,
   getOutfitsByTemp,
-  incrementLikes
+  getTagIdByTagName,
+  getOutfitsByTag,
+  incrementLikes,
+  getOutfitsByTempAndTag,
+  knex: db
+}
+
+function getOutfits (options) {
+  if (options.temp && options.tag) {
+    return getOutfitsByTempAndTag(options.temp, options.tag)
+  } else if (options.temp) {
+    return getOutfitsByTemp(options.temp)
+  } else if (options.tag) {
+    return getTagIdByTagName(options.tag)
+      .then(getOutfitsByTag)
+  } else {
+    return getAllOutfits()
+  }
 }
 
 function getAllOutfits () {
@@ -13,15 +31,53 @@ function getAllOutfits () {
     .select('id', 'outfits.photo_url as photoUrl', 'likes')
 }
 
-function getOutfitsByTemp (temperature = 14) {
+function getOutfitsByTemp (temp) {
   return db('outfits')
-  .where('t_min', '<=', temperature)
-  .andWhere('t_max', '>=', temperature)
-  .select('id', 'photo_url as photoUrl', 'likes')
+    .where('t_min', '<=', temp)
+    .andWhere('t_max', '>=', temp)
+    .select('id', 'outfits.photo_url as photoUrl', 'likes', 't_max', 't_min')
 }
 
-function incrementLikes(id) {
+function incrementLikes (id) {
   return db('outfits')
-  .where('id', '=', id)
-  .increment('likes', 1)
+    .where('id', '=', id)
+    .increment('likes', 1)
+      .then(function () {
+        return db('outfits')
+          .where('id', '=', id)
+          .first()
+      })
+}
+
+function getTagIdByTagName (tag) {
+  return db('tags')
+    .where('tag', '=', tag)
+    .select('id')
+}
+
+function getOutfitsByTag (tagObj) {
+  let tagId = tagObj[0].id
+  return db.select('outfits.id', 'tag', 'photo_url as photoUrl', 'likes')
+    .from('join')
+      .join('tags', function() {
+        this.on('join.tags_id', '=', 'tags.id')
+          .andOn('join.tags_id', '=', tagId)
+      })
+    .join('outfits', 'join.outfits_id', '=', 'outfits.id')
+}
+
+function byTagNameSubquery(tag_name) {
+  return db('join').select('join.outfits_id')
+    .join('tags', 'join.tags_id', '=', 'tags.id')
+    .where('tags.tag', '=', tag_name)
+}
+
+function getOutfitsByTempAndTag (temp, tag_name) {
+  let subquery = byTagNameSubquery(tag_name)
+
+  return db('outfits')
+    .where('t_min', '<=', temp)
+    .andWhere('t_max', '>=', temp)
+    .whereIn('outfits.id', subquery)
+    .select('id', 'photo_url as photoUrl', 'likes', 't_max', 't_min')
 }
