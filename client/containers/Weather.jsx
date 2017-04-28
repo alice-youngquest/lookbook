@@ -19,7 +19,7 @@ const Weather = (props) => {
         <div className="forecast">
           {props.weatherData.weather ? props.weatherData.weather[0].main : ""}
         </div>
-        <div id="temperature" className="temperature" data-temp={props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}>
+        <div id="temperature" className="temperature">
           {props.weatherData.main ? Math.floor(props.weatherData.main.temp) : ""}°C
         </div>
         <div className="weatherIcon">
