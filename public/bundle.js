@@ -29551,13 +29551,6 @@
 	  autoplay: true
 	};
 	
-<<<<<<< HEAD
-	function fetchOutfits(dbQuery) {
-	  return function (dispatch) {
-	    _superagent2.default.get('https://aka-lookbook.herokuapp.com/v1/' + dbQuery).end(function (err, res) {
-	      if (err) {
-	        return;
-=======
 	ReactSkycons.propTypes = {
 	  color: _react.PropTypes.string,
 	  autoplay: _react.PropTypes.bool,
@@ -30176,7 +30169,6 @@
 	          this.list.splice(i, 1);
 	          return;
 	        }
->>>>>>> bd47e90e296e6e01c09eee7547c4180de49193a2
 	      }
 	    },
 	    draw: function draw(obj, time) {
